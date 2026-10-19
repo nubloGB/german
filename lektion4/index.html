@@ -96,9 +96,17 @@ table.gt tr:nth-child(even) td{background:#f6f5ff}
 .final-message{font-size:1.1em;color:#555;margin-bottom:16px}
 .breakdown{margin:10px auto 16px;max-width:420px;text-align:left}
 .breakdown div{display:flex;justify-content:space-between;background:#f6f5ff;border-radius:10px;padding:8px 12px;margin:5px 0;font-weight:600;color:#4a3f9a}
-.modal{display:none;position:fixed;inset:0;background:rgba(40,20,80,.55);z-index:100;justify-content:center;align-items:flex-start;padding:20px;overflow-y:auto}
+.modal{display:none;position:fixed;inset:0;background:rgba(40,20,80,.55);z-index:100;justify-content:center;align-items:flex-start;padding:20px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .modal.show{display:flex}
-.modal-content{background:#fff;border-radius:20px;padding:22px;max-width:680px;width:100%;position:relative;animation:questionPop .3s;margin:auto 0}
+.modal-content{background:#fff;border-radius:20px;padding:22px;max-width:680px;width:100%;position:relative;animation:questionPop .3s;margin:0 auto 12px}
+.gloss{display:flex;flex-direction:column;gap:10px}
+.gloss-card{background:#fff;border:2px solid #e3defa;border-radius:14px;padding:12px}
+.gloss-de{font-weight:700;color:#4a3f9a;font-size:1.05em;line-height:1.3}
+.gloss-pl{color:#764ba2;font-weight:600;margin-top:2px}
+.gloss-note{display:inline-block;background:#eef;color:#667eea;font-size:.75em;border-radius:10px;padding:2px 9px;font-weight:600;margin:7px 0 8px}
+.gloss-ex{background:#f6f5ff;border-radius:10px;padding:8px 10px;font-size:.92em;line-height:1.4;overflow-wrap:anywhere}
+.gloss-ex i{color:#5a3f9a;display:block;margin-top:3px}
+.gloss-tip{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:10px 12px;margin:0 0 10px;font-weight:600;line-height:1.4}
 .close-btn{position:absolute;top:12px;right:14px;background:#f5576c;color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:1.1em;cursor:pointer}
 details{background:#faf9ff;border-radius:12px;margin:8px 0;padding:8px 12px}
 details summary{cursor:pointer;font-weight:600;color:#764ba2}
@@ -133,6 +141,7 @@ details[open] summary{margin-bottom:6px}
 .reset-link{background:none;border:none;color:#bbb;text-decoration:underline;cursor:pointer;font-family:'Fredoka';font-size:1em}
 @media (max-width:520px){
  body{padding:8px}.game-container{padding:14px;border-radius:16px}
+ .modal{padding:8px}.modal-content{padding:16px 12px;border-radius:16px}
  h1{font-size:1.45em}.sentence{font-size:1.08em}.options{grid-template-columns:1fr}
  .option-btn{font-size:.98em;padding:11px}.stat-box{padding:8px}.stat-value{font-size:1.2em}
  .chapter-grid{grid-template-columns:1fr 1fr;gap:8px}.chapter-card{padding:10px}.chapter-card .cs{display:none}
@@ -271,6 +280,35 @@ const ORDER_TABLE = `
 <tr><td>deshalb, deswegen, darum, daher, trotzdem</td><td>czasownik <b>zaraz po nim</b></td><td>…, deshalb <b>lerne</b> ich Deutsch.</td></tr>
 <tr><td>wegen</td><td>+ <b>rzeczownik</b> (Genitiv)</td><td>wegen meiner Arbeit</td></tr>
 <tr><td>weshalb? (= warum?)</td><td>pytanie: czasownik 2.</td><td>Weshalb <b>kommst</b> du so spät?</td></tr></table>`;
+
+const LINK_GLOSS = [
+ {de:"weil", pl:"ponieważ, bo", note:"czasownik na końcu", ex:"Ich lerne Deutsch, weil ich in Zürich wohne.", xp:"Uczę się niemieckiego, ponieważ mieszkam w Zurychu."},
+ {de:"obwohl", pl:"chociaż, mimo że", note:"czasownik na końcu", ex:"Ich gehe spazieren, obwohl es regnet.", xp:"Idę na spacer, chociaż pada deszcz."},
+ {de:"dass", pl:"że", note:"czasownik na końcu", ex:"Ich glaube, dass er recht hat.", xp:"Myślę, że on ma rację."},
+ {de:"wenn", pl:"jeśli, kiedy (gdyby z Konj. II)", note:"czasownik na końcu", ex:"Wenn ich Zeit hätte, würde ich reisen.", xp:"Gdybym miał czas, podróżowałbym."},
+ {de:"denn", pl:"bo, ponieważ", note:"normalny szyk (pozycja 0)", ex:"Ich bleibe zu Hause, denn ich bin krank.", xp:"Zostaję w domu, bo jestem chory."},
+ {de:"deshalb / deswegen / darum", pl:"dlatego", note:"czasownik zaraz po nim", ex:"Ich bin krank, deshalb bleibe ich zu Hause.", xp:"Jestem chory, dlatego zostaję w domu."},
+ {de:"trotzdem", pl:"mimo to", note:"czasownik zaraz po nim", ex:"Es regnet, trotzdem gehe ich spazieren.", xp:"Pada deszcz, mimo to idę na spacer."},
+ {de:"weshalb / warum", pl:"dlaczego (pytanie)", note:"czasownik zaraz po nim", ex:"Weshalb lernst du Deutsch?", xp:"Dlaczego uczysz się niemieckiego?"},
+ {de:"wegen + Genitiv", pl:"z powodu", note:"potem rzeczownik", ex:"Wegen des Wetters bleiben wir zu Hause.", xp:"Z powodu pogody zostajemy w domu."},
+ {de:"sondern", pl:"lecz, tylko (po zaprzeczeniu)", note:"normalny szyk", ex:"Nicht heute, sondern morgen.", xp:"Nie dzisiaj, lecz jutro."},
+ {de:"aber", pl:"ale", note:"normalny szyk", ex:"Ich bin müde, aber ich lerne weiter.", xp:"Jestem zmęczony, ale uczę się dalej."}
+];
+
+const KONJ_GLOSS = [
+ {de:"würde + bezokolicznik", pl:"(ja) bym … (zrobił)", ex:"Ich würde gern mehr reisen.", xp:"Chętnie bym więcej podróżował."},
+ {de:"wäre", pl:"byłbym/byłoby", ex:"Wenn ich du wäre, …", xp:"Gdybym był tobą, …"},
+ {de:"hätte", pl:"miałbym", ex:"Ich hätte gern einen Kaffee.", xp:"Chętnie napiłbym się kawy."},
+ {de:"könnte", pl:"mógłbym", ex:"Könntest du mir helfen?", xp:"Mógłbyś mi pomóc?"},
+ {de:"müsste", pl:"musiałbym", ex:"Ich müsste mehr lernen.", xp:"Musiałbym więcej się uczyć."},
+ {de:"sollte", pl:"powinienem", ex:"Du solltest zum Arzt gehen.", xp:"Powinieneś iść do lekarza."},
+ {de:"dürfte", pl:"mógłbym (czy wolno)", ex:"Dürfte ich das Fenster öffnen?", xp:"Czy mógłbym otworzyć okno?"},
+ {de:"möchte", pl:"chciałbym", ex:"Ich möchte Deutsch lernen.", xp:"Chciałbym uczyć się niemieckiego."},
+ {de:"wüsste", pl:"wiedziałbym", ex:"Wenn ich das wüsste!", xp:"Gdybym to wiedział!"}
+];
+function glossCards(items){
+ return `<div class="gloss">`+items.map(it=>`<div class="gloss-card"><div class="gloss-de">${esc(it.de)}</div><div class="gloss-pl">${esc(it.pl)}</div>${it.note?`<div><span class="gloss-note">${esc(it.note)}</span></div>`:""}<div class="gloss-ex">🇩🇪 ${esc(it.ex)}<i>🇵🇱 ${esc(it.xp)}</i></div></div>`).join("")+`</div>`;
+}
 
 const TOPICS = [];
 TOPICS.push(
@@ -929,6 +967,8 @@ function openHelp(){
   html += `<h3>🔮 Konjunktiv II: tabela odmiany</h3><div class="reminder-box">${KONJ_TABLE}</div>`;
   html += `<h3>📌 wegen + Genitiv</h3><div class="reminder-box">${WEGEN_TABLE}</div>`;
   html += `<h3>🔗 Szyk zdania: weil, denn, deshalb, trotzdem …</h3><div class="reminder-box">${ORDER_TABLE}</div>`;
+  html += `<h3>Spójniki i ich znaczenie</h3><div class="reminder-box">${glossCards(LINK_GLOSS)}</div>`;
+  html += `<h3>Konjunktiv II – znaczenie form</h3><div class="reminder-box"><p class="gloss-tip">Konjunktiv II = polskie „by” (gdyby, chciałbym, mógłbym).</p>${glossCards(KONJ_GLOSS)}</div>`;
   html += `<h3>📚 Wszystkie przypomnienia</h3>` + TOPICS.map(t=>`<details><summary>${t.emoji} ${esc(t.title)} <span class="small">(${esc(t.src)})</span></summary>${t.reminder}</details>`).join("");
   $("help-body").innerHTML = html;
   $("help").classList.add("show");
