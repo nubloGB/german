@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niemiecki z Schritte Plus Neu B1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Fredoka',sans-serif;
+  min-height:100vh;
+  color:#fff;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(240,147,251,.45), transparent 55%),
+    radial-gradient(900px 500px at 110% 10%, rgba(67,206,162,.28), transparent 50%),
+    linear-gradient(145deg,#1b1140 0%,#3a1d6e 42%,#6b2d8b 72%,#c43b7a 100%);
+  padding:28px 18px 48px;
+}
+.wrap{max-width:920px;margin:0 auto}
+.hero{text-align:center;margin:18px auto 28px;animation:rise .5s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;
+  padding:6px 14px;
+  font-size:.82em;
+  letter-spacing:.04em;
+  margin-bottom:14px;
+}
+h1{
+  font-size:clamp(1.8rem,5vw,2.7rem);
+  font-weight:700;
+  line-height:1.15;
+  text-shadow:0 8px 28px rgba(0,0,0,.28);
+}
+.lead{
+  margin:12px auto 0;
+  max-width:38rem;
+  color:rgba(255,255,255,.88);
+  font-size:1.05rem;
+  line-height:1.45;
+}
+.section-title{
+  margin:8px 0 14px;
+  font-size:1.05rem;
+  font-weight:600;
+  color:rgba(255,255,255,.92);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;
+}
+.card{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  text-decoration:none;
+  color:#fff;
+  background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:20px;
+  padding:18px 18px 16px;
+  box-shadow:0 16px 40px rgba(18,8,40,.35);
+  backdrop-filter:blur(8px);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  min-height:210px;
+}
+.card:hover,.card:focus-visible{
+  transform:translateY(-5px);
+  border-color:#f093fb;
+  box-shadow:0 18px 40px rgba(240,147,251,.28);
+  outline:none;
+}
+.emoji{font-size:1.8rem;line-height:1}
+.kicker{
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#f7c1ff;
+}
+.card h2{font-size:1.45rem;font-weight:700;color:#fff}
+.card p{color:rgba(255,255,255,.86);font-size:.95rem;line-height:1.4;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{
+  background:rgba(102,126,234,.45);
+  border-radius:999px;
+  padding:3px 10px;
+  font-size:.75rem;
+  font-weight:600;
+}
+.cta{
+  margin-top:8px;
+  align-self:flex-start;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  border-radius:12px;
+  padding:8px 14px;
+  font-weight:700;
+  font-size:.95rem;
+  box-shadow:0 6px 16px rgba(102,126,234,.4);
+}
+.note{
+  margin-top:22px;
+  color:rgba(255,255,255,.75);
+  font-size:.92rem;
+  text-align:center;
+}
+footer{
+  margin-top:28px;
+  text-align:center;
+  color:rgba(255,255,255,.6);
+  font-size:.82rem;
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div class="badge">Schritte Plus Neu · B1.1</div>
+    <h1>Niemiecki z Schritte Plus Neu B1</h1>
+    <p class="lead">Quizy i fiszki słownictwa do podręcznika. Wybierz lekcję i ćwicz od razu w przeglądarce — na telefonie albo na komputerze.</p>
+  </header>
+
+  <h2 class="section-title">Lekcje</h2>
+  <!-- Kolejne lekcje: skopiuj <a class="card"> i ustaw href na katalog lekcji, np. lektion5/. -->
+  <div class="grid">
+    <a class="card" href="lektion4/">
+      <div class="emoji" aria-hidden="true">🌍</div>
+      <div class="kicker">B1.1</div>
+      <h2>Lektion 4 – Sprachen</h2>
+      <p>Quiz gramatyczny i fiszki: Konjunktiv II, rady, grzeczne odmawianie, powody i skutki oraz języki i wielojęzyczność.</p>
+      <div class="tags">
+        <span class="tag">Quiz</span>
+        <span class="tag">Fiszki</span>
+        <span class="tag">Test</span>
+      </div>
+      <span class="cta">Otwórz lekcję →</span>
+    </a>
+  </div>
+  <p class="note">Kolejne lekcje pojawią się tutaj jako nowe karty.</p>
+  <footer>Schritte Plus Neu B1.1 · nauka niemieckiego</footer>
+</main>
+</body>
+</html>
