@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprachen! Schritte Plus Neu B1.1 – Lektion 4 🎮</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Fredoka',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:20px;overflow-x:hidden;color:#333}
+.game-container{background:#fff;border-radius:20px;padding:20px;max-width:700px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative;animation:slideIn .5s ease-out;margin:auto 0}
+@keyframes slideIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.screen{display:none}.screen.active{display:block;animation:fadeIn .35s ease-out}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.header{text-align:center;margin-bottom:18px}
+h1{font-size:1.8em;color:#667eea;margin-bottom:5px;font-weight:700}
+h2{font-size:1.35em;color:#764ba2;margin-bottom:10px}
+h3{color:#667eea;margin:16px 0 8px;font-size:1.05em}
+.subtitle{color:#666;font-size:.9em}
+.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px}
+.icon-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.15em;cursor:pointer;box-shadow:0 4px 12px rgba(102,126,234,.35);transition:transform .2s;flex-shrink:0}
+.icon-btn:hover{transform:scale(1.1)}
+.back-btn{background:#f1f0fb;color:#764ba2;border:none;border-radius:12px;padding:8px 14px;font-family:'Fredoka';font-size:.95em;font-weight:600;cursor:pointer}
+.back-btn:hover{background:#e6e3fa}
+.stats{display:flex;justify-content:space-around;margin-bottom:18px;gap:10px}
+.stat-box{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:10px 15px;border-radius:12px;text-align:center;flex:1;box-shadow:0 5px 15px rgba(102,126,234,.3)}
+.stat-label{font-size:.75em;opacity:.9}.stat-value{font-size:1.5em;font-weight:700;margin-top:2px}
+.section-title{font-weight:700;color:#764ba2;margin:14px 0 8px;font-size:1em}
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:12px}
+.chapter-card{background:linear-gradient(135deg,#f6f5ff,#fdf0ff);border:2px solid #e3defa;border-radius:15px;padding:14px;cursor:pointer;transition:all .25s;text-align:left;font-family:'Fredoka';position:relative}
+.chapter-card:hover{transform:translateY(-4px);border-color:#667eea;box-shadow:0 10px 25px rgba(102,126,234,.25)}
+.chapter-card .emoji{font-size:1.7em}
+.chapter-card .ct{font-weight:700;color:#4a3f9a;font-size:1.02em;margin:4px 0 2px}
+.chapter-card .cs{font-size:.78em;color:#777;line-height:1.3}
+.chapter-card .cm{display:flex;justify-content:space-between;margin-top:8px;font-size:.75em;color:#999}
+.chapter-card .best{color:#f5576c;font-weight:600}
+.chapter-card.special{background:linear-gradient(135deg,#f093fb,#f5576c);border:none;color:#fff}
+.chapter-card.special .ct,.chapter-card.special .cs,.chapter-card.special .cm,.chapter-card.special .best{color:#fff}
+.chapter-card.vocab{background:linear-gradient(135deg,#43cea2,#185a9d);border:none}
+.chapter-card.vocab .ct,.chapter-card.vocab .cs,.chapter-card.vocab .cm,.chapter-card.vocab .best{color:#fff}
+.chapter-card.test{background:linear-gradient(135deg,#667eea,#764ba2);border:none}
+.chapter-card.test .ct,.chapter-card.test .cs,.chapter-card.test .cm,.chapter-card.test .best{color:#fff}
+.reminder-box{background:#faf9ff;border-left:5px solid #667eea;border-radius:12px;padding:16px;line-height:1.55;font-size:.97em;margin-bottom:16px}
+.reminder-box p{margin:6px 0}.reminder-box ul,.reminder-box ol{margin:6px 0 6px 22px}.reminder-box li{margin:3px 0}
+.reminder-box i{color:#5a3f9a}
+.tag{display:inline-block;background:#eef;color:#667eea;font-size:.75em;border-radius:10px;padding:2px 9px;margin-bottom:8px;font-weight:600}
+table.gt{border-collapse:collapse;width:100%;margin:8px 0;font-size:.85em;overflow-x:auto;display:block}
+table.gt th{background:#667eea;color:#fff;padding:5px 7px;text-align:left;white-space:nowrap}
+table.gt td{border-bottom:1px solid #e6e3fa;padding:5px 7px}
+table.gt tr:nth-child(even) td{background:#f6f5ff}
+.small{font-size:.85em;color:#666}
+.question-area{background:linear-gradient(135deg,#f093fb,#f5576c);padding:20px;border-radius:15px;margin-bottom:15px;color:#fff;box-shadow:0 10px 30px rgba(245,87,108,.3);animation:questionPop .4s ease-out}
+@keyframes questionPop{0%{transform:scale(.95);opacity:0}50%{transform:scale(1.02)}100%{transform:scale(1);opacity:1}}
+.case-label{display:inline-block;background:rgba(255,255,255,.3);padding:4px 12px;border-radius:15px;font-size:.8em;margin-bottom:12px;font-weight:600}
+.sentence{font-size:1.25em;font-weight:600;line-height:1.45;margin-bottom:8px}
+.blank{display:inline-block;min-width:70px;border-bottom:3px dashed #fff;padding:0 8px;margin:0 3px}
+.hint{font-size:.88em;opacity:.95;font-style:italic}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}
+.options.long{grid-template-columns:1fr}
+.option-btn{background:#fff;border:3px solid #667eea;color:#667eea;padding:13px 12px;font-size:1.05em;font-weight:600;border-radius:12px;cursor:pointer;transition:all .25s;font-family:'Fredoka';line-height:1.3}
+.option-btn:hover{background:#667eea;color:#fff;transform:translateY(-2px);box-shadow:0 5px 15px rgba(102,126,234,.4)}
+.option-btn.correct{background:#4caf50;border-color:#4caf50;color:#fff;animation:correctPulse .5s}
+.option-btn.wrong{background:#f44336;border-color:#f44336;color:#fff;animation:shake .5s}
+@keyframes correctPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.order-answer{min-height:58px;border:3px dashed #c9c2f5;border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;background:#faf9ff}
+.order-answer.correct{border-color:#4caf50;background:#eefbe9;animation:correctPulse .5s}
+.order-answer.wrong{border-color:#f44336;background:#fdecea;animation:shake .5s}
+.order-bank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;min-height:44px}
+.word-btn{background:#fff;border:2px solid #764ba2;color:#764ba2;border-radius:10px;padding:7px 12px;font-family:'Fredoka';font-size:1.02em;font-weight:600;cursor:pointer;transition:all .2s}
+.word-btn:hover{background:#764ba2;color:#fff}
+.order-answer .word-btn{background:#764ba2;color:#fff}
+.type-row{display:flex;gap:8px;margin-bottom:8px}
+.type-input{flex:1;border:3px solid #667eea;border-radius:12px;padding:12px;font-size:1.1em;font-family:'Fredoka';outline:none;min-width:0}
+.type-input.correct{border-color:#4caf50;background:#eefbe9}.type-input.wrong{border-color:#f44336;background:#fdecea;animation:shake .5s}
+.umlauts{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.uml{background:#f1f0fb;border:none;border-radius:8px;padding:6px 12px;font-size:1.05em;font-family:'Fredoka';cursor:pointer;color:#764ba2;font-weight:600}
+.action-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:13px 26px;font-size:1.05em;font-weight:600;border-radius:12px;cursor:pointer;font-family:'Fredoka';box-shadow:0 5px 15px rgba(102,126,234,.4);transition:transform .2s}
+.action-btn:hover{transform:translateY(-2px)}
+.action-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.action-btn.full{width:100%}
+.action-btn.pink{background:linear-gradient(135deg,#f093fb,#f5576c);box-shadow:0 5px 15px rgba(245,87,108,.4)}
+.action-btn.green{background:linear-gradient(135deg,#43cea2,#185a9d)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.feedback{padding:14px;border-radius:12px;margin-bottom:15px;display:none;animation:slideDown .3s ease-out}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.feedback.show{display:block}
+.feedback.correct{background:linear-gradient(135deg,#4caf50,#66bb6a);color:#fff}
+.feedback.wrong{background:linear-gradient(135deg,#ff9800,#ffa726);color:#fff}
+.feedback-text{font-size:1.15em;font-weight:700;margin-bottom:6px}
+.explanation{font-size:.95em;line-height:1.45}
+.solution{background:rgba(255,255,255,.25);border-radius:8px;padding:6px 10px;margin:6px 0;font-weight:600}
+.next-btn{display:none;width:100%}.next-btn.show{display:block}
+.game-over{text-align:center;padding:10px}
+.final-score{font-size:2.6em;color:#667eea;font-weight:700;margin:10px 0}
+.final-message{font-size:1.1em;color:#555;margin-bottom:16px}
+.breakdown{margin:10px auto 16px;max-width:420px;text-align:left}
+.breakdown div{display:flex;justify-content:space-between;background:#f6f5ff;border-radius:10px;padding:8px 12px;margin:5px 0;font-weight:600;color:#4a3f9a}
+.modal{display:none;position:fixed;inset:0;background:rgba(40,20,80,.55);z-index:100;justify-content:center;align-items:flex-start;padding:20px;overflow-y:auto}
+.modal.show{display:flex}
+.modal-content{background:#fff;border-radius:20px;padding:22px;max-width:680px;width:100%;position:relative;animation:questionPop .3s;margin:auto 0}
+.close-btn{position:absolute;top:12px;right:14px;background:#f5576c;color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:1.1em;cursor:pointer}
+details{background:#faf9ff;border-radius:12px;margin:8px 0;padding:8px 12px}
+details summary{cursor:pointer;font-weight:600;color:#764ba2}
+details[open] summary{margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+.chip{border:2px solid #43cea2;background:#fff;color:#185a9d;border-radius:20px;padding:6px 12px;font-family:'Fredoka';font-weight:600;cursor:pointer;font-size:.9em}
+.chip.on{background:linear-gradient(135deg,#43cea2,#185a9d);color:#fff;border-color:transparent}
+.progress-bar{height:10px;background:#eee;border-radius:6px;overflow:hidden;margin:6px 0 14px}
+.progress-bar div{height:100%;background:linear-gradient(90deg,#43cea2,#185a9d);transition:width .4s}
+.flash-wrap{perspective:1200px;margin-bottom:14px}
+.flashcard{position:relative;width:100%;min-height:290px;transition:transform .6s;transform-style:preserve-3d;cursor:pointer}
+.flashcard.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.face.front{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+.face.back{background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff;transform:rotateY(180deg);justify-content:flex-start;overflow-y:auto}
+.face .word{font-size:2em;font-weight:700;line-height:1.2}
+.face .forms{font-size:1em;opacity:.9;margin-top:8px;font-family:'Space Mono',monospace}
+.face .tap{position:absolute;bottom:12px;font-size:.8em;opacity:.8}
+.face .pl{font-size:1.6em;font-weight:700;margin-bottom:10px}
+.face .note{background:rgba(255,255,255,.22);border-radius:10px;padding:8px 10px;font-size:.92em;margin-bottom:10px;text-align:left;width:100%}
+.face .ex{background:rgba(255,255,255,.95);color:#4a3f9a;border-radius:10px;padding:8px 10px;font-size:.95em;text-align:left;width:100%}
+.face .ex i{color:#888;display:block;margin-top:3px}
+.known-badge{position:absolute;top:12px;right:14px;background:#4caf50;color:#fff;border-radius:10px;padding:2px 10px;font-size:.8em;font-weight:600}
+.flash-nav{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}
+.flash-nav button{flex:1;min-width:120px}
+.counter{text-align:center;color:#777;font-size:.9em;margin-bottom:8px}
+.toggle{display:flex;align-items:center;gap:8px;color:#555;font-size:.9em;margin-bottom:10px;cursor:pointer}
+.word-list{max-height:260px;overflow-y:auto;border-radius:12px;background:#f8fffc;padding:6px 10px;font-size:.9em;margin-top:10px}
+.word-list div{padding:4px 0;border-bottom:1px solid #e0f3ec;display:flex;justify-content:space-between;gap:10px}
+.word-list .k{color:#4caf50}
+.footer-note{text-align:center;font-size:.75em;color:#999;margin-top:16px}
+.reset-link{background:none;border:none;color:#bbb;text-decoration:underline;cursor:pointer;font-family:'Fredoka';font-size:1em}
+@media (max-width:520px){
+ body{padding:8px}.game-container{padding:14px;border-radius:16px}
+ h1{font-size:1.45em}.sentence{font-size:1.08em}.options{grid-template-columns:1fr}
+ .option-btn{font-size:.98em;padding:11px}.stat-box{padding:8px}.stat-value{font-size:1.2em}
+ .chapter-grid{grid-template-columns:1fr 1fr;gap:8px}.chapter-card{padding:10px}.chapter-card .cs{display:none}
+ .face .word{font-size:1.6em}.flashcard{min-height:320px}
+}
+</style>
+</head>
+<body>
+<div class="game-container">
+
+ <!-- START -->
+ <div class="screen active" id="home">
+  <div class="top-bar"><span></span><button class="icon-btn" onclick="openHelp()" title="Gramatyka">ℹ️</button></div>
+  <div class="header">
+   <h1>Sprachen! 🇩🇪</h1>
+   <div class="subtitle">Schritte Plus Neu B1.1 · Lektion 4 · poziom B1</div>
+  </div>
+  <div class="stats">
+   <div class="stat-box"><div class="stat-label">Tematy zaliczone</div><div class="stat-value" id="h-done">0</div></div>
+   <div class="stat-box"><div class="stat-label">Znane słówka</div><div class="stat-value" id="h-known">0</div></div>
+   <div class="stat-box"><div class="stat-label">Rekord testu</div><div class="stat-value" id="h-test">–</div></div>
+  </div>
+  <div class="section-title">📖 Tylko słówka</div>
+  <div class="chapter-grid" id="grid-vocab"></div>
+  <div class="section-title">🧩 Gramatyka i komunikacja: wybierz temat</div>
+  <div class="chapter-grid" id="grid-topics"></div>
+  <div class="section-title">🏁 Sprawdź się</div>
+  <div class="chapter-grid" id="grid-tests"></div>
+  <div class="footer-note">Postęp zapisuje się w tej przeglądarce. <button class="reset-link" onclick="resetProgress()">Wyzeruj postęp</button></div>
+ </div>
+
+ <!-- PRZYPOMNIENIE -->
+ <div class="screen" id="reminder">
+  <div class="top-bar"><button class="back-btn" onclick="goHome()">← Menu</button><button class="icon-btn" onclick="openHelp()">ℹ️</button></div>
+  <h2 id="r-title"></h2>
+  <span class="tag" id="r-src"></span>
+  <div class="reminder-box" id="r-body"></div>
+  <button class="action-btn pink full" id="r-start">Zaczynam ćwiczenia! 🚀</button>
+ </div>
+
+ <!-- GRA -->
+ <div class="screen" id="game">
+  <div class="top-bar"><button class="back-btn" onclick="goHome()">← Menu</button><span id="g-title" style="font-weight:700;color:#764ba2;text-align:center;flex:1"></span><button class="icon-btn" onclick="openHelp()" title="Przypomnienie">ℹ️</button></div>
+  <div class="stats">
+   <div class="stat-box"><div class="stat-label">Punkty</div><div class="stat-value" id="score">0</div></div>
+   <div class="stat-box"><div class="stat-label">Seria 🔥</div><div class="stat-value" id="streak">0</div></div>
+   <div class="stat-box"><div class="stat-label">Pytanie</div><div class="stat-value" id="qnum">1/1</div></div>
+  </div>
+  <div class="question-area" id="qarea">
+   <div class="case-label" id="case-label"></div>
+   <div class="sentence" id="sentence"></div>
+   <div class="hint" id="hint"></div>
+  </div>
+  <div id="answer-zone"></div>
+  <div class="feedback" id="feedback"><div class="feedback-text" id="feedback-text"></div><div id="solution"></div><div class="explanation" id="explanation"></div></div>
+  <button class="action-btn next-btn" id="next-btn">Dalej →</button>
+ </div>
+
+ <!-- KONIEC -->
+ <div class="screen" id="over">
+  <div class="game-over">
+   <h2>Koniec! 🎉</h2>
+   <div class="final-score" id="final-score"></div>
+   <div class="final-message" id="final-message"></div>
+   <div class="breakdown" id="breakdown"></div>
+   <div class="btn-row"><button class="action-btn pink" id="again-btn">Jeszcze raz 🔄</button><button class="action-btn" onclick="goHome()">Menu 🏠</button></div>
+  </div>
+ </div>
+
+ <!-- SŁÓWKA: MENU -->
+ <div class="screen" id="vocabHome">
+  <div class="top-bar"><button class="back-btn" onclick="goHome()">← Menu</button><button class="icon-btn" onclick="openHelp()">ℹ️</button></div>
+  <h2>📖 Tylko słówka</h2>
+  <div class="small">Wybierz grupy tematyczne (Lektion 4). Na każdej fiszce: rodzajnik, liczba mnoga / formy czasownika, notka po polsku i przykład.</div>
+  <div class="chips" id="chips"></div>
+  <div class="counter" id="v-count"></div>
+  <div class="progress-bar"><div id="v-bar" style="width:0%"></div></div>
+  <div class="btn-row">
+   <button class="action-btn green" onclick="startFlash()">🃏 Fiszki</button>
+   <button class="action-btn" onclick="startVocabQuiz('de')">🇩🇪 → 🇵🇱 Quiz</button>
+   <button class="action-btn pink" onclick="startVocabQuiz('pl')">🇵🇱 → 🇩🇪 Quiz</button>
+  </div>
+  <details><summary>Lista słówek w wybranych grupach</summary><div class="word-list" id="word-list"></div></details>
+ </div>
+
+ <!-- SŁÓWKA: FISZKI -->
+ <div class="screen" id="flash">
+  <div class="top-bar"><button class="back-btn" onclick="showScreen('vocabHome');renderVocabHome()">← Słówka</button><span id="f-group" style="font-weight:700;color:#185a9d"></span><button class="icon-btn" onclick="openHelp()">ℹ️</button></div>
+  <label class="toggle"><input type="checkbox" id="only-unknown" onchange="buildFlashDeck()"> Pokaż tylko te, których jeszcze nie znam</label>
+  <div class="counter" id="f-counter"></div>
+  <div class="flash-wrap"><div class="flashcard" id="flashcard" onclick="flipCard()">
+   <div class="face front"><div class="known-badge" id="f-badge" style="display:none">✓ znam</div><div class="word" id="f-word"></div><div class="forms" id="f-forms"></div><div class="tap">👆 kliknij, aby odwrócić</div></div>
+   <div class="face back"><div class="pl" id="f-pl"></div><div class="note" id="f-note"></div><div class="ex" id="f-ex"></div></div>
+  </div></div>
+  <div class="flash-nav">
+   <button class="action-btn" onclick="flashMove(-1)">← Wstecz</button>
+   <button class="action-btn pink" onclick="markCard(false)">🤔 Jeszcze nie</button>
+   <button class="action-btn green" onclick="markCard(true)">✓ Znam</button>
+   <button class="action-btn" onclick="flashMove(1)">Dalej →</button>
+  </div>
+ </div>
+</div>
+
+<!-- POMOC -->
+<div class="modal" id="help" onclick="if(event.target===this)closeHelp()">
+ <div class="modal-content">
+  <button class="close-btn" onclick="closeHelp()">✕</button>
+  <h2>ℹ️ Przypomnienie gramatyki</h2>
+  <div id="help-body"></div>
+ </div>
+</div>
+<script>
+// ===== DANE: Schritte Plus Neu B1.1, Lektion 4 „Sprachen“ =====
+const KONJ_TABLE = `
+<table class="gt"><tr><th></th><th>sein</th><th>haben</th><th>werden</th><th>können</th><th>müssen</th><th>sollen</th><th>dürfen</th><th>mögen</th></tr>
+<tr><td>ich</td><td>wäre</td><td>hätte</td><td>würde</td><td>könnte</td><td>müsste</td><td>sollte</td><td>dürfte</td><td>möchte</td></tr>
+<tr><td>du</td><td>wärst</td><td>hättest</td><td>würdest</td><td>könntest</td><td>müsstest</td><td>solltest</td><td>dürftest</td><td>möchtest</td></tr>
+<tr><td>er/sie/es</td><td>wäre</td><td>hätte</td><td>würde</td><td>könnte</td><td>müsste</td><td>sollte</td><td>dürfte</td><td>möchte</td></tr>
+<tr><td>wir</td><td>wären</td><td>hätten</td><td>würden</td><td>könnten</td><td>müssten</td><td>sollten</td><td>dürften</td><td>möchten</td></tr>
+<tr><td>ihr</td><td>wärt</td><td>hättet</td><td>würdet</td><td>könntet</td><td>müsstet</td><td>solltet</td><td>dürftet</td><td>möchtet</td></tr>
+<tr><td>sie/Sie</td><td>wären</td><td>hätten</td><td>würden</td><td>könnten</td><td>müssten</td><td>sollten</td><td>dürften</td><td>möchten</td></tr></table>
+<p class="small">Pozostałe czasowniki: <b>würde + bezokolicznik</b> na końcu: <i>ich finde → ich würde … finden</i>, <i>ich lerne → ich würde … lernen</i>.</p>`;
+
+const WEGEN_TABLE = `
+<table class="gt"><tr><th></th><th>Nominativ</th><th>wegen + Genitiv</th></tr>
+<tr><td>m.</td><td>der/mein Beruf</td><td>wegen <b>des</b>/mein<b>es</b> Beruf<b>s</b></td></tr>
+<tr><td>n.</td><td>das/mein Praktikum</td><td>wegen <b>des</b>/mein<b>es</b> Praktikum<b>s</b></td></tr>
+<tr><td>f.</td><td>die/meine Arbeit</td><td>wegen <b>der</b>/mein<b>er</b> Arbeit</td></tr>
+<tr><td>Pl.</td><td>die/meine Interviews</td><td>wegen <b>der</b>/mein<b>er</b> Interviews</td></tr></table>
+<p class="small">Merke (KB 54): w mowie potocznej często <b>wegen + Dativ</b>: <i>wegen dem Beruf / wegen einem Praktikum</i>. Na teście i w piśmie: Genitiv.</p>`;
+
+const ORDER_TABLE = `
+<table class="gt"><tr><th>Słowo</th><th>Szyk</th><th>Przykład</th></tr>
+<tr><td>weil, obwohl, dass, ob, wenn</td><td>czasownik <b>na końcu</b></td><td>…, weil ich in Zürich <b>wohne</b>.</td></tr>
+<tr><td>denn (und, aber, oder)</td><td>szyk <b>normalny</b></td><td>…, denn ich <b>wohne</b> in Zürich.</td></tr>
+<tr><td>deshalb, deswegen, darum, daher, trotzdem</td><td>czasownik <b>zaraz po nim</b></td><td>…, deshalb <b>lerne</b> ich Deutsch.</td></tr>
+<tr><td>wegen</td><td>+ <b>rzeczownik</b> (Genitiv)</td><td>wegen meiner Arbeit</td></tr>
+<tr><td>weshalb? (= warum?)</td><td>pytanie: czasownik 2.</td><td>Weshalb <b>kommst</b> du so spät?</td></tr></table>`;
+
+const TOPICS = [];
+TOPICS.push(
+{ id:"konj", emoji:"🔮", title:"Konjunktiv II: formy", sub:"wäre, hätte, würde, könnte, müsste, sollte, dürfte", src:"KB 48 (A1), KB 54",
+  reminder:`<p><b>Konjunktiv II</b> to polskie „<b>-by</b>“: byłbym, miałbym, zrobiłbym. Używasz go do sytuacji nierealnych, życzeń, rad i grzecznych próśb.</p>
+<ul><li>sein → <b>ich wäre</b> (byłbym)</li><li>haben → <b>ich hätte</b> (miałbym)</li><li>werden → <b>ich würde</b> + bezokolicznik (zrobiłbym)</li><li>können → <b>ich könnte</b> (mógłbym)</li><li>müssen → <b>ich müsste</b> (musiałbym)</li><li>sollen → <b>ich sollte</b> (powinienem)</li><li>dürfen → <b>ich dürfte</b>, mögen → <b>ich möchte</b></li></ul>
+<p>Z książki (KB 48): <i>ich finde → ich würde … finden, ich habe → ich hätte, ich bin → ich wäre, ich muss → ich müsste</i>.</p>${KONJ_TABLE}`,
+  questions:[
+ {t:"mc", q:"Wenn ich du ___, würde ich mehr Deutsch sprechen.", o:["wäre","bin","war","würde"], a:"wäre", e:"sein → ich wäre. Sytuacja nierealna (nie jestem tobą), więc Konjunktiv II, a nie „bin“ (teraźniejszy) ani „war“ (przeszły)."},
+ {t:"mc", q:"Wenn wir mehr Geld ___, würden wir eine Sprachreise machen.", o:["hätten","haben","hatten","wären"], a:"hätten", e:"haben → wir hätten. „Geld haben“, więc „haben“, nie „sein“. „hatten“ bez umlautu to zwykły czas przeszły."},
+ {t:"mc", q:"___ du mir bitte bei den Hausaufgaben helfen?", o:["Könntest","Konntest","Könnte","Könntet"], a:"Könntest", e:"Grzeczna prośba: können → du könntest. „Konntest“ (bez umlautu) to Präteritum = „mogłeś“."},
+ {t:"mc", q:"Ich ___ gern mitkommen, aber ich habe keine Zeit.", o:["würde","wurde","würdest","wäre"], a:"würde", e:"würde + bezokolicznik (mitkommen) = „chętnie bym poszedł“. „wurde“ bez umlautu to Präteritum od werden."},
+ {t:"mc", q:"Wenn sie nicht so viel arbeiten ___, könnten wir jetzt was trinken gehen.", o:["müsste","muss","musste","müssten"], a:"müsste", e:"Zdanie z książki (KB 48, A1): müssen → sie müsste. Obie części zdania w Konjunktiv II: müsste … könnten."},
+ {t:"mc", q:"Du bist immer so müde. Du ___ früher ins Bett gehen.", o:["solltest","solltet","sollte","sollten"], a:"solltest", e:"Rada: sollen → du solltest (powinieneś). Końcówka dla du: -est."},
+ {t:"mc", q:"___ ich Sie kurz etwas fragen?", o:["Dürfte","Durfte","Dürften","Dürftest"], a:"Dürfte", e:"Bardzo uprzejme pytanie: dürfen → ich dürfte. „Durfte“ = wolno mi było (przeszłość)."},
+ {t:"mc", q:"Wenn er nicht so anstrengend ___, würde ich mich über seine Einladung freuen.", o:["wäre","ist","war","wären"], a:"wäre", e:"Zdanie z książki (KB 48): er wäre. „er“ to 3. os. lp., więc „wäre“, nie „wären“."},
+ {t:"mc", q:"Wenn sie am Wochenende nichts ___, könnten wir uns treffen.", o:["vorhätte","vorhat","vorhatte","vorhätten"], a:"vorhätte", e:"Z KB 48: vorhaben → sie hätte … vor. W zdaniu z wenn czasownik idzie na koniec i łączy się z przedrostkiem: vorhätte."},
+ {t:"mc", q:"Mein Sohn ___ am liebsten den ganzen Tag Lego spielen.", o:["würde","wurde","würdest","würden"], a:"würde", e:"er würde + spielen = „najchętniej bawiłby się“. „mein Sohn“ = er → würde."},
+ {t:"mc", q:"Wenn wir einen Garten ___, könnten die Kinder draußen spielen.", o:["hätten","hätte","hättet","haben"], a:"hätten", e:"wir → hätten. W zdaniu nierealnym obie części w Konjunktiv II (hätten … könnten)."},
+ {t:"mc", q:"Wie lautet Konjunktiv II von „ich finde“?", o:["ich würde … finden","ich wurde … finden","ich werde … finden","ich hätte … finden"], a:"ich würde … finden", e:"Dla większości czasowników: würde + bezokolicznik (KB 48: ich finde → ich würde … finden)."},
+ {t:"type", q:"Wenn ihr hier ___, könnten wir zusammen kochen. (sein)", a:["wärt","wäret"], e:"sein, ihr → wärt (albo starsza forma: wäret)."},
+ {t:"type", q:"Wenn du Zeit ___, könnten wir zusammen lernen. (haben)", a:["hättest"], e:"haben, du → hättest."},
+ {t:"type", q:"Wenn ich fliegen ___, würde ich jeden Tag nach Polen fliegen. (können)", a:["könnte"], e:"können, ich → könnte (KB 54: „Wenn ich fliegen könnte, …“)."},
+ {t:"type", q:"Wenn ich nie mehr arbeiten ___, würde ich um die Welt reisen. (müssen)", a:["müsste"], e:"müssen, ich → müsste (KB 54: „Wenn ich nie mehr arbeiten müsste, …“)."}
+ ]});
+TOPICS.push(
+{ id:"irreal", emoji:"💭", title:"Irreale Bedingungen", sub:"Wenn ich … hätte/wäre, würde ich …", src:"KB 48 (A1, A4), KB 54, KB 56",
+  reminder:`<p><b>Warunek nierealny</b> = coś, co teraz nie jest prawdą: <i>Ich habe keine Zeit.</i> → <i>Wenn ich Zeit <b>hätte</b>, <b>würde</b> ich Italienisch lernen.</i></p>
+<table class="gt"><tr><th>Nebensatz (wenn…)</th><th>Hauptsatz</th></tr>
+<tr><td>Wenn ich ihn richtig toll finden <b>würde</b>,</td><td>(dann) <b>hätte</b> ich natürlich immer Zeit für ihn.</td></tr>
+<tr><td>Wenn sie am Wochenende nichts <b>vorhätte</b>,</td><td>(dann) <b>könnten</b> wir uns treffen.</td></tr>
+<tr><td>Wenn sie nicht so viel arbeiten <b>müsste</b>,</td><td>(dann) <b>könnten</b> wir … trinken gehen.</td></tr>
+<tr><td>Wenn er nicht so anstrengend <b>wäre</b>,</td><td>(dann) <b>würde</b> ich mich … freuen.</td></tr></table>
+<ul><li>Po <b>wenn</b> czasownik idzie <b>na koniec</b>.</li><li>Druga część zaczyna się od <b>czasownika</b> (albo od <i>dann</i> + czasownik): <i>…, würde ich …</i></li><li>Obie części w Konjunktiv II.</li><li>Uwaga: <i>Wenn ich Zeit habe, komme ich.</i> = warunek <b>realny</b> (zwykły czas teraźniejszy).</li></ul>`,
+  questions:[
+ {t:"mc", q:"Wenn ich morgen Urlaub hätte, ___.", o:["würde ich lange schlafen","ich würde lange schlafen","würde ich schlafen lange","ich lange schlafen würde"], a:"würde ich lange schlafen", e:"Zdanie z wenn zajmuje 1. miejsce, więc w drugiej części najpierw czasownik (würde), potem podmiot, a bezokolicznik na końcu."},
+ {t:"mc", q:"Wenn ___, würde ich jeden Tag Deutsch sprechen.", o:["ich in Deutschland wohnen würde","ich würde in Deutschland wohnen","würde ich in Deutschland wohnen","ich in Deutschland würde wohnen"], a:"ich in Deutschland wohnen würde", e:"Po wenn odmieniony czasownik (würde) stoi na samym końcu, za bezokolicznikiem."},
+ {t:"mc", q:"Wenn ich nochmal 15 wäre, ___.", o:["würde ich mehr Sprachen lernen","ich würde mehr Sprachen lernen","würde ich lernen mehr Sprachen","ich mehr Sprachen lernen würde"], a:"würde ich mehr Sprachen lernen", e:"Początek zdania z KB 54. Po przecinku: czasownik – podmiot – … – bezokolicznik."},
+ {t:"mc", q:"Wenn ich ihn richtig toll finden würde, ___ ich natürlich immer Zeit für ihn.", o:["hätte","habe","hatte","würde"], a:"hätte", e:"Zdanie Elli z KB 48: Zeit haben → ich hätte Zeit."},
+ {t:"mc", q:"Ich habe kein Auto. Które zdanie opisuje tę sytuację jako nierealną?", o:["Wenn ich ein Auto hätte, würde ich nach Polen fahren.","Wenn ich ein Auto habe, fahre ich nach Polen.","Als ich ein Auto hatte, bin ich nach Polen gefahren.","Ich habe ein Auto, deshalb fahre ich nach Polen."], a:"Wenn ich ein Auto hätte, würde ich nach Polen fahren.", e:"Tylko Konjunktiv II (hätte … würde) mówi „gdybym miał (ale nie mam)“. „Wenn ich ein Auto habe“ to warunek realny."},
+ {t:"mc", q:"Wenn die Kinder nicht krank wären, ___ wir in den Zoo gehen.", o:["könnten","können","konnten","könntet"], a:"könnten", e:"wir → könnten. Obie części w Konjunktiv II."},
+ {t:"mc", q:"Wenn es nicht so heiß ___, würden wir spazieren gehen.", o:["wäre","ist","war","hätte"], a:"wäre", e:"„es ist heiß“ → Konjunktiv II: es wäre heiß. „heiß sein“, więc sein, nie haben."},
+ {t:"mc", q:"Wenn ich mehr Zeit hätte, ___ ich öfter mit meinem Sohn Fußball spielen.", o:["dann würde","dann ich würde","dann wurde","dann werde"], a:"dann würde", e:"„dann“ zajmuje miejsce przed czasownikiem: dann + würde + ich. „wurde/werde“ to nie Konjunktiv II."},
+ {t:"mc", q:"Które zdanie jest poprawne?", o:["Wenn ich reich wäre, würde ich ein Haus kaufen.","Wenn ich wäre reich, würde ich ein Haus kaufen.","Wenn ich reich wäre, ich würde ein Haus kaufen.","Wenn ich reich wäre, würde ich kaufen ein Haus."], a:"Wenn ich reich wäre, würde ich ein Haus kaufen.", e:"wenn → czasownik na koniec (wäre); potem czasownik na początku drugiej części (würde); bezokolicznik na końcu (kaufen)."},
+ {t:"mc", q:"Wenn du 15 ___ und dir einen Ausbildungsplatz aussuchen dürftest, was würdest du machen?", o:["wärst","wäre","bist","wärt"], a:"wärst", e:"KB 48, A4: du → wärst (końcówka -st)."},
+ {t:"type", q:"Wenn ich morgen Urlaub hätte, ___ ich ans Meer fahren. (werden)", a:["würde"], e:"würde + bezokolicznik (fahren) na końcu."},
+ {t:"type", q:"Wenn ich in Zürich keine Arbeit ___, würden wir nach Polen zurückgehen. (haben)", a:["hätte"], e:"haben, ich → hätte; czasownik na końcu zdania z wenn."},
+ {t:"order", q:"Gdybym miał więcej czasu, uczyłbym się codziennie niemieckiego.", w:["Wenn","ich","mehr","Zeit","hätte,","würde","ich","jeden","Tag","Deutsch","lernen."], e:"wenn … hätte (na końcu), potem würde ich … lernen (bezokolicznik na końcu)."},
+ {t:"order", q:"Gdyby moja żona nie musiała tyle pracować, moglibyśmy częściej wychodzić.", w:["Wenn","meine","Frau","nicht","so","viel","arbeiten","müsste,","könnten","wir","öfter","ausgehen."], e:"Wzór z KB 48: Wenn sie nicht so viel arbeiten müsste, könnten wir …"},
+ {t:"order", q:"Byłbym szczęśliwy, gdybym mógł płynnie mówić po niemiecku.", w:["Ich","wäre","glücklich,","wenn","ich","fließend","Deutsch","sprechen","könnte."], alts:[["Ich","wäre","glücklich,","wenn","ich","Deutsch","fließend","sprechen","könnte."]], e:"Zdanie z wenn może stać też na końcu. Tam również czasownik (könnte) jest ostatni."},
+ {t:"order", q:"Co byś zrobił, gdybyś był prezydentem?", w:["Was","würdest","du","machen,","wenn","du","Präsident","wärst?"], e:"Pytanie z KB 48 (A4): Was würdest du machen, wenn …?"}
+ ]},
+{ id:"rat", emoji:"💡", title:"Ratschläge geben", sub:"Wenn ich du wäre … / An deiner Stelle … / Du solltest …", src:"KB 48 (A2, A4)",
+  reminder:`<p><b>Rada</b> po niemiecku to najczęściej Konjunktiv II:</p>
+<ul><li><b>Wenn ich du wäre, würde ich</b> … + bezokolicznik. (Gdybym był tobą, …)</li>
+<li><b>Wenn ich in dieser Situation wäre, würde ich</b> … (KB 48, A2)</li>
+<li><b>An deiner Stelle würde ich</b> … (Na twoim miejscu …)</li>
+<li><b>Du solltest</b> … (Powinieneś …) / <b>Du könntest</b> … (Mógłbyś …)</li>
+<li><b>Es wäre gut/besser, wenn</b> du … (Byłoby dobrze, gdybyś …)</li>
+<li>Pytanie: <b>Was würdest du machen, wenn</b> du … <b>wärst</b>/<b>hättest</b>? – <i>Ich glaube, dann würde ich …</i></li></ul>
+<p>Pamiętaj: <i>würde, sollte, könnte</i> na 2. miejscu, a bezokolicznik na końcu: <i>Du solltest mehr Deutsch <b>sprechen</b>.</i></p>`,
+  questions:[
+ {t:"mc", q:"„Ich vergesse immer die Wörter.“ – „Wenn ich du ___, würde ich Kärtchen schreiben.“", o:["wäre","bin","hätte","würde"], a:"wäre", e:"Stały zwrot: Wenn ich du wäre, … (gdybym był tobą)."},
+ {t:"mc", q:"„Ich habe Angst vor Fehlern.“ – „Du ___ einfach mutig sein!“", o:["solltest","solltet","sollen","sollte"], a:"solltest", e:"Rada: du solltest + bezokolicznik."},
+ {t:"mc", q:"An deiner Stelle ___ ich mehr deutsche Serien sehen.", o:["würde","wäre","hätte","wurde"], a:"würde", e:"An deiner Stelle würde ich + bezokolicznik (sehen) = na twoim miejscu oglądałbym."},
+ {t:"mc", q:"„Ich verstehe die Kollegen nicht.“ – „Du ___ in der Pause mehr mit ihnen sprechen.“", o:["könntest","könnten","konntest","könntet"], a:"könntest", e:"du könntest = mógłbyś (uprzejma propozycja). „konntest“ = mogłeś (przeszłość)."},
+ {t:"mc", q:"Was ___ du machen, wenn du alle Sprachen fließend sprechen könntest?", o:["würdest","würde","wirst","wärst"], a:"würdest", e:"KB 48, A4e: du würdest + machen."},
+ {t:"mc", q:"„Was würdest du machen, wenn du ein Portemonnaie mit 100 Euro finden würdest?“ – „Ich ___ es zur Polizei bringen.“", o:["würde","wäre","hätte","wurde"], a:"würde", e:"Odpowiadamy tak samo: ich würde + bringen (na końcu)."},
+ {t:"mc", q:"„Was würden Sie an der deutschen Sprache ändern?“ – „Ich würde die Artikel ___.“", o:["abschaffen","abgeschafft","abschaffe","schaffe ab"], a:"abschaffen", e:"Po würde zawsze bezokolicznik na końcu: abschaffen (znieść, zlikwidować)."},
+ {t:"mc", q:"Du ___ nicht so viel arbeiten, du siehst müde aus.", o:["solltest","sollte","solltet","sollten"], a:"solltest", e:"du → solltest (nie powinieneś tyle pracować)."},
+ {t:"mc", q:"Ich an deiner Stelle ___ den Kurs nicht abbrechen.", o:["würde","wäre","hätte","wurde"], a:"würde", e:"„Ich an deiner Stelle“ to jeden element, potem würde + abbrechen."},
+ {t:"mc", q:"Eine Kollegin lädt dich ein, aber du kennst dort niemanden. Wenn ich du wäre, ___ ich auf keinen Fall lügen.", o:["würde","wäre","werde","hätte"], a:"würde", e:"KB 48, A2: „auf keinen Fall lügen“ → würde ich auf keinen Fall lügen."},
+ {t:"type", q:"Wenn ich du ___, würde ich einen Intensivkurs machen. (sein)", a:["wäre"], e:"Wenn ich du wäre … (ich → wäre)."},
+ {t:"type", q:"Es ___ besser, wenn du heute früher ins Bett gehen würdest. (sein)", a:["wäre"], e:"Es wäre besser/gut, wenn … = byłoby lepiej, gdyby …"},
+ {t:"order", q:"Gdybym był tobą, korzystałbym z aplikacji.", w:["Wenn","ich","du","wäre,","würde","ich","eine","App","benutzen."], e:"Wenn ich du wäre, würde ich + bezokolicznik na końcu."},
+ {t:"order", q:"Na twoim miejscu mówiłbym więcej po niemiecku.", w:["An","deiner","Stelle","würde","ich","mehr","Deutsch","sprechen."], e:"„An deiner Stelle“ na 1. miejscu → würde na 2. miejscu."},
+ {t:"order", q:"Powinieneś uczyć się codziennie dziesięciu nowych słów.", w:["Du","solltest","jeden","Tag","zehn","neue","Wörter","lernen."], e:"solltest na 2. miejscu, lernen na końcu."}
+ ]});
+TOPICS.push(
+{ id:"absagen", emoji:"🙅", title:"Höflich absagen", sub:"Einladung höflich ablehnen, „durch die Blume“", src:"KB 46–48 (Folge, Kolumne, A2, A3)",
+  reminder:`<p><b>Jak grzecznie odmówić</b> (KB 48, A3). Kolejność:</p>
+<ol><li><b>Podziękuj</b> za zaproszenie: <i>Vielen Dank für die Einladung, ich habe mich sehr gefreut.</i></li>
+<li>Powiedz, że <b>chętnie byś przyszedł, ale niestety nie możesz</b>: <i>Ich wäre gern dabei, aber leider kann ich nicht kommen.</i></li>
+<li>Podaj <b>powód</b> (choćby wymówkę): <i>…, weil ich schon etwas anderes vorhabe.</i></li>
+<li>Zakończ <b>życzeniami</b>: <i>Ich wünsche euch eine schöne Feier!</i></li></ol>
+<p>Przydatne zwroty: <i>Ich würde gern kommen, aber …</i> · <i>Das wäre schön, aber leider …</i> · <i>Ich hätte gern Zeit, aber …</i> · <i>Schade! Vielleicht klappt es ja nächstes Mal.</i></p>
+<p><b>Etwas durch die Blume sagen</b> (KB 47) = powiedzieć coś nie wprost, delikatnie. Ella mówi: <i>Nein danke, ich muss in meinen Yoga-Kurs.</i>, a myśli: <i>Ich hätte jetzt gern meine Ruhe.</i></p>`,
+  questions:[
+ {t:"mc", q:"Grzeczna odmowa (KB 48, A3): od czego zaczynasz?", o:["Sich für die Einladung bedanken","Einen Grund angeben","Gute Wünsche für die Feier","Sagen, dass man nicht kommen kann"], a:"Sich für die Einladung bedanken", e:"W książce krok 1 to „Bedanken Sie sich für die Einladung“."},
+ {t:"mc", q:"A czym kończysz e-mail z odmową?", o:["Mit guten Wünschen für die Feier","Mit einer Ausrede","Mit einer Frage","Mit einer Entschuldigung für die Einladung"], a:"Mit guten Wünschen für die Feier", e:"„Beenden Sie Ihre E-Mail mit guten Wünschen für die Feier.“ (KB 48)"},
+ {t:"mc", q:"Vielen Dank ___ die Einladung!", o:["für","über","auf","von"], a:"für", e:"sich bedanken / danken für + Akkusativ."},
+ {t:"mc", q:"Ich ___ wirklich gern dabei, aber leider kann ich nicht kommen.", o:["wäre","würde","hätte","bin"], a:"wäre", e:"dabei sein → ich wäre gern dabei (chętnie bym był)."},
+ {t:"mc", q:"Ich würde gern ___, aber am Samstag bin ich leider nicht in Zürich.", o:["kommen","gekommen","komme","kam"], a:"kommen", e:"würde + bezokolicznik."},
+ {t:"mc", q:"Das ___ wirklich schön, aber leider habe ich schon etwas anderes vor.", o:["wäre","würde","hätte","wird"], a:"wäre", e:"Das wäre schön, aber … = to byłoby miłe, ale …"},
+ {t:"mc", q:"Leider kann ich nicht kommen, weil ich schon etwas anderes ___.", o:["vorhabe","habe vor","vorhaben","vorgehabt"], a:"vorhabe", e:"Po weil czasownik na końcu, a czasownik rozdzielny się łączy: vorhabe."},
+ {t:"mc", q:"Ich wünsche dir eine schöne ___!", o:["Feier","Fest","Feiern","Feste"], a:"Feier", e:"die Feier → eine schöne Feier. (das Fest → ein schönes Fest)"},
+ {t:"mc", q:"Która odmowa jest najbardziej uprzejma?", o:["Danke für die Einladung! Ich wäre gern dabei, aber leider muss ich arbeiten.","Nein, ich komme nicht.","Keine Lust.","Partys finde ich langweilig."], a:"Danke für die Einladung! Ich wäre gern dabei, aber leider muss ich arbeiten.", e:"Podziękowanie + Konjunktiv II + powód = grzecznie, ale stanowczo."},
+ {t:"mc", q:"Was bedeutet „etwas durch die Blume sagen“?", o:["powiedzieć coś nie wprost, delikatnie","powiedzieć coś bardzo bezpośrednio","dać komuś kwiaty","mówić bardzo głośno"], a:"powiedzieć coś nie wprost, delikatnie", e:"Kolumna Elli „Sag’s durch die Blume!“ (KB 47)."},
+ {t:"mc", q:"Grzecznie zamiast „Ich habe keine Lust“ (KB 47):", o:["Ich hätte jetzt gern meine Ruhe.","Lass mich in Ruhe!","Das ist mir egal.","Ich will nicht."], a:"Ich hätte jetzt gern meine Ruhe.", e:"Konjunktiv II brzmi uprzejmie: „Chętnie miałabym teraz spokój“."},
+ {t:"mc", q:"Schade! Vielleicht klappt es ja ___ Mal.", o:["nächstes","nächste","nächsten","nächster"], a:"nächstes", e:"das Mal → nächstes Mal (bez rodzajnika, końcówka -es)."},
+ {t:"type", q:"Liebe Theresa, vielen Dank für die Einladung, ich habe mich sehr ___. (sich freuen, Perfekt)", a:["gefreut"], e:"sich freuen → ich habe mich gefreut (KB 48, A3b)."},
+ {t:"order", q:"Chętnie bym poszedł, ale niestety nie mam czasu.", w:["Ich","würde","gern","mitkommen,","aber","ich","habe","leider","keine","Zeit."], alts:[["Ich","würde","gern","mitkommen,","aber","leider","habe","ich","keine","Zeit."]], e:"Po „aber“ szyk normalny: ich habe leider … (albo: aber leider habe ich …)."},
+ {t:"order", q:"Niestety nie mogę przyjść, bo muszę pracować.", w:["Leider","kann","ich","nicht","kommen,","weil","ich","arbeiten","muss."], e:"Leider na 1. miejscu → kann na 2.; po weil „muss“ na końcu."}
+ ]},
+{ id:"wegen", emoji:"📌", title:"wegen + Genitiv", sub:"wegen meines Berufs / meiner Arbeit", src:"KB 49 (B1), KB 54",
+  reminder:`<p><b>wegen</b> = „z powodu“. Po nim stoi <b>rzeczownik w dopełniaczu (Genitiv)</b>, a nie całe zdanie.</p>${WEGEN_TABLE}
+<ul><li><i>Ich bin wirklich in Eile wegen meiner Arbeit.</i> = <i>…, weil ich arbeiten muss.</i> (KB 49)</li>
+<li><i>Warum haben Sie Deutsch gelernt? – Wegen meiner Kinder.</i></li>
+<li>Rodzaj męski i nijaki: <b>des/eines/meines</b> + <b>-(e)s</b> na końcu rzeczownika: <i>des Wetters, des Regens, meines Berufs</i>.</li>
+<li>Rodzaj żeński i liczba mnoga: <b>der/einer/meiner</b>, rzeczownik bez zmian.</li></ul>`,
+  questions:[
+ {t:"mc", q:"Ich bin wirklich in Eile wegen ___ Arbeit.", o:["meiner","meines","meine","meinem"], a:"meiner", e:"die Arbeit (f.) → Genitiv: meiner Arbeit (KB 49)."},
+ {t:"mc", q:"Wegen ___ Berufs habe ich wenig Zeit.", o:["meines","meiner","meinen","mein"], a:"meines", e:"der Beruf (m.) → meines Berufs (-s na końcu)."},
+ {t:"mc", q:"Wegen ___ Wetters bleiben wir heute zu Hause.", o:["des","der","die","das"], a:"des", e:"das Wetter (n.) → des Wetters."},
+ {t:"mc", q:"Warum kommst du nicht mit zum Sport? – Wegen ___ Grippe.", o:["meiner","meines","meine","mein"], a:"meiner", e:"die Grippe (f.) → meiner Grippe (ćwiczenie z KB 54)."},
+ {t:"mc", q:"Warum freust du dich so? – ___", o:["Wegen der Note in Mathe.","Wegen die Note in Mathe.","Wegen des Note in Mathe.","Wegen den Note in Mathe."], a:"Wegen der Note in Mathe.", e:"die Note (f.) → Genitiv: der Note (KB 54)."},
+ {t:"mc", q:"Ich habe wegen ___ Kinder Deutsch gelernt.", o:["meiner","meines","meine","meinen"], a:"meiner", e:"Liczba mnoga → meiner Kinder (KB 49, B2c)."},
+ {t:"mc", q:"Wegen ___ Regens fahren wir mit dem Auto.", o:["des","der","dem","den"], a:"des", e:"der Regen (m.) → des Regens."},
+ {t:"mc", q:"„Ich bin in Eile, weil ich arbeiten muss.“ = ?", o:["Ich bin in Eile wegen meiner Arbeit.","Ich bin in Eile wegen ich arbeiten muss.","Ich bin in Eile wegen meine Arbeit.","Ich bin in Eile obwohl meiner Arbeit."], a:"Ich bin in Eile wegen meiner Arbeit.", e:"weil + zdanie = wegen + rzeczownik w Genitiv (KB 49, B1)."},
+ {t:"mc", q:"Wegen ___ Muttersprache habe ich keine Probleme mit der Aussprache.", o:["meiner","meines","meinem","meine"], a:"meiner", e:"die Muttersprache (f.) → meiner Muttersprache (KB 49, B2c)."},
+ {t:"mc", q:"W mowie potocznej po „wegen“ często używa się …", o:["Dativ: wegen dem Beruf","Akkusativ: wegen den Beruf","Nominativ: wegen der Beruf","zdania: wegen ich arbeite"], a:"Dativ: wegen dem Beruf", e:"Merke (KB 54): wegen + Dativ w języku mówionym. W piśmie i na teście lepiej Genitiv."},
+ {t:"mc", q:"Vielleicht war die Nachbarin nur wegen ___ Hitze so nett.", o:["der","des","die","dem"], a:"der", e:"die Hitze (f.) → der Hitze (kolumna Elli, KB 47)."},
+ {t:"mc", q:"Wegen ___ vielen Interviews muss ich heute früh los.", o:["meiner","meines","meinen","meine"], a:"meiner", e:"Liczba mnoga (die Interviews) → meiner Interviews."},
+ {t:"type", q:"Warum gehst du heute nicht joggen? – Wegen ___ Wetters.", a:["des"], e:"das Wetter → wegen des Wetters (KB 54)."},
+ {t:"type", q:"Wegen ___ Praktikums habe ich keine Zeit. (mein)", a:["meines"], e:"das Praktikum (n.) → meines Praktikums."},
+ {t:"type", q:"Wegen ___ Staus komme ich zu spät. (der Stau)", a:["des"], e:"der Stau → wegen des Staus."},
+ {t:"order", q:"Z powodu moich dzieci nauczyłem się niemieckiego.", w:["Wegen","meiner","Kinder","habe","ich","Deutsch","gelernt."], e:"„Wegen meiner Kinder“ to jeden element na 1. miejscu → habe na 2. miejscu."}
+ ]});
+TOPICS.push(
+{ id:"gruende", emoji:"🔗", title:"Gründe & Folgen", sub:"weil, denn, deshalb, deswegen, darum, daher, trotzdem, obwohl, weshalb", src:"KB 49 (B2c, B3), KB 54 (Kommunikation)",
+  reminder:`<p><b>Dlaczego? Warum? Wieso? Weshalb? Weswegen?</b> (KB 49). Odpowiadasz <b>przyczyną</b> (weil, denn, wegen) albo podajesz <b>skutek</b> (deshalb = deswegen = darum = daher = aus diesem Grund).</p>${ORDER_TABLE}
+<p><b>Jak powiedzieć, co jest ważne</b> (KB 54): <i>Ich finde es total wichtig, dass …</i> · <i>Für mich ist … wichtig, weil/denn …</i> · <i>Am allerwichtigsten ist … Deshalb/Deswegen/Darum/Daher …</i></p>
+<p><b>trotzdem</b> (mimo to) i <b>obwohl</b> (chociaż) mówią to samo, ale <i>obwohl</i> + czasownik na końcu, <i>trotzdem</i> + czasownik zaraz po nim.</p>`,
+  questions:[
+ {t:"mc", q:"Ich lerne Deutsch, ___ ich in Zürich wohne.", o:["weil","denn","deshalb","trotzdem"], a:"weil", e:"Czasownik (wohne) stoi na końcu, więc pasuje tylko weil."},
+ {t:"mc", q:"Ich lerne Deutsch, ___ ich wohne in Zürich.", o:["denn","weil","deshalb","obwohl"], a:"denn", e:"Szyk normalny (ich wohne …), więc denn."},
+ {t:"mc", q:"Ich wohne in Zürich, ___ lerne ich Deutsch.", o:["deshalb","weil","denn","obwohl"], a:"deshalb", e:"Czasownik zaraz po spójniku (lerne ich), więc deshalb = dlatego."},
+ {t:"mc", q:"Es regnet, ___ gehen wir spazieren.", o:["trotzdem","obwohl","weil","denn"], a:"trotzdem", e:"Mimo deszczu idziemy, a czasownik stoi zaraz po spójniku → trotzdem."},
+ {t:"mc", q:"___ es regnet, gehen wir spazieren.", o:["Obwohl","Trotzdem","Denn","Deshalb"], a:"Obwohl", e:"Chociaż pada… Obwohl + czasownik na końcu (regnet), potem od razu gehen."},
+ {t:"mc", q:"___ kommst du so spät?", o:["Weshalb","Deshalb","Weil","Denn"], a:"Weshalb", e:"weshalb = warum (dlaczego?). deshalb = dlatego."},
+ {t:"mc", q:"Wenn man eine Sprache oft hört, lernt man sie viel schneller. ___ habe ich mir oft deutsche Filme angesehen.", o:["Deswegen","Weil","Obwohl","Denn"], a:"Deswegen", e:"Wypowiedź z audycji (KB 49, B2c). Deswegen + czasownik (habe)."},
+ {t:"mc", q:"Ich möchte später eine Ausbildung machen. ___ muss mein Deutsch einfach sehr gut sein.", o:["Darum","Weil","Obwohl","Wegen"], a:"Darum", e:"darum = deshalb (KB 49). Czasownik zaraz po nim: muss."},
+ {t:"mc", q:"Eine neue Sprache zu lernen, kann sehr anstrengend sein. ___ braucht man immer eine gute Motivation.", o:["Daher","Denn","Weil","Obwohl"], a:"Daher", e:"daher = dlatego (KB 49). Czasownik zaraz po nim: braucht."},
+ {t:"mc", q:"Ich bleibe heute zu Hause, weil ___.", o:["mein Sohn krank ist","mein Sohn ist krank","ist mein Sohn krank","krank mein Sohn ist"], a:"mein Sohn krank ist", e:"weil → czasownik na sam koniec."},
+ {t:"mc", q:"Mein Sohn ist krank, deshalb ___.", o:["bleibe ich zu Hause","ich bleibe zu Hause","ich zu Hause bleibe","zu Hause ich bleibe"], a:"bleibe ich zu Hause", e:"deshalb zajmuje 1. miejsce → czasownik, potem podmiot."},
+ {t:"mc", q:"Ich bin müde, trotzdem ___.", o:["gehe ich ins Fitnessstudio","ich gehe ins Fitnessstudio","ich ins Fitnessstudio gehe","ins Fitnessstudio ich gehe"], a:"gehe ich ins Fitnessstudio", e:"trotzdem jak deshalb: czasownik zaraz po nim."},
+ {t:"mc", q:"Für mich ist Deutsch wichtig, ___ ich mit den Lehrern meiner Kinder sprechen möchte.", o:["weil","denn","deshalb","trotzdem"], a:"weil", e:"Redemittel z KB 54: Für mich ist … wichtig, weil … (czasownik „möchte“ na końcu)."},
+ {t:"mc", q:"Ich finde es total wichtig, ___ man jeden Tag ein bisschen übt.", o:["dass","denn","deshalb","wegen"], a:"dass", e:"Ich finde es wichtig, dass … (czasownik na końcu: übt)."},
+ {t:"mc", q:"Ich bleibe ___ des Regens zu Hause.", o:["wegen","weil","denn","deshalb"], a:"wegen", e:"Po słowie stoi rzeczownik w Genitiv (des Regens) → wegen."},
+ {t:"type", q:"Ich weiß nicht, weshalb er so spät ___. (kommen)", a:["kommt"], e:"Pytanie zależne: czasownik na końcu (kommt)."},
+ {t:"order", q:"Zapisuję nowe słowa na karteczkach, bo inaczej je zapominam.", w:["Ich","schreibe","neue","Wörter","auf","Kärtchen,","weil","ich","sie","sonst","vergesse."], e:"Po weil czasownik (vergesse) na końcu."},
+ {t:"order", q:"Muszę wszystko zapisywać, dlatego piszę nowe słowa na karteczkach.", w:["Ich","muss","alles","aufschreiben,","deswegen","schreibe","ich","neue","Wörter","auf","Kärtchen."], e:"Przykład z KB 49 (B3): deswegen + czasownik + podmiot."},
+ {t:"order", q:"Chociaż jestem zmęczony, uczę się jeszcze słówek.", w:["Obwohl","ich","müde","bin,","lerne","ich","noch","Vokabeln."], e:"Obwohl … bin, (czasownik na końcu) → potem od razu czasownik lerne."}
+ ]},
+{ id:"nachfragen", emoji:"🙋", title:"Höflich nachfragen", sub:"Könnten Sie das bitte wiederholen?", src:"KB 50 (C1, C2), KB 55",
+  reminder:`<p>Redemittel z KB 55:</p>
+<p><b>Prośba o informację:</b> <i>Darf ich Sie/dich (kurz) etwas fragen? · Können Sie / Kannst du mir (vielleicht) sagen, wo/ob …? · Wissen Sie / Weißt du, wo/ob …?</i></p>
+<p><b>Czegoś nie rozumiesz:</b> <i>Tut mir leid, das Wort habe ich nicht verstanden / habe ich noch nie gehört. · Entschuldigung, habe ich das richtig verstanden? · Und was bedeutet …? · Was meinen Sie / meinst du mit …?</i></p>
+<p><b>Prośba o powtórzenie:</b> <i>Wie war bitte Ihr/dein Name? · Könnten Sie / Könntest du bitte langsamer sprechen? · Wie bitte? Könnten Sie das bitte wiederholen?</i></p>
+<p><b>Tipp (KB 55):</b> pytanie brzmi uprzejmiej, gdy zaczniesz od <i>Können Sie mir sagen, …?</i> Wtedy to <b>pytanie zależne</b> i czasownik idzie <b>na koniec</b>: <i>Wann beginnt der Kurs?</i> → <i>Können Sie mir sagen, wann der Kurs <b>beginnt</b>?</i> Pytanie tak/nie → <b>ob</b>: <i>Wissen Sie, ob man hier Salsa lernen kann?</i></p>`,
+  questions:[
+ {t:"mc", q:"Które jest grzeczniejsze? (KB 50, C1b)", o:["Was meinst du mit „nächsten Donnerstag“?","Nächsten Donnerstag? Wann denn jetzt?"], a:"Was meinst du mit „nächsten Donnerstag“?", e:"„Was meinst du mit …?“ to spokojne dopytanie."},
+ {t:"mc", q:"Które jest grzeczniejsze?", o:["Wie war bitte Ihr Name?","Sagen Sie Ihren Namen noch mal."], a:"Wie war bitte Ihr Name?", e:"Pytanie z „bitte“ zamiast rozkazu."},
+ {t:"mc", q:"Które jest grzeczniejsze?", o:["Könnten Sie bitte langsamer sprechen?","Sprechen Sie immer so schnell?"], a:"Könnten Sie bitte langsamer sprechen?", e:"Konjunktiv II (Könnten) + bitte = bardzo uprzejmie."},
+ {t:"mc", q:"Które jest grzeczniejsze?", o:["Darf ich Sie kurz etwas fragen?","Eine Frage ist doch okay, oder?"], a:"Darf ich Sie kurz etwas fragen?", e:"Darf ich … ? = czy mogę …?"},
+ {t:"mc", q:"Które jest grzeczniejsze?", o:["Könnten Sie das bitte wiederholen?","Sagen Sie das noch mal."], a:"Könnten Sie das bitte wiederholen?", e:"Tytuł części C: „Entschuldigung, könnten Sie das bitte wiederholen?“"},
+ {t:"mc", q:"Które jest grzeczniejsze?", o:["Entschuldigung, habe ich das richtig verstanden?","Hä? Was soll das denn heißen?"], a:"Entschuldigung, habe ich das richtig verstanden?", e:"„Hä?“ jest bardzo potoczne i niegrzeczne."},
+ {t:"mc", q:"Które jest grzeczniejsze?", o:["Tut mir leid, aber das habe ich noch nie gehört.","Keine Ahnung, nie gehört."], a:"Tut mir leid, aber das habe ich noch nie gehört.", e:"Tut mir leid … = przykro mi …"},
+ {t:"mc", q:"Wann beginnt der Arabischkurs? → Können Sie mir sagen, ___?", o:["wann der Arabischkurs beginnt","wann beginnt der Arabischkurs","wann der Arabischkurs beginnen","der Arabischkurs wann beginnt"], a:"wann der Arabischkurs beginnt", e:"Pytanie zależne: czasownik na końcu (Tipp z KB 55)."},
+ {t:"mc", q:"Kann man hier auch Salsa lernen? → Wissen Sie, ___ man hier auch Salsa lernen kann?", o:["ob","wenn","weil","denn"], a:"ob", e:"Pytanie tak/nie w zdaniu zależnym → ob (czy)."},
+ {t:"mc", q:"Kannst du mir sagen, ob der Kurs morgen ___?", o:["stattfindet","findet statt","statt findet","stattfinden"], a:"stattfindet", e:"Po ob czasownik na końcu. Czasownik rozdzielny się łączy: stattfindet."},
+ {t:"mc", q:"___ Sie mit „Viertel drei“?", o:["Was meinen","Was bedeuten","Wie meinen","Was sagen"], a:"Was meinen", e:"Was meinen Sie mit …? (KB 55). „Viertel drei“ = 14:15 (wschodnie i południowe Niemcy, KB 50, C1)."},
+ {t:"mc", q:"Und was ___ „Viertel drei“?", o:["bedeutet","bedeuten","meinen","meint"], a:"bedeutet", e:"Was bedeutet …? = co znaczy …? (3. os. lp.)."},
+ {t:"mc", q:"Der Mechaniker spricht sehr schnell. Was sagen Sie?", o:["Entschuldigung, könnten Sie bitte langsamer sprechen?","Sprechen Sie doch normal!","Ich verstehe nichts, tschüss.","Warum sprechen Sie so?"], a:"Entschuldigung, könnten Sie bitte langsamer sprechen?", e:"Sytuacja z odgrywania ról (KB 50, C2)."},
+ {t:"type", q:"Könnten Sie bitte ___ sprechen? (wolniej)", a:["langsamer"], e:"langsam → langsamer (stopień wyższy)."},
+ {t:"type", q:"Tut mir leid, das Wort habe ich nicht ___. (verstehen)", a:["verstanden"], e:"verstehen → hat verstanden."},
+ {t:"order", q:"Czy mógłby mi Pan powiedzieć, gdzie odbywają się kursy?", w:["Könnten","Sie","mir","sagen,","wo","die","Kurse","stattfinden?"], e:"Pytanie zależne z wo: czasownik (stattfinden) na końcu."},
+ {t:"order", q:"Czy wie Pani, ile kosztuje kurs intensywny?", w:["Wissen","Sie,","wie","viel","der","Intensivkurs","kostet?"], e:"Wie viel kostet …? → Wissen Sie, wie viel … kostet? (KB 55)."}
+ ]});
+TOPICS.push(
+{ id:"sprachen", emoji:"🌍", title:"Sprachen & Mehrsprachigkeit", sub:"Muttersprache, Fremdsprache, zweisprachig aufwachsen", src:"KB 51–53 (D, E)",
+  reminder:`<p><b>Nazwy języków</b> piszemy wielką literą i bez rodzajnika: <i>Ich spreche Polnisch, Deutsch und ein bisschen Französisch.</i> Przymiotnik małą literą: <i>ein polnisches Buch</i>.</p>
+<ul><li><b>die Muttersprache</b> (język ojczysty) ↔ <b>die Fremdsprache</b> (język obcy)</li>
+<li><b>zweisprachig / mehrsprachig aufwachsen</b> (dorastać w dwóch/kilku językach). Perfekt: <i>ist aufgewachsen</i> (sein!)</li>
+<li><b>stammen aus</b> + Dativ: <i>Wir stammen aus Rumänien.</i> (KB 51)</li>
+<li><b>von einer Sprache in die andere wechseln</b> (przechodzić z języka na język, KB 52)</li>
+<li><b>durcheinander sprechen</b> (mówić na przemian, mieszać języki, KB 51)</li>
+<li><b>Kinder mit ausländischer Herkunft</b> (dzieci obcego pochodzenia, KB 51)</li>
+<li>Pytania z KB 53: <i>Was ist Ihre Muttersprache? Wie viele Fremdsprachen sprechen Sie? In welcher Sprache schimpfen oder träumen Sie?</i></li></ul>`,
+  questions:[
+ {t:"mc", q:"Ich komme aus Polen. Meine ___ ist Polnisch.", o:["Muttersprache","Fremdsprache","Heimat","Sprachschule"], a:"Muttersprache", e:"die Muttersprache = język ojczysty."},
+ {t:"mc", q:"Englisch und Deutsch sind für mich ___.", o:["Fremdsprachen","Muttersprachen","Ausländer","Herkünfte"], a:"Fremdsprachen", e:"die Fremdsprache, -n = język obcy."},
+ {t:"mc", q:"Unsere Tochter wächst ___ auf: mit Polnisch und Deutsch.", o:["zweisprachig","einsprachig","fremd","ausländisch"], a:"zweisprachig", e:"zweisprachig = dwujęzyczny (dwa języki)."},
+ {t:"mc", q:"Wer in Polen geboren ist, spricht meistens ___.", o:["Polnisch","Pole","Polen","Polin"], a:"Polnisch", e:"Język: Polnisch. Pole/Polin = Polak/Polka, Polen = Polska."},
+ {t:"mc", q:"Manchmal sprechen wir zu Hause Deutsch und Griechisch ___, aber das macht nichts!", o:["durcheinander","gegeneinander","auseinander","übereinander"], a:"durcheinander", e:"Wpis BigFeet88 z forum (KB 51): durcheinander = na przemian, pomieszane."},
+ {t:"mc", q:"Ich habe dann noch Französisch dazu ___.", o:["gewählt","gewählen","wählt","gewählte"], a:"gewählt", e:"wählen → hat gewählt (Juli_Star, KB 51)."},
+ {t:"mc", q:"Wir stammen ___ Rumänien.", o:["aus","von","in","nach"], a:"aus", e:"stammen aus + Dativ = pochodzić z."},
+ {t:"mc", q:"Wir können in Sekundenschnelle von der einen Sprache in die andere ___.", o:["wechseln","tauschen","ändern","verändern"], a:"wechseln", e:"die Sprache wechseln = przejść na inny język (Hatice Akyün, KB 52)."},
+ {t:"mc", q:"„Sie sprechen aber gut Deutsch.“ – Anfangs bedankte ich mich für das ___.", o:["Kompliment","Komplement","Kommentar","Kompromiss"], a:"Kompliment", e:"das Kompliment = komplement (pochwała). (KB 52)"},
+ {t:"mc", q:"Seit 1998 gibt es in Münchner Kindergärten Sprachkurse für Kinder mit ausländischer ___.", o:["Herkunft","Zukunft","Ankunft","Auskunft"], a:"Herkunft", e:"die Herkunft = pochodzenie (KB 51, D1c). Zukunft = przyszłość, Ankunft = przyjazd, Auskunft = informacja."},
+ {t:"mc", q:"Ein Mensch aus einem anderen Land ist ein ___.", o:["Ausländer","Inländer","Einwohner","Nachbar"], a:"Ausländer", e:"der Ausländer / die Ausländerin = cudzoziemiec / cudzoziemka (KB 53, E3)."},
+ {t:"mc", q:"Im Zaubersack sind verschiedene Dinge ___. Die Kinder raten, was das ist.", o:["versteckt","verstecken","versteckte","versteckst"], a:"versteckt", e:"verstecken → versteckt (schowane). Audycja „Deutsch aus dem Zaubersack“ (KB 51)."},
+ {t:"mc", q:"Die Kinder sollen lernen, dass es positiv ist, wenn sie zwei Sprachen sprechen ___.", o:["können","kann","könnt","konnte"], a:"können", e:"sie (one) → können; czasownik modalny na końcu zdania z wenn."},
+ {t:"mc", q:"Die Eltern von Hatice Akyün sprechen ___ Deutsch.", o:["kaum","kein","nie","nichts"], a:"kaum", e:"„Andererseits leben meine Eltern … in Deutschland, sprechen aber kaum Deutsch.“ (KB 52) kaum = prawie wcale."},
+ {t:"mc", q:"Serbisch hat eine andere ___ als Deutsch (kyrillisch).", o:["Schrift","Schritt","Schicht","Sicht"], a:"Schrift", e:"die Schrift = pismo, alfabet (KB 53, E3c)."},
+ {t:"type", q:"Przetłumacz: język obcy → die ___", a:["Fremdsprache"], e:"die Fremdsprache, die Fremdsprachen."},
+ {t:"type", q:"In welcher Sprache ___ Sie, wenn Sie wütend sind? (przeklinać/kląć, KB 53)", a:["schimpfen"], e:"schimpfen = kląć, zrzędzić, besztać."}
+ ]},
+{ id:"lerntipps", emoji:"📚", title:"Deutsch lernen: Lerntipps", sub:"Radiosendung, Kärtchen, Aussprache, Motivation", src:"KB 49 (B2, B3), KB 51",
+  reminder:`<p><b>Wskazówki do nauki</b> (KB 49, B2–B3):</p>
+<ul><li><i>Wenn man eine Sprache oft hört, lernt man sie viel schneller.</i> To warunek <b>realny</b>, więc bez Konjunktiv II.</li>
+<li><i>Deswegen habe ich mir oft deutsche Filme oder Serien im Fernsehen angesehen.</i> (sich etwas ansehen = obejrzeć sobie coś)</li>
+<li><i>Wörter auf Kärtchen schreiben</i> · <i>Ich muss immer alles aufschreiben.</i></li>
+<li><i>Daher braucht man immer eine gute Motivation.</i></li>
+<li><i>Wegen meiner Muttersprache habe ich keine Probleme mit der Aussprache.</i></li></ul>
+<p>Bezokolicznik jako rzeczownik (zawsze <b>das</b>): <i>das Sprechen, das Lesen, das Hören</i>. <b>zu + bezokolicznik</b>: <i>Sie hatten keine Lust mehr zu übersetzen.</i> · <i>Es ist wichtig, jeden Tag zu üben.</i></p>`,
+  questions:[
+ {t:"mc", q:"Ich schreibe neue Wörter auf ___.", o:["Kärtchen","Kärtchens","Kärtchenen","Kartoffeln"], a:"Kärtchen", e:"das Kärtchen, die Kärtchen (lm. bez końcówki; -chen = zdrobnienie)."},
+ {t:"mc", q:"Wenn man eine Sprache oft hört, lernt man sie viel ___.", o:["schneller","schnellste","am schnellsten","schnelleren"], a:"schneller", e:"viel + stopień wyższy: viel schneller (o wiele szybciej)."},
+ {t:"mc", q:"Ich habe mir oft deutsche Filme und ___ angesehen.", o:["Serien","Serie","Seriens","Serienen"], a:"Serien", e:"die Serie, die Serien."},
+ {t:"mc", q:"Meine Kinder fanden es sehr wichtig und hatten irgendwann keine Lust mehr zu ___.", o:["übersetzen","übersetzt","übersetze","übergesetzt"], a:"übersetzen", e:"keine Lust haben + zu + bezokolicznik (KB 49)."},
+ {t:"mc", q:"Eine neue Sprache zu lernen, ist anstrengend. Daher braucht man eine gute ___.", o:["Motivation","Motor","Moment","Mode"], a:"Motivation", e:"die Motivation = motywacja."},
+ {t:"mc", q:"Wegen meiner Muttersprache habe ich keine Probleme mit der ___.", o:["Aussprache","Aussage","Ausnahme","Ausgabe"], a:"Aussprache", e:"die Aussprache = wymowa."},
+ {t:"mc", q:"Hab keine Angst vor ___!", o:["Fehlern","Fehler","Fehlers","Fehlen"], a:"Fehlern", e:"Angst vor + Dativ; Dativ lm.: den Fehlern (-n)."},
+ {t:"mc", q:"Sarah spielt gern mit ausländischen Kindern, weil es dann nicht ___ ist, wenn sie Fehler macht.", o:["schlimm","schlimmer","schlimme","schlimmes"], a:"schlimm", e:"Po „sein“ przymiotnik bez końcówki (KB 51, D1c)."},
+ {t:"mc", q:"Ich höre deutsche Podcasts, ___ ich im Bus sitze.", o:["wenn","wann","als","ob"], a:"wenn", e:"wenn = kiedy (za każdym razem). „wann“ tylko w pytaniach."},
+ {t:"mc", q:"Ich lerne Wörter mit einer ___ auf dem Handy.", o:["App","Apps","Appe","Äpp"], a:"App", e:"die App, die Apps."},
+ {t:"mc", q:"Am allerwichtigsten ist für mich das ___.", o:["Sprechen","Spreche","Gesprochen","Sprach"], a:"Sprechen", e:"Bezokolicznik jako rzeczownik: das Sprechen (wielka litera)."},
+ {t:"mc", q:"Eine Umfrage im Radio: Das Thema ist „Fremdsprachen lernen – ___?“", o:["warum","wann","wo","wie viel"], a:"warum", e:"KB 49, B2a: „Fremdsprachen lernen – warum?“"},
+ {t:"type", q:"Ich muss immer alles ___. (zapisywać, czasownik rozdzielny)", a:["aufschreiben"], e:"aufschreiben (schreibt auf, hat aufgeschrieben). Przy czasowniku modalnym bezokolicznik na końcu."},
+ {t:"order", q:"Kiedy często słyszy się jakiś język, uczy się go szybciej.", w:["Wenn","man","eine","Sprache","oft","hört,","lernt","man","sie","schneller."], e:"Warunek realny: wenn … hört, lernt man … (KB 49)."},
+ {t:"order", q:"Dla mnie ważne jest, żeby ćwiczyć codziennie.", w:["Für","mich","ist","es","wichtig,","jeden","Tag","zu","üben."], e:"es ist wichtig + zu + bezokolicznik na końcu."}
+ ]});
+TOPICS.push(
+{ id:"abk", emoji:"🔤", title:"Abkürzungen (Zwischendurch)", sub:"z.B., usw., Hbf., MfG, u.A.w.g. …", src:"KB 56",
+  reminder:`<p><b>Das Abkürzungsspiel</b> (KB 56). Najważniejsze skróty:</p>
+<table class="gt"><tr><td>z.B.</td><td>zum Beispiel (np.)</td></tr><tr><td>usw.</td><td>und so weiter (itd.)</td></tr><tr><td>Hbf.</td><td>Hauptbahnhof (dworzec główny)</td></tr><tr><td>MfG</td><td>Mit freundlichen Grüßen (z poważaniem)</td></tr><tr><td>u.A.w.g.</td><td>um Antwort wird gebeten (uprzejmie prosimy o odpowiedź, np. na zaproszeniu)</td></tr><tr><td>MwSt.</td><td>Mehrwertsteuer (VAT)</td></tr><tr><td>LKW</td><td>Lastkraftwagen (ciężarówka)</td></tr><tr><td>MEZ</td><td>Mitteleuropäische Zeit (czas środkowoeuropejski)</td></tr><tr><td>DB</td><td>Deutsche Bahn</td></tr><tr><td>PIN</td><td>persönliche Identifikationsnummer</td></tr><tr><td>ZDF</td><td>Zweites Deutsches Fernsehen</td></tr><tr><td>ADAC</td><td>Allgemeiner Deutscher Automobil-Club</td></tr><tr><td>DDR</td><td>Deutsche Demokratische Republik (NRD)</td></tr><tr><td>HDGDL</td><td>hab dich ganz doll lieb (SMS)</td></tr></table>
+<p class="small">Bonus z Zurychu (spoza książki): SBB = Schweizerische Bundesbahnen.</p>`,
+  questions:[
+ {t:"mc", q:"Was heißt „z.B.“?", o:["zum Beispiel","zum Bahnhof","zur Bank","zu Besuch"], a:"zum Beispiel", e:"„z.B.“ heißt „zum Beispiel“ (KB 56)."},
+ {t:"mc", q:"Was heißt „usw.“?", o:["und so weiter","und sonst was","unser Wochenende","und schon weg"], a:"und so weiter", e:"usw. = itd."},
+ {t:"mc", q:"Wo ist der „Hbf.“?", o:["Hauptbahnhof","Hauptbüro","Hafen","Hochhaus"], a:"Hauptbahnhof", e:"Hbf. = Hauptbahnhof. W Szwajcarii mówi się „HB“: Zürich HB."},
+ {t:"mc", q:"Am Ende einer formellen E-Mail steht oft „MfG“. Das heißt …", o:["Mit freundlichen Grüßen","Mein falscher Gedanke","Mit fröhlichem Gesang","Montag fällt Geschichte"], a:"Mit freundlichen Grüßen", e:"MfG = z poważaniem (w e-mailu lepiej pisać w całości!)."},
+ {t:"mc", q:"Auf einer Einladung steht „u.A.w.g.“. Was bedeutet das?", o:["um Antwort wird gebeten","und alle werden gehen","unbedingt am Wochenende gehen","um acht wird gegessen"], a:"um Antwort wird gebeten", e:"Prosimy o odpowiedź, czyli trzeba potwierdzić albo grzecznie odmówić."},
+ {t:"mc", q:"Auf der Rechnung steht „inkl. 19 % MwSt.“. MwSt. ist die …", o:["Mehrwertsteuer","Monatsstunde","Mittwochsteuer","Mietwohnungssteuer"], a:"Mehrwertsteuer", e:"die Mehrwertsteuer = VAT (w Szwajcarii skrót MWST)."},
+ {t:"mc", q:"Ein LKW ist ein …", o:["Lastkraftwagen","Luftkissenwagen","Lieferkinderwagen","Langstreckenkraftwerk"], a:"Lastkraftwagen", e:"der LKW = ciężarówka (PKW = samochód osobowy)."},
+ {t:"mc", q:"In Polen, Deutschland und der Schweiz gilt die „MEZ“: die …", o:["Mitteleuropäische Zeit","Mitteleuropäische Zone","Moderne Europa-Zeitung","Montag-Ende-Zeit"], a:"Mitteleuropäische Zeit", e:"MEZ = czas środkowoeuropejski."},
+ {t:"mc", q:"Mit der „DB“ fährt man in Deutschland …", o:["Zug","Bus","Fahrrad","Schiff"], a:"Zug", e:"DB = Deutsche Bahn (koleje niemieckie). W Szwajcarii: SBB."},
+ {t:"mc", q:"Am Geldautomaten braucht man seine „PIN“: die persönliche …", o:["Identifikationsnummer","Informationsnotiz","Internetnachricht","Inlandsnummer"], a:"Identifikationsnummer", e:"PIN = persönliche Identifikationsnummer."},
+ {t:"mc", q:"„ZDF“ ist ein …", o:["Fernsehsender","Supermarkt","Fußballverein","Automobilclub"], a:"Fernsehsender", e:"ZDF = Zweites Deutsches Fernsehen (druga niemiecka telewizja publiczna)."},
+ {t:"mc", q:"Wenn das Auto kaputt ist, hilft in Deutschland oft der „ADAC“: der Allgemeine Deutsche …", o:["Automobil-Club","Arbeitsamt-Center","Apotheken-Club","Arzt-Club"], a:"Automobil-Club", e:"ADAC = Allgemeiner Deutscher Automobil-Club (pomoc drogowa)."},
+ {t:"mc", q:"Deine Tochter schreibt dir „HDGDL“. Das heißt …", o:["Hab dich ganz doll lieb","Hast du Geld dabei, Leute?","Heute dürfen Gäste lachen","Hilfe, die Gans lebt"], a:"Hab dich ganz doll lieb", e:"HDGDL = bardzo cię kocham (SMS-owy skrót, KB 56)."}
+ ]},
+{ id:"test", emoji:"📝", title:"Test Lektion 4", sub:"Wortschatz · Grammatik · Kommunikation", src:"wzorowany na teście z Arbeitsbuch (AB 52)", isTest:true,
+  reminder:`<p>Test w stylu testu z Arbeitsbuch (AB 52), w trzech częściach jak w książce:</p>
+<ol><li><b>Wortschatz</b>: słownictwo z lekcji (Folge, kolumna, języki, zaproszenia)</li>
+<li><b>Grammatik</b>: Konjunktiv II (wäre, hätte, würde …) i wegen + Genitiv</li>
+<li><b>Kommunikation</b>: grzeczne pytania, dopytywanie, uzasadnianie, odmowa</li></ol>
+<p>Pytania są w kolejności części (bez mieszania). Na końcu zobaczysz wynik dla każdej części i ocenę jak w książce: 😊 / 😐 / ☹️.</p>
+<p class="small">Uwaga: stron Arbeitsbuch (AB 44–53) nie ma w PDF, dlatego pytania ułożono na wzór typowego testu Schritte Plus Neu, na materiale z KB 46–57.</p>`,
+  questions:[
+ {t:"mc", part:"1 Wortschatz", q:"Ich muss mich beeilen, ich bin wirklich in ___.", o:["Eile","Ruhe","Pause","Hitze"], a:"Eile", e:"in Eile sein = spieszyć się (Folge 4, KB 46)."},
+ {t:"mc", part:"1 Wortschatz", q:"Am Wochenende möchte ich den ___ ausräumen.", o:["Keller","Kellner","Koffer","Kuchen"], a:"Keller", e:"den Keller ausräumen = opróżnić piwnicę (KB 46)."},
+ {t:"mc", part:"1 Wortschatz", q:"Max macht viele ___ für ein Treffen.", o:["Vorschläge","Vorschlag","Vorschlägen","Vorschlags"], a:"Vorschläge", e:"der Vorschlag, die Vorschläge = propozycja (KB 46)."},
+ {t:"mc", part:"1 Wortschatz", q:"Die Treppe und der Flur in einem Wohnhaus heißen …", o:["das Treppenhaus","das Rathaus","das Krankenhaus","das Kaufhaus"], a:"das Treppenhaus", e:"„im Treppenhaus angesprochen“ (KB 47)."},
+ {t:"mc", part:"1 Wortschatz", q:"Wer von klein auf zwei Sprachen spricht, ist …", o:["zweisprachig","ausländisch","fremdsprachig","einsprachig"], a:"zweisprachig", e:"zweisprachig = dwujęzyczny."},
+ {t:"mc", part:"1 Wortschatz", q:"Ich kann leider nicht kommen. Ich habe schon etwas anderes ___.", o:["vor","an","aus","mit"], a:"vor", e:"etwas vorhaben = mieć plany (KB 48, A2)."},
+ {t:"mc", part:"2 Grammatik", q:"Wenn ich mehr Zeit ___, ___ ich einen Intensivkurs machen.", o:["hätte – würde","habe – würde","hätte – werde","würde – hätte"], a:"hätte – würde", e:"Obie części w Konjunktiv II: hätte … würde … machen."},
+ {t:"mc", part:"2 Grammatik", q:"Wenn meine Tochter nicht krank ___, könnten wir in den Zoo gehen.", o:["wäre","ist","hätte","würde"], a:"wäre", e:"krank sein → sie wäre krank."},
+ {t:"mc", part:"2 Grammatik", q:"Ich ___ dich gern besuchen, aber ich muss leider arbeiten.", o:["würde","wäre","hätte","werde"], a:"würde", e:"würde + besuchen = chętnie bym cię odwiedził."},
+ {t:"mc", part:"2 Grammatik", q:"Wenn ich nicht so früh aufstehen ___, wäre ich nicht so müde.", o:["müsste","muss","musste","müssten"], a:"müsste", e:"müssen → ich müsste (na końcu zdania z wenn)."},
+ {t:"type", part:"2 Grammatik", q:"Wenn ich Präsident ___, würde ich alle Sprachkurse kostenlos machen. (sein)", a:["wäre"], e:"sein → ich wäre."},
+ {t:"mc", part:"2 Grammatik", q:"Wegen ___ Erkältung bleibe ich heute im Bett.", o:["meiner","meines","meine","mein"], a:"meiner", e:"die Erkältung (f.) → meiner Erkältung."},
+ {t:"mc", part:"2 Grammatik", q:"Wegen ___ Termins beim Arzt komme ich später.", o:["eines","einer","einen","ein"], a:"eines", e:"der Termin (m.) → eines Termins."},
+ {t:"mc", part:"2 Grammatik", q:"Wegen ___ Streiks fahren heute keine Züge.", o:["des","der","den","die"], a:"des", e:"der Streik (m.) → des Streiks."},
+ {t:"mc", part:"3 Kommunikation", q:"Entschuldigung, ___ Sie das bitte wiederholen?", o:["könnten","konnten","könnte","kannst"], a:"könnten", e:"Sie → könnten (uprzejma prośba)."},
+ {t:"mc", part:"3 Kommunikation", q:"Tut mir leid, das Wort habe ich noch nie ___.", o:["gehört","hören","gehörte","hört"], a:"gehört", e:"hören → hat gehört (KB 55)."},
+ {t:"mc", part:"3 Kommunikation", q:"___ ich Sie kurz etwas fragen?", o:["Darf","Dürfen","Darfst","Dürft"], a:"Darf", e:"ich darf. Darf ich Sie kurz etwas fragen? (KB 55)"},
+ {t:"mc", part:"3 Kommunikation", q:"Für mich ist Deutsch wichtig, ___ ich hier arbeite.", o:["weil","deshalb","trotzdem","wegen"], a:"weil", e:"Czasownik (arbeite) na końcu → weil."},
+ {t:"mc", part:"3 Kommunikation", q:"Vielen Dank für die Einladung! Ich wäre gern ___, aber leider habe ich keine Zeit.", o:["dabei","darauf","davon","dafür"], a:"dabei", e:"dabei sein = być obecnym (wziąć udział)."},
+ {t:"order", part:"3 Kommunikation", q:"Czy może mi Pan powiedzieć, gdzie odbywa się kurs językowy?", w:["Können","Sie","mir","sagen,","wo","der","Sprachkurs","stattfindet?"], e:"Pytanie zależne: stattfindet na końcu."}
+ ]});
+const VOCAB_GROUPS = [
+ {id:"folge", name:"Alltag: Folge & Kolumne", emoji:"🏠", src:"KB 46–47"},
+ {id:"einladung", name:"Einladen & absagen", emoji:"✉️", src:"KB 48"},
+ {id:"lernen", name:"Deutsch lernen", emoji:"📚", src:"KB 49"},
+ {id:"nachfragen", name:"Nachfragen & Informationen", emoji:"🙋", src:"KB 50, 55"},
+ {id:"sprachen", name:"Sprachen & Mehrsprachigkeit", emoji:"🌍", src:"KB 51–53"},
+ {id:"zwischen", name:"Zwischendurch mal …", emoji:"🎲", src:"KB 56–57"}
+];
+const VOCAB = [];
+VOCAB.push(
+{g:"folge", d:"die Eile", pl:"(Sg.)", p:"pośpiech", n:"Zwrot: in Eile sein = spieszyć się. Czasownik: sich beeilen.", x:"Ich bin wirklich in Eile wegen meiner Arbeit.", xp:"Naprawdę się spieszę z powodu pracy."},
+{g:"folge", d:"der Keller", pl:"die Keller", p:"piwnica", n:"Lm. bez końcówki. Nie mylić z „der Kellner“ (kelner).", x:"Am Wochenende räumen wir den Keller aus.", xp:"W weekend opróżniamy piwnicę."},
+{g:"folge", d:"ausräumen", pl:"räumt aus, hat ausgeräumt", p:"opróżnić, wynieść rzeczy", n:"Czasownik rozdzielny (aus-). Przeciwieństwo: einräumen. aufräumen = posprzątać.", x:"Ella möchte am Wochenende den Keller ausräumen.", xp:"Ella chce w weekend opróżnić piwnicę."},
+{g:"folge", d:"der Vorschlag", pl:"die Vorschläge", p:"propozycja", n:"einen Vorschlag machen. Czasownik: vorschlagen (schlägt vor, hat vorgeschlagen).", x:"Max macht viele Vorschläge für ein Treffen.", xp:"Max proponuje różne możliwości spotkania."},
+{g:"folge", d:"das Treffen", pl:"die Treffen", p:"spotkanie", n:"Rzeczownik od „treffen“. sich treffen mit + D = spotkać się z kimś.", x:"Max hat Interesse an einem Treffen mit Ella.", xp:"Max jest zainteresowany spotkaniem z Ellą."},
+{g:"folge", d:"die Nachbarin", pl:"die Nachbarinnen", p:"sąsiadka", n:"Mężczyzna: der Nachbar, die Nachbarn (odmiana słaba: dem/den Nachbarn).", x:"Meine Nachbarin hat zwei kleine Kinder.", xp:"Moja sąsiadka ma dwoje małych dzieci."},
+{g:"folge", d:"das Treppenhaus", pl:"die Treppenhäuser", p:"klatka schodowa", n:"die Treppe (schody) + das Haus. Rodzaj od ostatniego członu: das.", x:"Eine Nachbarin hat mich im Treppenhaus angesprochen.", xp:"Sąsiadka zagadnęła mnie na klatce schodowej."},
+{g:"folge", d:"ansprechen", pl:"spricht an, sprach an, hat angesprochen", p:"zagadnąć, zaczepić (rozmową)", n:"Rozdzielny + nieregularny (e → i). jemanden ansprechen + Akk.", x:"Im Park hat mich ein Vater auf Deutsch angesprochen.", xp:"W parku zagadnął mnie po niemiecku jakiś tata."},
+{g:"folge", d:"zustimmen", pl:"stimmt zu, hat zugestimmt", p:"zgodzić się, przytaknąć", n:"Rozdzielny, łączy się z Dativ: jemandem zustimmen.", x:"Es war sehr heiß und ich habe ihr zugestimmt.", xp:"Było bardzo gorąco i przyznałam jej rację."},
+{g:"folge", d:"die Hitze", pl:"(Sg.)", p:"upał", n:"heiß → die Hitze. wegen der Hitze = z powodu upału.", x:"Vielleicht war sie nur wegen der Hitze so nett.", xp:"Może była taka miła tylko z powodu upału."},
+{g:"folge", d:"die Lust", pl:"(Sg.)", p:"ochota", n:"Lust haben auf + Akk / Lust haben, etwas zu tun. keine Lust haben = nie mieć ochoty.", x:"Darauf hatte ich aber gar keine Lust.", xp:"Ale na to w ogóle nie miałam ochoty."},
+{g:"folge", d:"die Ruhe", pl:"(Sg.)", p:"spokój, cisza", n:"Ich hätte gern meine Ruhe = chciał(a)bym mieć spokój. „Lass mich in Ruhe!“ jest niegrzeczne.", x:"Nach der Arbeit hätte ich gern ein bisschen Ruhe.", xp:"Po pracy chętnie miałbym trochę spokoju."},
+{g:"folge", d:"im Gegenteil", pl:"", p:"wręcz przeciwnie", n:"Stały zwrot (das Gegenteil = przeciwieństwo).", x:"Ich bin nicht müde – im Gegenteil!", xp:"Nie jestem zmęczony, wręcz przeciwnie!"},
+{g:"folge", d:"deutlich", pl:"deutlicher, am deutlichsten", p:"wyraźnie, dobitnie", n:"Przymiotnik/przysłówek. deutlich werden = powiedzieć coś wprost.", x:"Da musste ich dann leider etwas deutlicher werden.", xp:"Wtedy niestety musiałam powiedzieć to wyraźniej."},
+{g:"folge", d:"jedenfalls", pl:"", p:"w każdym razie", n:"Przysłówek; na 1. miejscu powoduje inwersję: Jedenfalls sagte sie …", x:"Jedenfalls sagte sie lächelnd: „Kein Problem!“", xp:"W każdym razie powiedziała z uśmiechem: „Nie ma problemu!”"},
+{g:"folge", d:"lächeln", pl:"lächelt, hat gelächelt", p:"uśmiechać się", n:"Regularny. lächelnd = z uśmiechem (imiesłów).", x:"Mein Sohn lächelt, wenn er mich sieht.", xp:"Mój syn się uśmiecha, kiedy mnie widzi."},
+{g:"folge", d:"akzeptieren", pl:"akzeptiert, hat akzeptiert", p:"akceptować", n:"Czasownik na -ieren: Perfekt bez ge- (hat akzeptiert).", x:"Wenn Ella Nein sagt, muss Max das akzeptieren.", xp:"Jeśli Ella mówi „nie”, Max musi to zaakceptować."},
+{g:"einladung", d:"die Einladung", pl:"die Einladungen", p:"zaproszenie", n:"Danke für die Einladung (für + Akk). eine Einladung bekommen / absagen.", x:"Vielen Dank für die Einladung zum Geburtstag!", xp:"Bardzo dziękuję za zaproszenie na urodziny!"},
+{g:"einladung", d:"einladen", pl:"lädt ein, lud ein, hat eingeladen", p:"zapraszać", n:"Rozdzielny + nieregularny (a → ä). jemanden zu + D einladen.", x:"Eine frühere Kollegin lädt mich zu einer Party ein.", xp:"Była koleżanka zaprasza mnie na imprezę."},
+{g:"einladung", d:"absagen", pl:"sagt ab, hat abgesagt", p:"odwołać, odmówić", n:"Rozdzielny. eine Einladung / einen Termin absagen. Przeciwieństwo: zusagen.", x:"Ich muss die Einladung leider absagen.", xp:"Niestety muszę odmówić zaproszenia."},
+{g:"einladung", d:"sich bedanken", pl:"bedankt sich, hat sich bedankt", p:"podziękować", n:"Zwrotny: sich bei jemandem für etwas bedanken (bei + D, für + A).", x:"Ich bedanke mich herzlich für die Einladung.", xp:"Serdecznie dziękuję za zaproszenie."},
+{g:"einladung", d:"die Ausrede", pl:"die Ausreden", p:"wymówka", n:"eine (gute) Ausrede suchen / sich eine Ausrede ausdenken.", x:"Ich suche noch eine gute Ausrede.", xp:"Szukam jeszcze dobrej wymówki."},
+{g:"einladung", d:"vorhaben", pl:"hat vor, hatte vor, hat vorgehabt", p:"planować, mieć w planach", n:"Rozdzielny. etwas anderes vorhaben = mieć inne plany. Po weil: …, weil ich etwas vorhabe.", x:"Am Samstag habe ich schon etwas anderes vor.", xp:"W sobotę mam już inne plany."},
+{g:"einladung", d:"dabei sein", pl:"ist dabei, war dabei, ist dabei gewesen", p:"być obecnym, wziąć udział", n:"Konjunktiv II: ich wäre gern dabei = chętnie bym był.", x:"Ich wäre gern dabei, aber leider kann ich nicht kommen.", xp:"Chętnie bym był, ale niestety nie mogę przyjść."},
+{g:"einladung", d:"hingehen", pl:"geht hin, ging hin, ist hingegangen", p:"pójść tam", n:"Rozdzielny, Perfekt z sein (ruch).", x:"Ich möchte nicht hingehen, weil ich dort niemanden kenne.", xp:"Nie chcę tam iść, bo nikogo tam nie znam."},
+{g:"einladung", d:"die Feier", pl:"die Feiern", p:"uroczystość, impreza", n:"Czasownik: feiern. Życzenia: Ich wünsche euch eine schöne Feier!", x:"Ich wünsche euch eine schöne Feier!", xp:"Życzę wam udanej imprezy!"},
+{g:"einladung", d:"der Wunsch", pl:"die Wünsche", p:"życzenie", n:"mit guten Wünschen = z dobrymi życzeniami. Czasownik: wünschen + D + A.", x:"Beenden Sie die E-Mail mit guten Wünschen.", xp:"Zakończ e-mail dobrymi życzeniami."},
+{g:"einladung", d:"der Grund", pl:"die Gründe", p:"powód", n:"einen Grund angeben = podać powód. aus diesem Grund = z tego powodu (= deshalb).", x:"Geben Sie einen Grund an, warum Sie nicht kommen können.", xp:"Podaj powód, dlaczego nie możesz przyjść."},
+{g:"einladung", d:"lügen", pl:"lügt, log, hat gelogen", p:"kłamać", n:"Nieregularny. auf keinen Fall lügen = w żadnym wypadku nie kłamać.", x:"Ich würde auf keinen Fall lügen.", xp:"W żadnym wypadku bym nie kłamał."},
+{g:"einladung", d:"die Wahrheit", pl:"(Sg.)", p:"prawda", n:"die Wahrheit sagen = mówić prawdę.", x:"Es ist besser, die Wahrheit zu sagen.", xp:"Lepiej powiedzieć prawdę."},
+{g:"einladung", d:"auf keinen Fall", pl:"", p:"w żadnym wypadku", n:"Stały zwrot; przeciwieństwo: auf jeden Fall (na pewno).", x:"Die Kinder dürfen auf keinen Fall allein über die Straße gehen.", xp:"Dzieci w żadnym wypadku nie mogą same przechodzić przez ulicę."},
+{g:"einladung", d:"das Portemonnaie", pl:"die Portemonnaies", p:"portfel", n:"Z francuskiego, wymowa [portmone]. Też: die Geldbörse.", x:"Was würdest du machen, wenn du ein Portemonnaie mit 100 Euro finden würdest?", xp:"Co byś zrobił, gdybyś znalazł portfel ze 100 euro?"},
+{g:"einladung", d:"der Ausbildungsplatz", pl:"die Ausbildungsplätze", p:"miejsce nauki zawodu", n:"die Ausbildung = nauka zawodu. sich einen Ausbildungsplatz aussuchen.", x:"Mit 15 durfte ich mir einen Ausbildungsplatz aussuchen.", xp:"W wieku 15 lat mogłem wybrać sobie miejsce nauki zawodu."}
+);
+VOCAB.push(
+{g:"lernen", d:"die Umfrage", pl:"die Umfragen", p:"ankieta, sonda", n:"eine Umfrage machen. Eine Umfrage im Radio (KB 49).", x:"Im Radio gibt es eine Umfrage zum Thema Fremdsprachen.", xp:"W radiu jest sonda na temat języków obcych."},
+{g:"lernen", d:"die Radiosendung", pl:"die Radiosendungen", p:"audycja radiowa", n:"die Sendung = audycja/program; senden = nadawać.", x:"Ich höre gern deutsche Radiosendungen im Auto.", xp:"Chętnie słucham niemieckich audycji radiowych w samochodzie."},
+{g:"lernen", d:"der Tipp", pl:"die Tipps", p:"wskazówka, rada", n:"Lerntipps = wskazówki do nauki. einen Tipp geben.", x:"Hast du einen guten Tipp zum Deutschlernen?", xp:"Masz dobrą wskazówkę do nauki niemieckiego?"},
+{g:"lernen", d:"das Kärtchen", pl:"die Kärtchen", p:"karteczka, fiszka", n:"Zdrobnienie od „die Karte“: -chen zawsze daje rodzaj „das“ i często umlaut.", x:"Ich schreibe neue Wörter auf Kärtchen.", xp:"Zapisuję nowe słowa na karteczkach."},
+{g:"lernen", d:"aufschreiben", pl:"schreibt auf, schrieb auf, hat aufgeschrieben", p:"zapisywać, notować", n:"Rozdzielny + nieregularny.", x:"Ich muss immer alles aufschreiben.", xp:"Zawsze muszę wszystko zapisywać."},
+{g:"lernen", d:"die Aussprache", pl:"(Sg.)", p:"wymowa", n:"aussprechen (spricht aus) = wymawiać. Probleme mit der Aussprache haben.", x:"Wegen meiner Muttersprache habe ich keine Probleme mit der Aussprache.", xp:"Dzięki mojemu językowi ojczystemu nie mam problemów z wymową."},
+{g:"lernen", d:"übersetzen", pl:"übersetzt, hat übersetzt", p:"tłumaczyć", n:"Nierozdzielny (akcent na -setz-), więc Perfekt bez ge-: hat übersetzt.", x:"Mein Sohn übersetzt manchmal für mich.", xp:"Mój syn czasem dla mnie tłumaczy."},
+{g:"lernen", d:"sich etwas ansehen", pl:"sieht sich an, hat sich angesehen", p:"obejrzeć (sobie) coś", n:"Rozdzielny, zaimek w Dativ: Ich sehe mir einen Film an.", x:"Ich habe mir oft deutsche Serien im Fernsehen angesehen.", xp:"Często oglądałem w telewizji niemieckie seriale."},
+{g:"lernen", d:"die Serie", pl:"die Serien", p:"serial", n:"Wymowa [zerie]. eine Serie sehen / schauen.", x:"Am Abend schauen wir eine Serie auf Deutsch.", xp:"Wieczorem oglądamy serial po niemiecku."},
+{g:"lernen", d:"anstrengend", pl:"anstrengender", p:"męczący, wyczerpujący", n:"Przymiotnik od „sich anstrengen“ (wysilać się).", x:"Eine neue Sprache zu lernen, kann sehr anstrengend sein.", xp:"Nauka nowego języka może być bardzo męcząca."},
+{g:"lernen", d:"die Motivation", pl:"die Motivationen", p:"motywacja", n:"motiviert sein = być zmotywowanym.", x:"Daher braucht man immer eine gute Motivation.", xp:"Dlatego zawsze potrzeba dobrej motywacji."},
+{g:"lernen", d:"der Fehler", pl:"die Fehler", p:"błąd", n:"einen Fehler machen (nie: tun!). Angst vor Fehlern (Dativ lm. -n).", x:"Es ist nicht schlimm, wenn man Fehler macht.", xp:"To nic złego, kiedy robi się błędy."},
+{g:"lernen", d:"die Ausbildung", pl:"die Ausbildungen", p:"nauka zawodu, wykształcenie", n:"eine Ausbildung machen = uczyć się zawodu.", x:"Ich möchte später eine Ausbildung machen.", xp:"Później chcę zdobyć zawód."},
+{g:"lernen", d:"wichtig", pl:"wichtiger, am wichtigsten", p:"ważny", n:"Für mich ist … wichtig, weil … · Am allerwichtigsten ist … (najważniejsze ze wszystkiego).", x:"Für mich ist Deutsch wichtig, weil ich hier arbeite.", xp:"Niemiecki jest dla mnie ważny, bo tu pracuję."},
+{g:"lernen", d:"darum / daher / deswegen", pl:"", p:"dlatego", n:"Wszystkie = deshalb. Czasownik zaraz po nim: Darum muss mein Deutsch gut sein.", x:"Ich wohne in Zürich, darum lerne ich Deutsch.", xp:"Mieszkam w Zurychu, dlatego uczę się niemieckiego."},
+{g:"lernen", d:"weshalb / weswegen / wieso", pl:"", p:"dlaczego", n:"Wszystkie = warum. W pytaniu czasownik na 2. miejscu.", x:"Weshalb lernst du Deutsch?", xp:"Dlaczego uczysz się niemieckiego?"},
+{g:"nachfragen", d:"nachfragen", pl:"fragt nach, hat nachgefragt", p:"dopytać", n:"Rozdzielny. Gdy czegoś nie rozumiesz: Entschuldigung, habe ich das richtig verstanden?", x:"Wenn ich ein Wort nicht verstehe, frage ich nach.", xp:"Kiedy nie rozumiem jakiegoś słowa, dopytuję."},
+{g:"nachfragen", d:"wiederholen", pl:"wiederholt, hat wiederholt", p:"powtórzyć", n:"W tym znaczeniu NIErozdzielny (Perfekt bez ge-).", x:"Könnten Sie das bitte wiederholen?", xp:"Czy mógłby Pan to powtórzyć?"},
+{g:"nachfragen", d:"bedeuten", pl:"bedeutet, hat bedeutet", p:"znaczyć", n:"Was bedeutet …? = co znaczy …? die Bedeutung = znaczenie.", x:"Und was bedeutet „Viertel drei“?", xp:"A co znaczy „Viertel drei”?"},
+{g:"nachfragen", d:"meinen", pl:"meint, hat gemeint", p:"mieć na myśli; uważać", n:"Was meinen Sie mit …? = co ma Pan na myśli, mówiąc …?", x:"Was meinst du mit „nächsten Donnerstag“?", xp:"Co masz na myśli, mówiąc „w przyszły czwartek”?"},
+{g:"nachfragen", d:"der Ausdruck", pl:"die Ausdrücke", p:"wyrażenie, zwrot", n:"einen Ausdruck nicht verstehen.", x:"Der Kollege versteht den Ausdruck „Viertel drei“ nicht.", xp:"Kolega nie rozumie wyrażenia „Viertel drei”."},
+{g:"nachfragen", d:"der Termin", pl:"die Termine", p:"termin, wizyta", n:"einen Termin vereinbaren / absagen.", x:"Ich vereinbare einen Termin mit dem Mechaniker.", xp:"Umawiam wizytę u mechanika."},
+{g:"nachfragen", d:"vereinbaren", pl:"vereinbart, hat vereinbart", p:"uzgodnić, umówić", n:"Nierozdzielny (ver-), Perfekt bez ge-.", x:"Wir haben einen Termin beim Kinderarzt vereinbart.", xp:"Umówiliśmy wizytę u pediatry."},
+{g:"nachfragen", d:"das Gericht", pl:"die Gerichte", p:"danie, potrawa (też: sąd)", n:"Dwa znaczenia! W stołówce (Mensa) = danie.", x:"Er bestellt ein Gericht, das Sie nicht kennen.", xp:"On zamawia danie, którego nie znasz."},
+{g:"nachfragen", d:"sich anmelden", pl:"meldet sich an, hat sich angemeldet", p:"zapisać się, zarejestrować się", n:"Rozdzielny + zwrotny. sich für einen Kurs / zu einem Kurs anmelden.", x:"Ich möchte mich für einen Integrationskurs anmelden.", xp:"Chciałbym zapisać się na kurs integracyjny."},
+{g:"nachfragen", d:"stattfinden", pl:"findet statt, fand statt, hat stattgefunden", p:"odbywać się", n:"Rozdzielny. Wo finden die Kurse statt? / …, wo die Kurse stattfinden.", x:"Der Deutschkurs findet jeden Dienstag statt.", xp:"Kurs niemieckiego odbywa się w każdy wtorek."},
+{g:"nachfragen", d:"langsam", pl:"langsamer, am langsamsten", p:"wolny, powoli", n:"Könnten Sie bitte langsamer sprechen?", x:"Könnten Sie bitte etwas langsamer sprechen?", xp:"Czy mógłby Pan mówić trochę wolniej?"},
+{g:"nachfragen", d:"Wissen Sie, ob …?", pl:"", p:"Czy wie Pan/Pani, czy …?", n:"ob = czy (pytanie tak/nie). Czasownik na końcu.", x:"Wissen Sie, ob man hier auch Salsa lernen kann?", xp:"Czy wie Pani, czy można się tu też nauczyć salsy?"},
+{g:"nachfragen", d:"Keine Ahnung!", pl:"", p:"Nie mam pojęcia!", n:"Potoczne, trochę niegrzeczne. Grzeczniej: Das weiß ich leider nicht.", x:"Keine Ahnung, wann der Bus kommt.", xp:"Nie mam pojęcia, kiedy przyjedzie autobus."}
+);
+VOCAB.push(
+{g:"sprachen", d:"die Sprache", pl:"die Sprachen", p:"język (mowa)", n:"eine Sprache sprechen/lernen. Nazwy języków bez rodzajnika: Ich spreche Polnisch.", x:"Wie viele Sprachen sprichst du?", xp:"Iloma językami mówisz?"},
+{g:"sprachen", d:"die Muttersprache", pl:"die Muttersprachen", p:"język ojczysty", n:"Was ist Ihre Muttersprache? – Polnisch ist meine Muttersprache.", x:"Polnisch ist meine Muttersprache.", xp:"Polski jest moim językiem ojczystym."},
+{g:"sprachen", d:"die Fremdsprache", pl:"die Fremdsprachen", p:"język obcy", n:"Fremdsprachen lernen – warum? (KB 49)", x:"In der Schule lernt meine Tochter später zwei Fremdsprachen.", xp:"W szkole moja córka będzie się później uczyć dwóch języków obcych."},
+{g:"sprachen", d:"die Fremdsprachenkenntnisse", pl:"(Pl.)", p:"znajomość języków obcych", n:"Tylko liczba mnoga. die Kenntnis = wiedza.", x:"Helfen Ihnen Ihre Fremdsprachenkenntnisse beim Deutschlernen?", xp:"Czy znajomość języków obcych pomaga Panu w nauce niemieckiego?"},
+{g:"sprachen", d:"der Sprachkurs", pl:"die Sprachkurse", p:"kurs językowy", n:"einen Sprachkurs machen/besuchen. Też: der Intensivkurs, der Integrationskurs.", x:"Unser Sohn besucht einen Sprachkurs im Kindergarten.", xp:"Nasz syn chodzi na kurs językowy w przedszkolu."},
+{g:"sprachen", d:"zweisprachig", pl:"", p:"dwujęzyczny", n:"Też: mehrsprachig (wielojęzyczny), einsprachig. zweisprachig aufwachsen.", x:"Unsere Kinder wachsen zweisprachig auf.", xp:"Nasze dzieci dorastają dwujęzycznie."},
+{g:"sprachen", d:"die Mehrsprachigkeit", pl:"(Sg.)", p:"wielojęzyczność", n:"Od: mehrsprachig. Rzeczowniki na -keit mają zawsze rodzaj „die“.", x:"Die Schweiz ist ein Land der Mehrsprachigkeit.", xp:"Szwajcaria to kraj wielojęzyczności."},
+{g:"sprachen", d:"aufwachsen", pl:"wächst auf, wuchs auf, ist aufgewachsen", p:"dorastać, wychowywać się", n:"Rozdzielny, nieregularny (a → ä), Perfekt z SEIN!", x:"Ich bin in Polen aufgewachsen.", xp:"Wychowałem się w Polsce."},
+{g:"sprachen", d:"der Ausländer", pl:"die Ausländer", p:"cudzoziemiec", n:"Kobieta: die Ausländerin. Przymiotnik: ausländisch.", x:"In Zürich leben viele Ausländer.", xp:"W Zurychu mieszka wielu cudzoziemców."},
+{g:"sprachen", d:"die Herkunft", pl:"(Sg.)", p:"pochodzenie", n:"Kinder mit ausländischer Herkunft. Nie mylić z Zukunft (przyszłość) i Auskunft (informacja).", x:"In der Klasse gibt es viele Kinder mit ausländischer Herkunft.", xp:"W klasie jest wiele dzieci obcego pochodzenia."},
+{g:"sprachen", d:"die Heimat", pl:"(Sg.)", p:"ojczyzna, strony rodzinne", n:"Cytat z KB 52: „Sprache ist ein Stück Heimat – überall auf der Welt.“", x:"Polen ist meine Heimat, aber Zürich ist jetzt mein Zuhause.", xp:"Polska to moja ojczyzna, ale Zurych jest teraz moim domem."},
+{g:"sprachen", d:"stammen aus", pl:"stammt, stammte", p:"pochodzić z", n:"+ Dativ: aus Polen, aus der Schweiz. Perfekt używa się rzadko.", x:"Wir stammen nämlich aus Rumänien.", xp:"Pochodzimy bowiem z Rumunii."},
+{g:"sprachen", d:"wechseln", pl:"wechselt, hat gewechselt", p:"zmieniać, przechodzić (na inny)", n:"die Sprache wechseln; Geld wechseln (wymienić).", x:"Meine Tochter wechselt schnell von Polnisch zu Deutsch.", xp:"Moja córka szybko przechodzi z polskiego na niemiecki."},
+{g:"sprachen", d:"durcheinander", pl:"", p:"na przemian, bez ładu", n:"Przysłówek. Sprachen durcheinander sprechen = mieszać języki.", x:"Zu Hause sprechen wir Polnisch und Deutsch durcheinander.", xp:"W domu mówimy na przemian po polsku i po niemiecku."},
+{g:"sprachen", d:"vergleichen", pl:"vergleicht, verglich, hat verglichen", p:"porównywać", n:"Nieregularny; etwas mit etwas (D) vergleichen.", x:"Vergleichen Sie Ihre Muttersprache mit der deutschen Sprache.", xp:"Porównaj swój język ojczysty z językiem niemieckim."},
+{g:"sprachen", d:"die Schrift", pl:"die Schriften", p:"pismo, alfabet", n:"Serbisch hat eine andere Schrift als Deutsch (KB 53).", x:"Russisch hat eine andere Schrift als Deutsch.", xp:"Rosyjski ma inne pismo niż niemiecki."},
+{g:"sprachen", d:"der Akzent", pl:"die Akzente", p:"akcent", n:"mit (polnischem) Akzent sprechen.", x:"Ich spreche Deutsch mit polnischem Akzent.", xp:"Mówię po niemiecku z polskim akcentem."},
+{g:"sprachen", d:"das Kompliment", pl:"die Komplimente", p:"komplement", n:"jemandem ein Kompliment machen.", x:"Anfangs bedankte ich mich für das Kompliment.", xp:"Na początku dziękowałam za komplement."},
+{g:"sprachen", d:"stolz sein auf", pl:"", p:"być dumnym z", n:"+ Akkusativ: stolz auf meine Kinder.", x:"Ich bin stolz auf meine Tochter, sie spricht schon gut Deutsch.", xp:"Jestem dumny z córki, mówi już dobrze po niemiecku."},
+{g:"sprachen", d:"kaum", pl:"", p:"prawie wcale, ledwo", n:"Przysłówek o znaczeniu przeczącym: kaum Deutsch sprechen.", x:"Meine Eltern sprechen kaum Deutsch.", xp:"Moi rodzice prawie wcale nie mówią po niemiecku."},
+{g:"sprachen", d:"schimpfen", pl:"schimpft, hat geschimpft", p:"kląć, zrzędzić, besztać", n:"mit jemandem schimpfen = besztać kogoś.", x:"In welcher Sprache schimpfen Sie?", xp:"W jakim języku Pan klnie?"},
+{g:"sprachen", d:"träumen", pl:"träumt, hat geträumt", p:"śnić, marzyć", n:"träumen von + Dativ.", x:"Manchmal träume ich schon auf Deutsch.", xp:"Czasem śnię już po niemiecku."},
+{g:"sprachen", d:"verstecken", pl:"versteckt, hat versteckt", p:"chować, ukrywać", n:"Nierozdzielny (ver-). Im Zaubersack ist etwas versteckt.", x:"Mein Kleiner versteckt sich gern hinter dem Sofa.", xp:"Mój maluch lubi chować się za kanapą."},
+{g:"sprachen", d:"raten", pl:"rät, riet, hat geraten", p:"zgadywać; radzić", n:"Nieregularny (a → ä). jemandem raten = radzić komuś.", x:"Die Kinder raten, was im Sack ist.", xp:"Dzieci zgadują, co jest w worku."},
+{g:"zwischen", d:"die Abkürzung", pl:"die Abkürzungen", p:"skrót", n:"abkürzen = skracać. „z.B.“ ist eine Abkürzung für „zum Beispiel“.", x:"Im Deutschen gibt es viele Abkürzungen.", xp:"W niemieckim jest dużo skrótów."},
+{g:"zwischen", d:"die Bedeutung", pl:"die Bedeutungen", p:"znaczenie", n:"Od: bedeuten. Manche Abkürzungen haben mehr als eine Bedeutung (KB 56).", x:"Dieses Wort hat zwei Bedeutungen.", xp:"To słowo ma dwa znaczenia."},
+{g:"zwischen", d:"das Missverständnis", pl:"die Missverständnisse", p:"nieporozumienie", n:"Rzeczowniki na -nis: lm. -nisse.", x:"Das war nur ein Missverständnis.", xp:"To było tylko nieporozumienie."},
+{g:"zwischen", d:"die Verbindung", pl:"die Verbindungen", p:"połączenie", n:"Die Handyverbindung ist schlecht = słaby zasięg / złe połączenie.", x:"Die Verbindung ist sehr schwach.", xp:"Połączenie jest bardzo słabe."},
+{g:"zwischen", d:"wütend", pl:"", p:"wściekły", n:"wütend sein auf + Akk. Es macht mich wütend, wenn … (KB 56).", x:"Es macht mich wütend, wenn jemand schlecht über andere Menschen redet.", xp:"Wściekam się, kiedy ktoś źle mówi o innych ludziach."},
+{g:"zwischen", d:"bewundern", pl:"bewundert, hat bewundert", p:"podziwiać", n:"Nierozdzielny (be-), Perfekt bez ge-.", x:"Ich bewundere Sie, weil Sie vier Sprachen sprechen.", xp:"Podziwiam Pana, bo mówi Pan czterema językami."},
+{g:"zwischen", d:"der Vorrat", pl:"die Vorräte", p:"zapas", n:"einen Vorrat haben = mieć zapas.", x:"Bring Energiesparbirnen mit, damit wir einen Vorrat haben.", xp:"Przynieś żarówki energooszczędne, żebyśmy mieli zapas."},
+{g:"zwischen", d:"das Handtuch", pl:"die Handtücher", p:"ręcznik", n:"die Hand + das Tuch. Lm. z umlautem.", x:"Kannst du den Kindern zwei Handtücher geben?", xp:"Możesz dać dzieciom dwa ręczniki?"}
+);
+// ===== LOGIKA APLIKACJI =====
+const STORE_KEY = "schritteB1_L4_v1";
+let store = loadStore();
+function loadStore(){ try{ const s = JSON.parse(localStorage.getItem(STORE_KEY)); if(s && s.best && s.known) return s; }catch(e){} return {best:{}, known:{}, groups:null}; }
+function saveStore(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }catch(e){} }
+function resetProgress(){ if(confirm("Na pewno wyzerować wszystkie wyniki i znane słówka?")){ store={best:{},known:{},groups:null}; saveStore(); renderHome(); } }
+
+const $ = id => document.getElementById(id);
+function shuffle(a){ const r=[...a]; for(let i=r.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [r[i],r[j]]=[r[j],r[i]]; } return r; }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function showScreen(id){ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active")); $(id).classList.add("active"); window.scrollTo(0,0); }
+function topicById(id){ return TOPICS.find(t=>t.id===id); }
+
+// ---------- START ----------
+function bestText(id){ const b=store.best[id]; return b ? `🏆 ${b.correct}/${b.total}` : "nowy"; }
+function vocabBest(){ const a=store.best.vq_de, b=store.best.vq_pl; return [a?`DE→PL ${a.correct}/${a.total}`:"", b?`PL→DE ${b.correct}/${b.total}`:""].filter(Boolean).join(" · "); }
+function renderHome(){
+  const card = (cls, emoji, title, sub, meta, best, onclick) =>
+    `<button class="chapter-card ${cls}" onclick="${onclick}"><div class="emoji">${emoji}</div><div class="ct">${title}</div><div class="cs">${sub}</div><div class="cm"><span>${meta}</span><span class="best">${best}</span></div></button>`;
+  const knownCount = Object.keys(store.known).filter(k=>store.known[k]).length;
+  $("grid-vocab").innerHTML =
+    card("vocab","🃏","Fiszki & quiz słówek",`${VOCAB.length} słówek w ${VOCAB_GROUPS.length} grupach, z gramatyką i przykładami`,`${knownCount}/${VOCAB.length} znam`, vocabBest(),"openVocab()");
+  $("grid-topics").innerHTML = TOPICS.filter(t=>!t.isTest).map(t =>
+    card("", t.emoji, t.title, t.sub, `${t.questions.length} pytań`, bestText(t.id), `openTopic('${t.id}')`)).join("");
+  const test = topicById("test");
+  const mixCount = 20;
+  $("grid-tests").innerHTML =
+    card("test", test.emoji, test.title, test.sub, `${test.questions.length} pytań`, bestText("test"), "openTopic('test')") +
+    card("special","🎲","Mieszany test całej lekcji","Losowe pytania ze wszystkich tematów",`${mixCount} pytań`, bestText("mix"), "openTopic('mix')");
+  const done = TOPICS.filter(t=>{ const b=store.best[t.id]; return b && b.correct/b.total>=0.8; }).length;
+  $("h-done").textContent = `${done}/${TOPICS.length}`;
+  $("h-known").textContent = `${knownCount}/${VOCAB.length}`;
+  $("h-test").textContent = store.best.test ? `${store.best.test.correct}/${store.best.test.total}` : "–";
+}
+function goHome(){ closeHelp(); renderHome(); showScreen("home"); current=null; }
+
+// ---------- PRZYPOMNIENIE ----------
+let current = null; // {id,title,questions,reminder}
+const MIX_REMINDER = `<p>Pytania ze wszystkich tematów lekcji 4, w losowej kolejności. Najważniejsze:</p>
+<ul><li>Konjunktiv II: <b>wäre, hätte, würde + bezokolicznik, könnte, müsste, sollte, dürfte</b></li>
+<li>Wenn + czasownik na końcu, potem czasownik na początku drugiej części</li>
+<li>wegen + Genitiv: <b>des/meines …(e)s</b>, <b>der/meiner …</b></li>
+<li>weil/obwohl/dass/ob: czasownik na końcu; deshalb/trotzdem: czasownik zaraz po nim; denn: szyk normalny</li>
+<li>Uprzejmie: <i>Könnten Sie …? Darf ich …? Können Sie mir sagen, wo …?</i></li></ul>
+<p>Pełne tabele znajdziesz pod przyciskiem ℹ️.</p>`;
+function openTopic(id){
+  if(id==="mix"){
+    const pool = TOPICS.filter(t=>!t.isTest).flatMap(t=>t.questions.map(q=>({...q, label:t.emoji+" "+t.title})));
+    current = {id:"mix", title:"🎲 Mieszany test", src:"cała Lektion 4", reminder:MIX_REMINDER, questions: shuffle(pool).slice(0,20), ordered:true};
+  } else {
+    const t = topicById(id);
+    current = {id:t.id, title:t.emoji+" "+t.title, src:"Źródło: "+t.src, reminder:t.reminder, questions:t.questions.map(q=>({...q,label:q.part?("Teil "+q.part):t.title})), ordered:!!t.isTest, isTest:!!t.isTest};
+  }
+  $("r-title").textContent = current.title;
+  $("r-src").textContent = current.src;
+  $("r-body").innerHTML = `<b>📌 Przypomnienie</b>` + current.reminder;
+  $("r-start").onclick = () => startGame(current);
+  showScreen("reminder");
+}
+
+// ---------- GRA ----------
+let questions=[], qi=0, score=0, streak=0, correctCount=0, answered=false, partStats={}, gameDef=null;
+function startGame(def){
+  gameDef = def;
+  questions = def.ordered ? [...def.questions] : shuffle(def.questions);
+  qi=0; score=0; streak=0; correctCount=0; partStats={};
+  $("g-title").textContent = def.title;
+  $("score").textContent="0"; $("streak").textContent="0";
+  showScreen("game"); loadQuestion();
+}
+function renderSentence(q){
+  const s = esc(q.q).replace(/___/g,'<span class="blank">&nbsp;</span>');
+  return s;
+}
+const TYPE_HINT = {mc:"Wybierz poprawną odpowiedź.", order:"Ułóż zdanie po niemiecku: klikaj słowa po kolei (kliknięte słowo w odpowiedzi wraca na dół).", type:"Wpisz brakujące słowo."};
+function loadQuestion(){
+  answered=false;
+  const q = questions[qi];
+  $("qnum").textContent = `${qi+1}/${questions.length}`;
+  $("case-label").textContent = q.label || "";
+  $("sentence").innerHTML = q.t==="order" ? "🇵🇱 " + esc(q.q) : renderSentence(q);
+  $("hint").textContent = q.hint || TYPE_HINT[q.t];
+  const qa=$("qarea"); qa.style.animation="none"; qa.offsetHeight; qa.style.animation="";
+  $("feedback").className="feedback"; $("next-btn").classList.remove("show");
+  const zone = $("answer-zone"); zone.innerHTML="";
+  if(q.t==="mc") renderMC(q, zone);
+  else if(q.t==="order") renderOrder(q, zone);
+  else renderType(q, zone);
+}
+function renderMC(q, zone){
+  const box=document.createElement("div");
+  const long = q.o.some(o=>o.length>26);
+  box.className="options"+(long?" long":"");
+  shuffle(q.o).forEach(opt=>{
+    const b=document.createElement("button"); b.className="option-btn"; b.textContent=opt;
+    b.onclick=()=>{ if(answered) return; const ok = opt===q.a;
+      box.querySelectorAll(".option-btn").forEach(x=>{ x.style.pointerEvents="none"; if(x.textContent===q.a) x.classList.add("correct"); else if(x===b) x.classList.add("wrong"); });
+      finish(ok, q, q.a);
+    };
+    box.appendChild(b);
+  });
+  zone.appendChild(box);
+}
+function renderOrder(q, zone){
+  const ans=document.createElement("div"); ans.className="order-answer";
+  const bank=document.createElement("div"); bank.className="order-bank";
+  const check=document.createElement("button"); check.className="action-btn full"; check.textContent="Sprawdź ✔"; check.disabled=true;
+  let tokens = q.w.map((w,i)=>({w,i}));
+  let sh = shuffle(tokens); let guard=0;
+  while(sh.map(x=>x.w).join(" ")===q.w.join(" ") && guard++<10) sh=shuffle(tokens);
+  const chosen=[];
+  function draw(){
+    ans.innerHTML=""; bank.innerHTML="";
+    chosen.forEach((t,k)=>{ const b=document.createElement("button"); b.className="word-btn"; b.textContent=t.w;
+      b.onclick=()=>{ if(answered) return; chosen.splice(k,1); draw(); }; ans.appendChild(b); });
+    sh.filter(t=>!chosen.includes(t)).forEach(t=>{ const b=document.createElement("button"); b.className="word-btn"; b.textContent=t.w;
+      b.onclick=()=>{ if(answered) return; chosen.push(t); draw(); }; bank.appendChild(b); });
+    if(!chosen.length) ans.innerHTML='<span class="small" style="padding:8px">Tu pojawi się Twoje zdanie…</span>';
+    check.disabled = chosen.length!==q.w.length || answered;
+  }
+  check.onclick=()=>{ if(answered) return;
+    const mine = chosen.map(t=>t.w).join(" ");
+    const valid = [q.w, ...(q.alts||[])].map(a=>a.join(" "));
+    const ok = valid.includes(mine);
+    ans.classList.add(ok?"correct":"wrong"); check.disabled=true;
+    finish(ok, q, q.w.join(" "));
+  };
+  draw();
+  zone.appendChild(ans); zone.appendChild(bank); zone.appendChild(check);
+  const sp=document.createElement("div"); sp.style.height="12px"; zone.appendChild(sp);
+}
+function norm(s){ return s.trim().replace(/\s+/g," ").replace(/[.!?,]+$/,"").toLowerCase(); }
+function renderType(q, zone){
+  const row=document.createElement("div"); row.className="type-row";
+  const inp=document.createElement("input"); inp.className="type-input"; inp.placeholder="Twoja odpowiedź…"; inp.autocomplete="off"; inp.setAttribute("autocapitalize","off"); inp.spellcheck=false;
+  const btn=document.createElement("button"); btn.className="action-btn"; btn.textContent="Sprawdź ✔";
+  row.appendChild(inp); row.appendChild(btn);
+  const um=document.createElement("div"); um.className="umlauts";
+  ["ä","ö","ü","ß","Ä","Ö","Ü"].forEach(c=>{ const b=document.createElement("button"); b.className="uml"; b.textContent=c;
+    b.onclick=()=>{ const p=inp.selectionStart??inp.value.length; inp.value=inp.value.slice(0,p)+c+inp.value.slice(inp.selectionEnd??p); inp.focus(); inp.setSelectionRange(p+1,p+1); };
+    um.appendChild(b); });
+  const go=()=>{ if(answered||!inp.value.trim()) return;
+    const v = norm(inp.value); const accepted = q.a.map(norm);
+    const ok = accepted.includes(v);
+    inp.classList.add(ok?"correct":"wrong"); inp.disabled=true; btn.disabled=true;
+    finish(ok, q, q.a.join(" / "));
+  };
+  btn.onclick=go; inp.addEventListener("keydown",e=>{ if(e.key==="Enter") go(); });
+  zone.appendChild(row); zone.appendChild(um);
+  setTimeout(()=>inp.focus(),50);
+}
+function finish(ok, q, solution){
+  answered=true;
+  const part = q.part || "all";
+  partStats[part] = partStats[part] || {c:0,t:0}; partStats[part].t++;
+  if(ok){ score+=10; streak++; correctCount++; partStats[part].c++; if(streak>=3) score+=5; } else streak=0;
+  $("score").textContent=score; $("streak").textContent=streak;
+  const fb=$("feedback"); fb.className="feedback show "+(ok?"correct":"wrong");
+  const praise=["🎉 Super!","✅ Richtig!","🌟 Toll!","💪 Sehr gut!","🔥 Klasse!"];
+  $("feedback-text").textContent = ok ? praise[Math.floor(Math.random()*praise.length)] + (streak>=3?` Seria ${streak}! +5`:"") : "😅 Ups! Nie tym razem.";
+  $("solution").innerHTML = ok && q.t==="mc" ? "" : `<div class="solution">✔ ${esc(solution)}</div>`;
+  $("explanation").textContent = q.e;
+  if(qi<questions.length-1){ $("next-btn").textContent="Dalej →"; } else { $("next-btn").textContent="Zobacz wynik 🏁"; }
+  $("next-btn").classList.add("show");
+  setTimeout(()=>$("next-btn").scrollIntoView({behavior:"smooth",block:"nearest"}),100);
+}
+$("next-btn").addEventListener("click",()=>{ if(qi<questions.length-1){ qi++; loadQuestion(); } else endGame(); });
+
+function endGame(){
+  const total=questions.length, pct=correctCount/total;
+  const prev=store.best[gameDef.id];
+  const isNew = !prev || correctCount>prev.correct || (correctCount===prev.correct && score>prev.score);
+  if(isNew){ store.best[gameDef.id]={correct:correctCount,total,score}; saveStore(); }
+  $("final-score").textContent = `${correctCount}/${total} · ${score} pkt`;
+  let msg = pct>=0.9 ? "Wunderbar! 🏆 Opanowane, jesteś mistrzem Lektion 4!" : pct>=0.7 ? "Sehr gut! 💪 Jeszcze trochę i będzie perfekcyjnie." : pct>=0.5 ? "Gut gemacht! 🙂 Zajrzyj do przypomnienia (ℹ️) i spróbuj jeszcze raz." : "Nicht schlecht für den Anfang! 🌱 Przeczytaj przypomnienie i powtórz ćwiczenie.";
+  if(isNew && prev) msg += " 🎊 Nowy rekord!";
+  $("final-message").textContent = msg;
+  let bd="";
+  if(gameDef.isTest){
+    const face = p => p>=0.8?"😊":p>=0.5?"😐":"☹️";
+    bd = Object.keys(partStats).map(k=>{ const s=partStats[k]; return `<div><span>Teil ${esc(k)}</span><span>${s.c}/${s.t} ${face(s.c/s.t)}</span></div>`; }).join("");
+  }
+  $("breakdown").innerHTML = bd;
+  $("again-btn").onclick = () => { if(gameDef.id==="mix") openTopic("mix"); else if(gameDef.vocabMode) startVocabQuiz(gameDef.vocabMode); else startGame(gameDef); };
+  showScreen("over");
+}
+
+// ---------- SŁÓWKA ----------
+function selectedGroups(){ return store.groups && store.groups.length ? store.groups : VOCAB_GROUPS.map(g=>g.id); }
+function selectedWords(){ const g=selectedGroups(); return VOCAB.filter(w=>g.includes(w.g)); }
+function openVocab(){ current=null; renderVocabHome(); showScreen("vocabHome"); }
+function toggleGroup(id){
+  let g = selectedGroups().slice();
+  if(id==="all"){ g = VOCAB_GROUPS.map(x=>x.id); }
+  else if(g.length===VOCAB_GROUPS.length){ g=[id]; }
+  else if(g.includes(id)){ g=g.filter(x=>x!==id); if(!g.length) g=VOCAB_GROUPS.map(x=>x.id); }
+  else g.push(id);
+  store.groups=g; saveStore(); renderVocabHome();
+}
+function renderVocabHome(){
+  const g=selectedGroups(); const all = g.length===VOCAB_GROUPS.length;
+  $("chips").innerHTML = `<button class="chip ${all?"on":""}" onclick="toggleGroup('all')">🌈 Wszystkie</button>` +
+    VOCAB_GROUPS.map(x=>{ const n=VOCAB.filter(w=>w.g===x.id).length; return `<button class="chip ${(!all&&g.includes(x.id))?"on":""}" onclick="toggleGroup('${x.id}')" title="${x.src}">${x.emoji} ${x.name} (${n})</button>`; }).join("");
+  const words=selectedWords(); const known=words.filter(w=>store.known[w.d]).length;
+  $("v-count").textContent = `Wybrane: ${words.length} słówek · znam ${known} (${words.length?Math.round(known/words.length*100):0}%)`;
+  $("v-bar").style.width = (words.length?known/words.length*100:0)+"%";
+  $("word-list").innerHTML = words.map(w=>`<div><span>${store.known[w.d]?'<span class="k">✓</span> ':''}<b>${esc(w.d)}</b> <span class="small">${esc(w.pl)}</span></span><span>${esc(w.p)}</span></div>`).join("");
+}
+// Fiszki
+let deck=[], fi=0;
+function startFlash(){ $("only-unknown").checked=false; buildFlashDeck(); showScreen("flash"); }
+function buildFlashDeck(){
+  const words=selectedWords();
+  deck = $("only-unknown").checked ? words.filter(w=>!store.known[w.d]) : words.slice();
+  deck = shuffle(deck); fi=0;
+  const g=selectedGroups(); $("f-group").textContent = g.length===VOCAB_GROUPS.length ? "Wszystkie grupy" : VOCAB_GROUPS.filter(x=>g.includes(x.id)).map(x=>x.emoji).join(" ");
+  drawCard();
+}
+function drawCard(){
+  const c=$("flashcard"); c.classList.remove("flipped");
+  if(!deck.length){ $("f-word").textContent="🎉 Wszystkie znasz!"; $("f-forms").textContent="Odznacz filtr albo wybierz inne grupy."; $("f-badge").style.display="none"; $("f-counter").textContent=""; $("f-pl").textContent=""; $("f-note").textContent=""; $("f-ex").innerHTML=""; return; }
+  const w=deck[fi];
+  $("f-counter").textContent = `Karta ${fi+1} z ${deck.length} · ${VOCAB_GROUPS.find(x=>x.id===w.g).name}`;
+  $("f-word").textContent=w.d;
+  $("f-forms").textContent = w.pl ? (w.d.match(/^(der|die|das) /) ? "Pl.: "+w.pl : w.pl) : "";
+  if(w.pl && (w.pl==="(Sg.)"||w.pl==="(Pl.)")) $("f-forms").textContent = w.pl==="(Sg.)" ? "tylko liczba pojedyncza" : "tylko liczba mnoga";
+  $("f-badge").style.display = store.known[w.d] ? "block":"none";
+  setTimeout(()=>{ $("f-pl").textContent=w.p; $("f-note").innerHTML="💡 "+esc(w.n); $("f-ex").innerHTML=`🇩🇪 ${esc(w.x)}<i>🇵🇱 ${esc(w.xp)}</i>`; }, 150);
+}
+function flipCard(){ if(deck.length) $("flashcard").classList.toggle("flipped"); }
+function flashMove(d){ if(!deck.length) return; fi=(fi+d+deck.length)%deck.length; drawCard(); }
+function markCard(k){
+  if(!deck.length) return; const w=deck[fi];
+  if(k) store.known[w.d]=true; else delete store.known[w.d];
+  saveStore();
+  if($("only-unknown").checked && k){ deck.splice(fi,1); if(fi>=deck.length) fi=0; drawCard(); }
+  else flashMove(1);
+}
+// Quiz słówek
+function startVocabQuiz(mode){
+  current=null;
+  const words=selectedWords();
+  const pool = words.length>=4 ? words : VOCAB;
+  const picked = shuffle(pool).slice(0, Math.min(15,pool.length));
+  const qs = picked.map(w=>{
+    const key = mode==="de" ? "p" : "d";
+    const others = shuffle(VOCAB.filter(x=>x!==w && x[key]!==w[key] && (x.g===w.g || Math.random()<0.4)));
+    const opts=[w[key]];
+    for(const o of others){ if(opts.length>=4) break; if(!opts.includes(o[key])) opts.push(o[key]); }
+    for(const o of shuffle(VOCAB)){ if(opts.length>=4) break; if(!opts.includes(o[key])) opts.push(o[key]); }
+    return { t:"mc", label: mode==="de"?"🇩🇪 → 🇵🇱 Co to znaczy?":"🇵🇱 → 🇩🇪 Jak to powiedzieć po niemiecku?",
+      q: mode==="de" ? w.d : w.p, hint: mode==="de" ? (w.pl&&w.pl[0]!=="("?w.pl:"") || "Wybierz polskie tłumaczenie." : "Wybierz niemieckie słowo (z rodzajnikiem).",
+      o: opts, a: w[key], e: `${w.d}${w.pl&&w.pl[0]!=="("?" ("+w.pl+")":""} = ${w.p}. ${w.n} Przykład: ${w.x} (${w.xp})` };
+  });
+  startGame({id:"vq_"+mode, title: mode==="de"?"🇩🇪 → 🇵🇱 Quiz słówek":"🇵🇱 → 🇩🇪 Quiz słówek", questions:qs, vocabMode:mode});
+}
+
+// ---------- POMOC ----------
+function openHelp(){
+  let html="";
+  const inTopic = current && ($("game").classList.contains("active") || $("reminder").classList.contains("active") || $("over").classList.contains("active"));
+  if(inTopic){
+    html += `<h3>📌 Ten temat: ${esc(current.title)}</h3><div class="reminder-box">${current.reminder}</div>`;
+  }
+  html += `<h3>🔮 Konjunktiv II: tabela odmiany</h3><div class="reminder-box">${KONJ_TABLE}</div>`;
+  html += `<h3>📌 wegen + Genitiv</h3><div class="reminder-box">${WEGEN_TABLE}</div>`;
+  html += `<h3>🔗 Szyk zdania: weil, denn, deshalb, trotzdem …</h3><div class="reminder-box">${ORDER_TABLE}</div>`;
+  html += `<h3>📚 Wszystkie przypomnienia</h3>` + TOPICS.map(t=>`<details><summary>${t.emoji} ${esc(t.title)} <span class="small">(${esc(t.src)})</span></summary>${t.reminder}</details>`).join("");
+  $("help-body").innerHTML = html;
+  $("help").classList.add("show");
+}
+function closeHelp(){ $("help").classList.remove("show"); }
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeHelp(); });
+
+renderHome();
+</script>
+</body></html>
