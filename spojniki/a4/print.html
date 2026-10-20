@@ -36,7 +36,7 @@
   .dot{flex:none;width:3mm;height:3mm;border-radius:50%}
 
   /* grid */
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-top:4mm;align-items:start}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:3mm;align-items:start}
   .stack{display:grid;gap:3mm;margin-top:3mm}
   .col{display:grid;gap:3mm}
   .wide{grid-column:1 / -1}
@@ -62,8 +62,8 @@
   .top{display:grid;grid-template-columns:1fr;gap:2mm;margin-top:2mm}
   .wide .top{grid-template-columns:var(--cols,86mm 1fr);align-items:start;gap:5mm}
   .p2{break-before:page}
-  .runhead{display:flex;justify-content:space-between;align-items:baseline;font-size:9pt;font-weight:800;color:var(--muted);padding-bottom:1.5mm;border-bottom:0.6mm solid #E3E3DE}
-  .runhead b{font-size:12pt;font-weight:900;color:var(--text)}
+  .runhead{padding-top:0;display:flex;justify-content:space-between;align-items:baseline;font-size:8pt;font-weight:800;color:var(--muted);padding-bottom:1mm;border-bottom:0.6mm solid #E3E3DE}
+  .runhead b{font-size:10pt;font-weight:900;color:var(--text)}
 
   /* slots */
   .slots{display:flex;gap:1.2mm;align-items:stretch}
@@ -106,11 +106,27 @@
   .phr{font-weight:400;font-style:italic;color:var(--muted);font-size:9pt}
 
   /* footer */
-  footer{margin-top:3mm;border:0.4mm solid #DCDCD6;border-radius:3.5mm;padding:2.2mm 3.4mm;break-inside:avoid}
+  footer{margin-top:0;border:0.4mm solid #DCDCD6;border-radius:3.5mm;padding:1.6mm 3.4mm 1.8mm;break-inside:avoid}
   footer h3{font-size:8pt;font-weight:900;letter-spacing:.8pt;text-transform:uppercase;color:var(--muted)}
-  .tip{margin-top:1mm;display:grid;gap:.8mm;font-size:10pt;font-weight:700}
+  .tip{margin-top:.6mm;display:grid;grid-template-columns:1fr auto;gap:.4mm 2.5mm;line-height:1.2;font-size:9pt;font-weight:700}
   .tip .k1{color:var(--g1d)} .tip .k2{color:var(--g2d)} .tip .k3{color:var(--g3d)} .tip .k4{color:var(--g4d)} .tip .k5{color:var(--g5d)}
   .tip .ar{color:var(--muted)}
+
+  /* exercise box */
+  .g6{--a:#4A5160;--d:#1F2430;--bg:#FBFBFA}
+  .g6.band{border:0.35mm solid #D9DBE0;border-left:1.6mm solid var(--a);margin-top:3mm;padding-top:2.2mm;padding-bottom:2.2mm}
+  .ex-sec{margin-top:1.2mm;font-size:10.5pt;font-weight:800}
+  .ex-sec .pl{font-weight:400;font-style:italic;color:var(--muted);font-size:9pt}
+  .bank{display:inline-flex;gap:1.1mm;flex-wrap:nowrap;white-space:nowrap;margin-left:0;vertical-align:middle;background:#fff;border:0.35mm solid #C9CCD3;
+        border-radius:2mm;padding:.6mm 2mm;font-size:10pt;font-weight:800;color:var(--d);flex:none}
+  .gaps{display:grid;grid-template-columns:1fr;margin-top:.3mm}
+  .gaps div,.task{font-size:10.5pt;font-weight:600;line-height:8mm;white-space:nowrap}
+  .n{display:inline-block;width:6.5mm;font-weight:900;color:var(--d)}
+  .blank{display:inline-block;width:25mm;border-bottom:0.35mm solid #1F2430;height:1em;vertical-align:-0.15em;margin:0 .6mm}
+  .task .hint{color:var(--muted);font-weight:700}
+  .wline{height:9mm;border-bottom:0.35mm solid #1F2430;margin:0 0 .5mm 6.5mm}
+  .task{line-height:1.3;margin-top:.8mm}
+  .solutions{margin-top:2mm;font-size:7.5pt;color:#8A8F99;transform:rotate(180deg);text-align:center;line-height:1.25}
 </style>
 </head>
 <body>
@@ -205,45 +221,27 @@
 <div class="p2">
 <div class="runhead"><b>Spójniki i szyk zdania</b><span>Konnektoren &amp; Wortstellung (B1) · 2/2</span></div>
 <div class="grid">
+<div class="col">
 <section class="band g3">
   <div class="head"><div class="num">3</div><h2>NORMAL</h2><span class="tag">Pos. 0 · szyk normalny</span></div>
   <p class="rule">denn zählt nicht mit: Subjekt, dann Verb.<br><span class="pl">denn się nie liczy: podmiot, potem czasownik.</span></p>
   <div class="top">
     <div class="slots">
       <div class="slot conn" style="flex:.7 1 0"><div class="lbl">0</div><div class="box">denn</div><div class="role">Konnektor</div></div>
-      <div class="slot" style="flex:1.4 1 0"><div class="lbl">1</div><div class="box">die Wortstellung</div><div class="role">Subjekt</div></div>
+      <div class="slot" style="flex:1.9 1 0"><div class="lbl">1</div><div class="box">die Wortstellung</div><div class="role">Subjekt</div></div>
       <div class="slot verb"><div class="lbl">2 ▼</div><div class="box">bleibt</div><div class="role">Verb</div></div>
       <div class="slot dots"><div class="lbl">…</div><div class="box">normal</div><div class="role">Rest</div></div>
     </div>
-    <div class="pills"><div class="pill"><b>denn</b><span>bo</span></div></div>
   </div>
   <ul class="ex">
     <li><div class="de">Ich mag „denn“, <strong>denn</strong> die Wortstellung <mark>bleibt</mark> normal.</div><div class="tr">Lubię „denn”, bo szyk zdania zostaje normalny.</div></li>
   </ul>
-  <div class="note"><b>Genauso:</b> aber / und / oder <span class="pl">(ale / i / albo)</span> → Pos. 0</div>
+  <div style="display:flex;align-items:center;gap:2mm;margin-top:2mm"><div class="pill"><b>denn</b><span>bo</span></div>
+  <div class="note" style="margin-top:0"><b>Genauso:</b> aber / und / oder <span class="pl">(ale / i / albo)</span></div></div>
 </section>
-
-<section class="band g4">
-  <div class="head"><div class="num">★</div><h2>wegen + Nomen</h2><span class="tag">Genitiv · z powodu</span></div>
-  <div class="top">
-    <div class="slots">
-      <div class="slot conn" style="flex:.8 1 0"><div class="lbl">Präp.</div><div class="box">wegen</div><div class="role">z powodu</div></div>
-      <div class="plus">+</div>
-      <div class="slot verb" style="flex:1.6 1 0"><div class="lbl">Nomen ▼</div><div class="box">der Regel</div><div class="role">Genitiv</div></div>
-    </div>
-    <div class="pills"><div class="pill"><b>wegen</b><span>z powodu</span><i>+ Gen.</i></div></div>
-  </div>
-  <ul class="ex">
-    <li><div class="de"><strong>Wegen</strong> <mark>der Regel</mark> kommt nach „wegen“ ein Nomen.</div><div class="tr">Z powodu tej zasady po „wegen” przychodzi rzeczownik.</div></li>
-    <li><div class="de"><strong>wegen</strong> <mark>meines Berufs</mark> · <strong>wegen</strong> <mark>meiner Arbeit</mark></div><div class="tr">z powodu mojego zawodu · z powodu mojej pracy</div></li>
-  </ul>
-  <div class="note"><b>Merke:</b> gesprochen oft mit Dativ: <i>wegen dem Beruf</i><br><span class="pl">W mowie potocznej często z celownikiem.</span></div>
-</section>
-</div>
-<div class="stack">
-<section class="band g5 wide" style="--cols:104mm 1fr">
-  <div class="head"><div class="num">+</div><h2>Bonus: wenn + Konj. II</h2><span class="tag">Lektion 4</span></div>
-  <p class="rule">Wenn-Satz zuerst → Hauptsatz beginnt mit dem Verb.<br><span class="pl">Zdanie z wenn na początku → zdanie główne zaczyna się od czasownika.</span></p>
+<section class="band g5">
+  <div class="head"><div class="num">+</div><h2>Bonus: Konj. II</h2><span class="tag">wenn · Lektion 4</span></div>
+  <p class="rule">Wenn-Satz zuerst → dann sofort das Verb.<br><span class="pl">Najpierw zdanie z wenn → potem od razu czasownik.</span></p>
   <div class="top">
     <div class="slots">
       <div class="slot conn" style="flex:2.8 1 0"><div class="lbl">1 = Wenn-Satz</div><div class="box">Wenn ich Zeit <span class="vin">hätte</span></div><div class="role">Verb am Ende</div></div>
@@ -252,23 +250,63 @@
       <div class="slot" style="flex:.7 1 0"><div class="lbl">3</div><div class="box">ich</div><div class="role">Subjekt</div></div>
       <div class="slot dots"><div class="lbl">Ende</div><div class="box">reisen</div><div class="role">Infinitiv</div></div>
     </div>
-  <ul class="ex" style="margin-top:3.6mm">
+  <ul class="ex">
     <li><div class="de"><strong>Wenn</strong> ich Zeit <mark>hätte</mark>, <mark>würde</mark> ich reisen.</div><div class="tr">Gdybym miał czas, podróżowałbym.</div></li>
   </ul>
   </div>
 </section>
 </div>
-
+<div class="col">
+<section class="band g4">
+  <div class="head"><div class="num">★</div><h2>wegen + Nomen</h2><span class="tag">Genitiv · z powodu</span></div>
+  <div class="top">
+    <div class="slots">
+      <div class="slot conn" style="flex:.8 1 0"><div class="lbl">Präp.</div><div class="box">wegen</div><div class="role">z powodu</div></div>
+      <div class="plus">+</div>
+      <div class="slot verb" style="flex:1.6 1 0"><div class="lbl">Nomen ▼</div><div class="box">der Regel</div><div class="role">Genitiv</div></div>
+    </div>
+  </div>
+  <ul class="ex">
+    <li><div class="de"><strong>Wegen</strong> <mark>der Regel</mark> kommt nach „wegen“ ein Nomen.</div><div class="tr">Z powodu tej zasady po „wegen” przychodzi rzeczownik.</div></li>
+    <li><div class="de"><strong>wegen</strong> <mark>meines Berufs</mark> · <strong>wegen</strong> <mark>meiner Arbeit</mark></div><div class="tr">z powodu mojego zawodu · z powodu mojej pracy</div></li>
+  </ul>
+  <div class="note"><b>Merke:</b> gesprochen oft mit Dativ: <i>wegen dem Beruf</i><br><span class="pl">W mowie potocznej często z celownikiem.</span></div>
+</section>
 <footer>
   <h3>Merksatz · do zapamiętania</h3>
   <div class="tip">
-    <div><span class="k1">weil / obwohl / dass / wenn / ob / damit / W-Frage indirekt</span> <span class="ar">→</span> Verb ans Ende</div>
-    <div><span class="k2">deshalb / deswegen / darum / daher / trotzdem</span> <span class="ar">→</span> Verb sofort</div>
-    <div><span class="k3">denn / aber / und / oder</span> <span class="ar">→</span> nichts ändert sich</div>
-    <div><span class="k4">wegen</span> <span class="ar">→</span> + Nomen (Genitiv)</div>
-    <div><span class="k5">Wenn-Satz zuerst</span> <span class="ar">→</span> dann sofort das Verb: … hätte, würde ich …</div>
+    <span class="k1">weil · obwohl · dass · wenn · ob · damit · W-Frage indirekt</span><span>→ Ende</span>
+    <span class="k2">deshalb · deswegen · darum · daher · trotzdem</span><span>→ Verb sofort</span>
+    <span class="k3">denn · aber · und · oder</span><span>→ normal</span>
+    <span class="k4">wegen</span><span>→ + Nomen (Gen.)</span>
+    <span class="k5">Wenn-Satz, …</span><span>→ dann sofort das Verb</span>
   </div>
 </footer>
+</div>
+</div>
+
+<section class="band g6">
+  <div class="head"><div class="num">✎</div><h2>Übung · ćwiczenie</h2></div>
+  <p class="ex-sec" style="display:flex;align-items:center;justify-content:space-between;gap:2mm"><span style="white-space:nowrap;flex:none">A) Ergänze den Konnektor. <span class="pl">(Uzupełnij spójnik.)</span></span>
+    <span class="bank">weil · trotzdem · denn · wegen · wann · ob · deshalb · damit</span></p>
+  <div class="gaps">
+    <div><span class="n">1.</span>Ich lerne Deutsch, <span class="blank"></span> ich in Zürich wohne.</div>
+    <div><span class="n">2.</span>Es regnet, <span class="blank"></span> gehe ich spazieren.</div>
+    <div><span class="n">3.</span>Ich bin müde, <span class="blank"></span> ich habe schlecht geschlafen.</div>
+    <div><span class="n">4.</span><span class="blank" style="margin-left:0"></span> des Wetters bleiben wir zu Hause.</div>
+    <div><span class="n">5.</span>Können Sie mir sagen, <span class="blank"></span> der Kurs beginnt?</div>
+    <div><span class="n">6.</span>Ich weiß nicht, <span class="blank"></span> er heute kommt.</div>
+    <div><span class="n">7.</span>Ich habe keine Zeit, <span class="blank"></span> kann ich nicht mitkommen.</div>
+    <div><span class="n">8.</span>Ich spreche langsam, <span class="blank"></span> du mich verstehst.</div>
+  </div>
+  <p class="ex-sec">B) Verbinde die Sätze. <span class="pl">(Połącz zdania.)</span></p>
+  <div class="task"><span class="n">9.</span>Ich gehe zum Kurs. Ich bin krank. <span class="hint">(obwohl)</span></div>
+  <div class="wline"></div>
+  <div class="task"><span class="n">10.</span>Ich habe Zeit. Ich lerne Spanisch. <span class="hint">(Wenn … Konj. II)</span></div>
+  <div class="wline"></div>
+  <p class="solutions">Lösungen: 1 weil · 2 trotzdem · 3 denn · 4 Wegen · 5 wann · 6 ob · 7 deshalb · 8 damit · 9 Ich gehe zum Kurs, obwohl ich krank bin. · 10 Wenn ich Zeit hätte, würde ich Spanisch lernen.</p>
+</section>
+
 </div>
 
 </div>
