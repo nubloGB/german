@@ -80,7 +80,7 @@ table.gt tr:nth-child(even) td{background:#f7f4ee}
 .action-btn.green{background:#1f6b4a}
 .btn-row{display:flex;flex-direction:column;gap:10px;margin-top:12px}
 .feedback{padding:14px 16px;border-radius:12px;margin-bottom:14px;display:none;line-height:1.5}
-.feedback.show{display:block}
+.feedback.show{display:block;scroll-margin-top:12px}
 .feedback.correct{background:#e5f5eb;color:#14532d;border:2px solid #1f7a4d}
 .feedback.wrong{background:#fdecec;color:#7f1d1d;border:2px solid #b42318}
 .feedback-text{font-size:1.1rem;font-weight:700;margin-bottom:6px}
@@ -913,7 +913,9 @@ function finish(ok, q, solution, userAnswer){
   $("explanation").innerHTML = explainBlock(q, ok, userAnswer);
   if(qi<questions.length-1){ $("next-btn").textContent="Dalej →"; } else { $("next-btn").textContent="Zobacz wynik 🏁"; }
   $("next-btn").classList.add("show");
-  setTimeout(()=>$("next-btn").scrollIntoView({behavior:"smooth",block:"nearest"}),100);
+  requestAnimationFrame(() => {
+    $("feedback").scrollIntoView({block:"start", inline:"nearest"});
+  });
 }
 $("next-btn").addEventListener("click",()=>{ if(qi<questions.length-1){ qi++; loadQuestion(); } else endGame(); });
 
