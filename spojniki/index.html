@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spójniki i szyk zdania · Konnektoren &amp; Wortstellung (B1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#FAFAF7; --text:#1F2430; --muted:#6B7180;
+    --g1:#E4572E; --g1bg:#FDECE7; --g1hl:rgba(228,87,46,.18);
+    --g2:#2D7DD2; --g2bg:#E6F0FB; --g2hl:rgba(45,125,210,.18);
+    --g3:#3BA55C; --g3bg:#E7F5EC; --g3hl:rgba(59,165,92,.20);
+    --g4:#7B4FD6; --g4bg:#EFE9FB; --g4hl:rgba(123,79,214,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--page)}
+  body{font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);
+       background:var(--page);line-height:1.4;font-size:15px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:540px;margin:0 auto;padding:22px 16px 26px}
+
+  /* ---------- header ---------- */
+  header{padding:6px 4px 18px}
+  h1{font-size:30px;font-weight:900;line-height:1.15;letter-spacing:-.3px}
+  .sub{font-size:17px;font-weight:700;color:var(--muted);margin-top:4px}
+  .legend{margin-top:16px;display:grid;gap:8px}
+  .legend div{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:600}
+  .dot{flex:none;width:14px;height:14px;border-radius:50%}
+  .legend b{font-weight:800}
+  .legend .arrow{color:var(--muted);font-weight:700}
+
+  /* ---------- bands ---------- */
+  .band{border-radius:20px;padding:20px 16px 18px;margin-top:14px;background:var(--bg)}
+  .g1{--a:var(--g1);--bg:var(--g1bg);--hl:var(--g1hl)}
+  .g2{--a:var(--g2);--bg:var(--g2bg);--hl:var(--g2hl)}
+  .g3{--a:var(--g3);--bg:var(--g3bg);--hl:var(--g3hl)}
+  .g4{--a:var(--g4);--bg:var(--g4bg);--hl:var(--g4hl)}
+
+  .bandhead{display:flex;align-items:flex-start;gap:12px}
+  .num{flex:none;width:36px;height:36px;border-radius:12px;background:var(--a);color:#fff;
+       font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  h2{font-size:28px;font-weight:900;line-height:1.12;color:var(--a);letter-spacing:-.2px}
+  h2 small{display:block;font-size:14px;font-weight:700;color:var(--muted);letter-spacing:0;margin-top:3px}
+  .rule{margin-top:12px;font-size:15.5px;font-weight:700}
+  .rule .pl{display:block;font-weight:400;font-style:italic;color:var(--muted);font-size:14px;margin-top:1px}
+
+  /* ---------- slot diagram ---------- */
+  .slots{display:flex;gap:6px;margin-top:16px;align-items:stretch}
+  .slot{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center}
+  .slot .lbl{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.5px;height:20px;
+             display:flex;align-items:flex-end;justify-content:center;text-transform:uppercase}
+  .slot .box{width:100%;flex:1;min-height:50px;border-radius:14px;background:#fff;
+             border:2px solid rgba(31,36,48,.10);display:flex;align-items:center;justify-content:center;
+             text-align:center;padding:6px 4px;font-size:14.5px;font-weight:700;line-height:1.15;
+             hyphens:manual;overflow-wrap:anywhere}
+  .slot .role{font-size:12px;color:var(--muted);font-weight:600;margin-top:4px}
+  .slot.conn .box{border-color:var(--a);color:var(--a);font-weight:900}
+  .slot.verb .box{background:var(--a);border-color:var(--a);color:#fff;font-weight:900}
+  .slot.verb .lbl{color:var(--a)}
+  .slot.verb .role{color:var(--a);font-weight:900}
+  .slot.dots .box{border-style:dashed;color:var(--muted);font-weight:600}
+  .slot.narrow{flex:.55 1 0}
+  .plus{flex:none;align-self:center;font-size:22px;font-weight:900;color:var(--a);padding-top:4px}
+
+  /* ---------- connector chips ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .chip{display:inline-flex;align-items:baseline;gap:8px;background:#fff;border:2px solid var(--a);
+        border-radius:999px;padding:6px 15px 7px}
+  .chip b{font-size:20px;font-weight:900;color:var(--a)}
+  .chip span{font-size:14px;color:var(--muted);font-weight:600}
+  .chip i{font-size:12.5px;color:var(--muted);font-style:normal;font-weight:700;
+          background:var(--bg);border-radius:6px;padding:1px 6px}
+
+  .note{margin-top:12px;display:inline-block;font-size:13.5px;font-weight:700;color:var(--text);
+        background:#fff;border-radius:10px;padding:6px 11px;border:1.5px dashed var(--a)}
+  .note b{color:var(--a);font-weight:900}
+
+  /* ---------- examples ---------- */
+  .ex{margin-top:14px;display:grid;gap:8px}
+  .ex li{list-style:none;background:#fff;border-radius:16px;padding:11px 14px 12px}
+  .de{font-size:15.5px;font-weight:600;line-height:1.45}
+  .de strong{font-weight:900}
+  mark{background:var(--hl);color:var(--a);font-weight:900;border-radius:5px;padding:0 4px;
+       -webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .pl-tr{font-size:13.5px;font-style:italic;color:var(--muted);margin-top:3px;line-height:1.4}
+
+  /* ---------- footer ---------- */
+  footer{margin-top:18px;border-radius:20px;background:#fff;border:2px solid rgba(31,36,48,.08);padding:16px}
+  footer h3{font-size:13px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+  .tip{margin-top:8px;display:grid;gap:6px;font-size:15px;font-weight:700}
+  .tip span.c1{color:var(--g1)} .tip span.c2{color:var(--g2)} .tip span.c3{color:var(--g3)} .tip span.c4{color:var(--g4)}
+  .tip .arrow{color:var(--muted)}
+  .dl{display:inline-block;margin-top:14px;font-size:14px;font-weight:700;color:var(--g2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Spójniki i szyk zdania</h1>
+  <div class="sub">Konnektoren &amp; Wortstellung (B1)</div>
+  <div class="legend">
+    <div><span class="dot" style="background:var(--g1)"></span><b>obwohl · dass</b><span class="arrow">→</span>Verb am Ende</div>
+    <div><span class="dot" style="background:var(--g2)"></span><b>deshalb · deswegen · trotzdem</b><span class="arrow">→</span>Verb sofort (Pos. 2)</div>
+    <div><span class="dot" style="background:var(--g3)"></span><b>denn</b><span class="arrow">→</span>normale Wortstellung</div>
+    <div><span class="dot" style="background:var(--g4)"></span><b>wegen</b><span class="arrow">→</span>+ Nomen (Genitiv)</div>
+  </div>
+</header>
+
+<!-- ===== Group 1 ===== -->
+<section class="band g1">
+  <div class="bandhead"><div class="num">1</div>
+    <h2>Verb am ENDE<small>Nebensatz · czasownik na końcu</small></h2></div>
+  <p class="rule">Nach obwohl / dass steht das Verb ganz am Ende.
+    <span class="pl">Po obwohl / dass czasownik idzie na sam koniec.</span></p>
+  <div class="slots">
+    <div class="slot conn"><div class="lbl">1</div><div class="box">obwohl</div><div class="role">Konnektor</div></div>
+    <div class="slot"><div class="lbl">2</div><div class="box">das Verb</div><div class="role">Subjekt</div></div>
+    <div class="slot dots"><div class="lbl">…</div><div class="box">am Ende</div><div class="role">Rest</div></div>
+    <div class="slot verb"><div class="lbl">Ende ▼</div><div class="box">steht</div><div class="role">Verb</div></div>
+  </div>
+  <div class="chips">
+    <div class="chip"><b>obwohl</b><span>chociaż</span></div>
+    <div class="chip"><b>dass</b><span>że</span></div>
+    <div class="chip"><b>weshalb</b><span>dlaczego</span><i>indirekt</i></div>
+  </div>
+  <div class="note"><b>weshalb:</b> ? direkt → Pos. 2 / indirekt → Ende</div>
+  <ul class="ex">
+    <li><div class="de">Ich mag „obwohl“, <strong>obwohl</strong> das Verb am Ende <mark>steht</mark>.</div>
+        <div class="pl-tr">Lubię „obwohl”, chociaż czasownik stoi na końcu.</div></li>
+    <li><div class="de">Ich weiß, <strong>dass</strong> das Verb nach „dass“ am Ende <mark>steht</mark>.</div>
+        <div class="pl-tr">Wiem, że czasownik po „dass” stoi na końcu.</div></li>
+    <li><div class="de">Jetzt weiß ich, <strong>weshalb</strong> das Verb hier am Ende <mark>steht</mark>.</div>
+        <div class="pl-tr">Teraz wiem, dlaczego czasownik stoi tu na końcu.</div></li>
+  </ul>
+</section>
+
+<!-- ===== Group 2 ===== -->
+<section class="band g2">
+  <div class="bandhead"><div class="num">2</div>
+    <h2>Verb SOFORT danach<small>Position 2 · Inversion · czasownik zaraz po nim</small></h2></div>
+  <p class="rule">Konnektor auf Pos. 1, Verb auf Pos. 2, dann das Subjekt.
+    <span class="pl">Spójnik na 1. miejscu, czasownik na 2., potem podmiot.</span></p>
+  <div class="slots">
+    <div class="slot conn"><div class="lbl">1</div><div class="box">deshalb</div><div class="role">Konnektor</div></div>
+    <div class="slot verb"><div class="lbl">2 ▼</div><div class="box">kommt</div><div class="role">Verb</div></div>
+    <div class="slot"><div class="lbl">3</div><div class="box">das Verb</div><div class="role">Subjekt</div></div>
+    <div class="slot dots"><div class="lbl">…</div><div class="box">sofort</div><div class="role">Rest</div></div>
+  </div>
+  <div class="chips">
+    <div class="chip"><b>deshalb</b><span>dlatego</span></div>
+    <div class="chip"><b>deswegen</b><span>dlatego</span></div>
+    <div class="chip"><b>trotzdem</b><span>mimo to</span></div>
+    <div class="chip"><b>weshalb?</b><span>dlaczego?</span><i>direkt</i></div>
+  </div>
+  <div class="note"><b>weshalb:</b> ? direkt → Pos. 2 / indirekt → Ende</div>
+  <ul class="ex">
+    <li><div class="de">„Deshalb“ steht vorne, <strong>deshalb</strong> <mark>kommt</mark> das Verb sofort.</div>
+        <div class="pl-tr">„Deshalb” stoi na początku, dlatego czasownik przychodzi od razu.</div></li>
+    <li><div class="de">„Deswegen“ ist wie „deshalb“, <strong>deswegen</strong> <mark>kommt</mark> das Verb direkt danach.</div>
+        <div class="pl-tr">„Deswegen” jest jak „deshalb”, dlatego czasownik przychodzi zaraz po nim.</div></li>
+    <li><div class="de">„Trotzdem“ bedeutet fast dasselbe wie „obwohl“, <strong>trotzdem</strong> <mark>steht</mark> das Verb direkt danach.</div>
+        <div class="pl-tr">„Trotzdem” znaczy prawie to samo co „obwohl”, mimo to czasownik stoi zaraz po nim.</div></li>
+    <li><div class="de"><strong>Weshalb</strong> <mark>steht</mark> das Verb hier an zweiter Stelle?</div>
+        <div class="pl-tr">Dlaczego czasownik stoi tu na drugim miejscu?</div></li>
+  </ul>
+</section>
+
+<!-- ===== Group 3 ===== -->
+<section class="band g3">
+  <div class="bandhead"><div class="num">3</div>
+    <h2>NORMALE Wortstellung<small>Position 0 · szyk normalny</small></h2></div>
+  <p class="rule">denn zählt nicht mit: Subjekt, dann Verb – wie immer.
+    <span class="pl">denn się nie liczy: podmiot, potem czasownik – jak zwykle.</span></p>
+  <div class="slots">
+    <div class="slot conn narrow"><div class="lbl">0</div><div class="box">denn</div><div class="role">Konnektor</div></div>
+    <div class="slot"><div class="lbl">1</div><div class="box">die Wort&shy;stellung</div><div class="role">Subjekt</div></div>
+    <div class="slot verb"><div class="lbl">2 ▼</div><div class="box">bleibt</div><div class="role">Verb</div></div>
+    <div class="slot dots"><div class="lbl">…</div><div class="box">normal</div><div class="role">Rest</div></div>
+  </div>
+  <div class="chips">
+    <div class="chip"><b>denn</b><span>bo</span></div>
+  </div>
+  <ul class="ex">
+    <li><div class="de">Ich mag „denn“, <strong>denn</strong> die Wortstellung <mark>bleibt</mark> normal.</div>
+        <div class="pl-tr">Lubię „denn”, bo szyk zdania zostaje normalny.</div></li>
+  </ul>
+</section>
+
+<!-- ===== Special: wegen ===== -->
+<section class="band g4">
+  <div class="bandhead"><div class="num">★</div>
+    <h2>wegen + NOMEN<small>Genitiv · z powodu + rzeczownik</small></h2></div>
+  <p class="rule">Nach wegen kommt kein Satz, sondern ein Nomen (Genitiv).
+    <span class="pl">Po wegen nie ma zdania, tylko rzeczownik (dopełniacz).</span></p>
+  <div class="slots">
+    <div class="slot conn"><div class="lbl">Präp.</div><div class="box">wegen</div><div class="role">z powodu</div></div>
+    <div class="plus">+</div>
+    <div class="slot verb" style="flex:1.6 1 0"><div class="lbl">Nomen ▼</div><div class="box">der Regel</div><div class="role">Genitiv</div></div>
+  </div>
+  <div class="chips">
+    <div class="chip"><b>wegen</b><span>z powodu</span><i>+ Gen.</i></div>
+  </div>
+  <ul class="ex">
+    <li><div class="de"><strong>Wegen</strong> <mark>der Regel</mark> kommt nach „wegen“ ein Nomen.</div>
+        <div class="pl-tr">Z powodu tej zasady po „wegen” przychodzi rzeczownik.</div></li>
+  </ul>
+</section>
+
+<footer>
+  <h3>Merksatz · do zapamiętania</h3>
+  <div class="tip">
+    <div><span class="c1">obwohl / dass / weshalb(?)</span> <span class="arrow">→</span> Verb ans Ende</div>
+    <div><span class="c2">deshalb / deswegen / trotzdem</span> <span class="arrow">→</span> Verb sofort</div>
+    <div><span class="c3">denn</span> <span class="arrow">→</span> nichts ändert sich</div>
+    <div><span class="c4">wegen</span> <span class="arrow">→</span> + Nomen (Genitiv)</div>
+  </div>
+</footer>
+<a class="dl" href="infographic.png" download="infographic.png">Pobierz PNG</a>
+
+</div>
+</body>
+</html>
