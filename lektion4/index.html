@@ -246,9 +246,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
    <div class="face back"><div class="pl" id="f-pl"></div><div class="note" id="f-note"></div><div class="ex" id="f-ex"></div></div>
   </div></div>
   <div class="flash-nav">
-   <button class="action-btn" onclick="flashMove(-1)">Wstecz</button>
-   <button class="action-btn pink" onclick="markCard(false)">Jeszcze nie</button>
+   <button class="action-btn pink" onclick="markCard(false)" title="Pokaż tę kartę jeszcze raz w tej sesji">Powtórz</button>
    <button class="action-btn green" onclick="markCard(true)">Znam</button>
+   <button class="action-btn" onclick="flashMove(-1)">Wstecz</button>
    <button class="action-btn" onclick="flashMove(1)">Dalej</button>
   </div>
  </div>
@@ -614,7 +614,8 @@ const VOCAB_GROUPS = [
  {id:"lernen", name:"Deutsch lernen", pl:"nauka niemieckiego", emoji:"📚", src:"KB 49"},
  {id:"nachfragen", name:"Nachfragen & Informationen", pl:"dopytywanie i informacje", emoji:"🙋", src:"KB 50, 55"},
  {id:"sprachen", name:"Sprachen & Mehrsprachigkeit", pl:"języki i wielojęzyczność", emoji:"🌍", src:"KB 51–53"},
- {id:"zwischen", name:"Zwischendurch mal …", pl:"przy okazji", emoji:"🎲", src:"KB 56–57"}
+ {id:"zwischen", name:"Zwischendurch mal …", pl:"przy okazji", emoji:"🎲", src:"KB 56–57"},
+ {id:"meine", name:"Meine Wörter", pl:"Moje słówka", emoji:"⭐", src:"Lista własna (Lektion 4)"}
 ];
 const VOCAB = [];
 VOCAB.push(
@@ -717,6 +718,80 @@ VOCAB.push(
 {g:"zwischen", d:"der Vorrat", pl:"die Vorräte", p:"zapas", n:"einen Vorrat haben = mieć zapas.", x:"Bring Energiesparbirnen mit, damit wir einen Vorrat haben.", xp:"Przynieś żarówki energooszczędne, żebyśmy mieli zapas."},
 {g:"zwischen", d:"das Handtuch", pl:"die Handtücher", p:"ręcznik", n:"die Hand + das Tuch. Lm. z umlautem.", x:"Kannst du den Kindern zwei Handtücher geben?", xp:"Możesz dać dzieciom dwa ręczniki?"}
 );
+const REF = "Lista własna (Lektion 4)";
+VOCAB.push(
+{g:"meine", d:"manchmal", pl:"", p:"czasami", n:"Przysłówek częstotliwości. Na 1. miejscu przesuwa czasownik na 2. miejsce.", x:"Manchmal spreche ich mit meinen Kollegen Deutsch.", xp:"Czasami rozmawiam z kolegami po niemiecku.",
+ lex:"manchmal = „czasami”; sprechen = „mówić, rozmawiać”; spreche = „mówię”; der Kollege = „kolega”; die Kollegen = „koledzy”; mit + D = „z”; Deutsch = „niemiecki”.",
+ why:"„Manchmal” stoi na 1. miejscu, więc odmieniony czasownik spreche jest na 2., a podmiot ich zaraz po nim. ("+REF+")"},
+{g:"meine", d:"verwenden", pl:"verwendet, hat verwendet", p:"używać, stosować", n:"Regularny: wir verwenden, er verwendet, hat verwendet.", x:"Im Kurs verwenden wir viele neue Wörter.", xp:"Na kursie używamy wielu nowych słów.",
+ lex:"verwenden = „używać, stosować”; verwenden = „używamy”; der Kurs = „kurs”; das Wort = „słowo”; die Wörter = „słowa”; neu = „nowy”.",
+ why:"„Im Kurs” zajmuje 1. miejsce, więc czasownik verwenden stoi na 2., a podmiot wir zaraz po nim. ("+REF+")"},
+{g:"meine", d:"dazu", pl:"", p:"do tego, w tym celu, ponadto", n:"da + zu. Odnosi się do tego, o czym właśnie była mowa.", x:"Ich lerne Deutsch und brauche dazu viel Geduld.", xp:"Uczę się niemieckiego i potrzebuję do tego dużo cierpliwości.",
+ lex:"dazu = „do tego, w tym celu, ponadto”; lernen = „uczyć się”; brauchen = „potrzebować”; brauche = „potrzebuję”; die Geduld = „cierpliwość”; viel = „dużo”; und = „i”.",
+ why:"Dwa zdania główne łączy „und”, więc szyk się nie zmienia. W pierwszym lerne jest na 2. miejscu po ich. Po „und” podmiot się nie powtarza, więc od razu stoi czasownik brauche. ("+REF+")"},
+{g:"meine", d:"der Vorteil", pl:"die Vorteile", p:"zaleta, korzyść", n:"die Vorteile. einen Vorteil haben.", x:"Zweisprachig aufzuwachsen hat viele Vorteile.", xp:"Dorastanie w dwóch językach ma wiele zalet.",
+ lex:"der Vorteil = „zaleta, korzyść”; die Vorteile = „zalety”; zweisprachig = „dwujęzycznie”; aufwachsen = „dorastać”; aufzuwachsen = zu + bezokolicznik, „dorastanie”.",
+ why:"Cała grupa „Zweisprachig aufzuwachsen” (zu + bezokolicznik) jest podmiotem i zajmuje 1. miejsce, więc czasownik hat stoi na 2. ("+REF+")"},
+{g:"meine", d:"derselbe / dieselbe / dasselbe", pl:"der → derselbe, die → dieselbe, das → dasselbe", p:"ten sam / ta sama / to samo", n:"Rodzaj jak przy der/die/das: derselbe Kurs, dieselbe Schule, dasselbe Buch.", x:"Wir besuchen dieselbe Sprachschule.", xp:"Chodzimy do tej samej szkoły językowej.",
+ lex:"derselbe = „ten sam”; dieselbe = „ta sama”; dasselbe = „to samo”; besuchen = „chodzić, odwiedzać”; die Sprachschule = „szkoła językowa”.",
+ why:"Zwykły szyk: podmiot Wir na 1. miejscu, czasownik besuchen na 2. „dieselbe” jest rodzaju żeńskiego, bo die Sprachschule. („derselbe” byłoby dla der, „dasselbe” dla das.) ("+REF+")"},
+{g:"meine", d:"genug", pl:"", p:"dość, wystarczająco", n:"Zwykle przed rzeczownikiem: genug Zeit.", x:"Ich habe nicht genug Zeit zum Lernen.", xp:"Nie mam wystarczająco dużo czasu na naukę.",
+ lex:"genug = „dość, wystarczająco”; haben = „mieć”; habe = „mam”; die Zeit = „czas”; das Lernen = „nauka”; zum = zu + dem.",
+ why:"Podmiot Ich na 1. miejscu, czasownik habe na 2. „zum Lernen” to zu + rzeczownik od bezokolicznika (das Lernen) i stoi na końcu grupy. ("+REF+")"},
+{g:"meine", d:"bald", pl:"", p:"wkrótce, niedługo", n:"Przysłówek czasu. Na 1. miejscu → spreche ich.", x:"Bald spreche ich fließend Deutsch.", xp:"Wkrótce będę mówić płynnie po niemiecku.",
+ lex:"bald = „wkrótce, niedługo”; sprechen = „mówić”; spreche = „mówię”; fließend = „płynnie”; Deutsch = „niemiecki”.",
+ why:"„Bald” stoi na 1. miejscu, więc czasownik spreche jest na 2., a podmiot ich zaraz po nim. ("+REF+")"},
+{g:"meine", d:"toll", pl:"toller, am tollsten", p:"świetny, super", n:"Po sein bez końcówki: ist toll. Z rodzajnikiem: der tolle Kurs.", x:"Der Sprachkurs ist wirklich toll.", xp:"Kurs językowy jest naprawdę świetny.",
+ lex:"toll = „świetny, super”; der Sprachkurs = „kurs językowy”; wirklich = „naprawdę”; sein = „być”; ist = „jest”.",
+ why:"Podmiot Der Sprachkurs na 1. miejscu, czasownik ist na 2. Po sein przymiotnik toll nie dostaje końcówki. ("+REF+")"},
+{g:"meine", d:"sogar", pl:"", p:"nawet", n:"sogar podkreśla słowo po sobie i nie rusza czasownika z 2. miejsca.", x:"Er spricht sogar Schweizerdeutsch.", xp:"On mówi nawet po szwajcarsko-niemiecku.",
+ lex:"sogar = „nawet”; sprechen = „mówić”; spricht = „mówi”; Schweizerdeutsch = „szwajcarski niemiecki”.",
+ why:"Podmiot Er na 1. miejscu, czasownik spricht na 2. „sogar” stoi przed słowem, które podkreśla, i nie zmienia pozycji czasownika. ("+REF+")"},
+{g:"meine", d:"sich erinnern an + Akk.", pl:"er erinnert sich, hat sich erinnert", p:"pamiętać, przypominać sobie", n:"an + biernik: an meinen Kurs. Formy: er erinnert sich / hat sich erinnert.", x:"Ich erinnere mich gern an meinen ersten Deutschkurs.", xp:"Chętnie wspominam mój pierwszy kurs niemieckiego.",
+ lex:"sich erinnern an + Akk. = „pamiętać, przypominać sobie”; erinnere mich = „wspominam”; er erinnert sich = „on pamięta”; hat sich erinnert = „przypomniał sobie”; gern = „chętnie”; der Deutschkurs = „kurs niemieckiego”.",
+ why:"Podmiot Ich na 1. miejscu, czasownik erinnere na 2., a zaimek zwrotny mich stoi zaraz po nim. W Perfekt czasownik hat jest na 2. miejscu, a sich stoi przed imiesłowem erinnert. ("+REF+")"},
+{g:"meine", d:"der Himmel", pl:"die Himmel", p:"niebo", n:"über + celownik, gdy pytamy „gdzie?”: über Zürich.", x:"Heute ist der Himmel über Zürich blau.", xp:"Dziś niebo nad Zurychem jest niebieskie.",
+ lex:"der Himmel = „niebo”; heute = „dziś”; über + D = „nad”; blau = „niebieski”; Zürich = „Zurych”; sein = „być”.",
+ why:"„Heute” stoi na 1. miejscu, więc czasownik ist jest na 2., a podmiot der Himmel dopiero po nim. Po sein przymiotnik blau nie ma końcówki. ("+REF+")"},
+{g:"meine", d:"tüchtig", pl:"tüchtiger, am tüchtigsten", p:"pracowity, zdolny, sprawny", n:"eine tüchtige Schülerin: po eine końcówka -e.", x:"Sie ist eine sehr tüchtige Schülerin.", xp:"Ona jest bardzo pracowitą uczennicą.",
+ lex:"tüchtig = „pracowity, zdolny, sprawny”; tüchtige = forma z końcówką -e; die Schülerin = „uczennica”; sehr = „bardzo”; sein = „być”.",
+ why:"Podmiot Sie na 1. miejscu, czasownik ist na 2. Po eine (rodzaj żeński) przymiotnik dostaje końcówkę -e: tüchtige. ("+REF+")"},
+{g:"meine", d:"gegenseitig", pl:"", p:"wzajemnie, nawzajem", n:"helfen łączy się z celownikiem: uns gegenseitig.", x:"Im Tandem helfen wir uns gegenseitig.", xp:"W tandemie pomagamy sobie nawzajem.",
+ lex:"gegenseitig = „wzajemnie, nawzajem”; das Tandem = „tandem”; helfen = „pomagać”; uns = „sobie” (celownik).",
+ why:"„Im Tandem” zajmuje 1. miejsce, więc czasownik helfen stoi na 2., a podmiot wir zaraz po nim. helfen łączy się z celownikiem: uns. ("+REF+")"},
+{g:"meine", d:"anstrengend", pl:"anstrengender, am anstrengendsten", p:"męczący, wyczerpujący", n:"Przymiotnik od sich anstrengen (wysilać się).", x:"Eine neue Sprache zu lernen ist anstrengend.", xp:"Nauka nowego języka jest męcząca.",
+ lex:"anstrengend = „męczący, wyczerpujący”; die Sprache = „język”; neu = „nowy”; lernen = „uczyć się”; sein = „być”; ist = „jest”.",
+ why:"Grupa „Eine neue Sprache zu lernen” (zu + bezokolicznik) jest podmiotem i zajmuje 1. miejsce, więc czasownik ist stoi na 2. Po sein przymiotnik anstrengend nie ma końcówki. ("+REF+")"},
+{g:"meine", d:"beherrschen", pl:"beherrscht, hat beherrscht", p:"opanować, władać (językiem)", n:"eine Sprache beherrschen = władać językiem.", x:"Er beherrscht drei Sprachen.", xp:"On włada trzema językami.",
+ lex:"beherrschen = „opanować, władać (językiem)”; beherrscht = „włada”; die Sprache = „język”; drei = „trzy”.",
+ why:"Podmiot Er na 1. miejscu, czasownik beherrscht na 2. Dopełnienie drei Sprachen stoi po czasowniku. ("+REF+")"},
+{g:"meine", d:"erreichen", pl:"erreicht, hat erreicht", p:"osiągnąć", n:"möchte + bezokolicznik na końcu: erreichen.", x:"Ich möchte bis Ende des Jahres das Niveau B1 erreichen.", xp:"Chcę do końca roku osiągnąć poziom B1.",
+ lex:"erreichen = „osiągnąć”; möchte = „chciałbym”; das Niveau = „poziom”; das Jahr = „rok”; des Jahres = dopełniacz; bis = „do”; Ende = „koniec”.",
+ why:"Podmiot Ich na 1. miejscu, odmieniony czasownik möchte na 2. Bezokolicznik erreichen idzie na sam koniec, bo möchte działa jak czasownik modalny. ("+REF+")"},
+{g:"meine", d:"der Fehler", pl:"die Fehler; Dativ lm.: den Fehlern", p:"błąd", n:"einen Fehler machen. Po aus celownik liczby mnogiej: den Fehlern.", x:"Aus Fehlern lernt man.", xp:"Na błędach się człowiek uczy.",
+ lex:"der Fehler = „błąd”; die Fehler = liczba mnoga; den Fehlern = celownik liczby mnogiej; aus + D = „z”; lernen = „uczyć się”; lernt = „uczy się”; man = „człowiek, się”.",
+ why:"„Aus Fehlern” (aus + celownik liczby mnogiej, z -n: den Fehlern) zajmuje 1. miejsce, więc czasownik lernt stoi na 2., a podmiot man zaraz po nim. ("+REF+")"}
+);
+const MEINE_GAPS = [
+ {q:"___ spreche ich mit meinen Kollegen Deutsch.", a:"Manchmal", o:["Manchmal","Genug","Tüchtig","Gegenseitig"], pl:"Czasami rozmawiam z kolegami po niemiecku.",
+  lex:"manchmal = „czasami”; sprechen = „mówić”; spreche = „mówię”; der Kollege = „kolega”; Deutsch = „niemiecki”.",
+  why:"„Manchmal” stoi na 1. miejscu, więc spreche jest na 2., a ich zaraz po nim. Genug, tüchtig i gegenseitig nie są tu przysłówkiem czasu. ("+REF+")"},
+ {q:"Im Kurs ___ wir viele neue Wörter.", a:"verwenden", o:["verwenden","beherrschen","erreichen","erinnern"], pl:"Na kursie używamy wielu nowych słów.",
+  lex:"verwenden = „używać, stosować”; der Kurs = „kurs”; das Wort = „słowo”; die Wörter = „słowa”.",
+  why:"„Im Kurs” zajmuje 1. miejsce, więc czasownik stoi na 2., a wir zaraz po nim. Forma dla wir jest taka jak bezokolicznik: verwenden. ("+REF+")"},
+ {q:"Wir besuchen ___ Sprachschule.", a:"dieselbe", o:["dieselbe","derselbe","dasselbe","gegenseitig"], pl:"Chodzimy do tej samej szkoły językowej.",
+  lex:"dieselbe = „ta sama”; derselbe = „ten sam”; dasselbe = „to samo”; die Sprachschule = „szkoła językowa”; besuchen = „chodzić”.",
+  why:"Podmiot Wir na 1. miejscu, besuchen na 2. die Sprachschule jest rodzaju żeńskiego, więc dieselbe, nie derselbe (der) ani dasselbe (das). ("+REF+")"},
+ {q:"Ich habe nicht ___ Zeit zum Lernen.", a:"genug", o:["genug","bald","toll","sogar"], pl:"Nie mam wystarczająco dużo czasu na naukę.",
+  lex:"genug = „dość, wystarczająco”; haben = „mieć”; die Zeit = „czas”; zum Lernen = „na naukę”.",
+  why:"Ich na 1. miejscu, habe na 2. „genug” stoi przed rzeczownikiem Zeit. bald, toll i sogar nie pasują do „nicht ___ Zeit”. ("+REF+")"},
+ {q:"Er ___ drei Sprachen.", a:"beherrscht", o:["beherrscht","verwendet","erreicht","erinnert"], pl:"On włada trzema językami.",
+  lex:"beherrschen = „opanować, władać”; beherrscht = „włada”; die Sprache = „język”; drei = „trzy”.",
+  why:"Er na 1. miejscu, więc odmieniony czasownik beherrscht jest na 2. (3. os. lp.). verwenden i erreichen znaczą tu co innego, erinnern potrzebuje sich. ("+REF+")"},
+ {q:"Aus ___ lernt man.", a:"Fehlern", o:["Fehlern","Fehler","Vorteile","Himmel"], pl:"Na błędach się człowiek uczy.",
+  lex:"der Fehler = „błąd”; die Fehler = liczba mnoga; den Fehlern = celownik liczby mnogiej; aus + D = „z”; lernen = „uczyć się”; man = „się, człowiek”.",
+  why:"aus wymaga celownika. Liczba mnoga w celowniku dostaje -n: den Fehlern. Ta grupa jest na 1. miejscu, więc lernt stoi na 2., a man po nim. („Fehler” bez -n to nie celownik.) ("+REF+")"}
+];
 // ===== LOGIKA APLIKACJI =====
 const STORE_KEY = "schritteB1_L4_v1";
 let store = loadStore();
@@ -967,7 +1042,8 @@ function renderVocabHome(){
   $("chips").innerHTML = `<button class="chip ${all?"on":""}" onclick="toggleGroup('all')">🌈 Wszystkie</button>` +
     VOCAB_GROUPS.map(x=>{ const n=VOCAB.filter(w=>w.g===x.id).length; return `<button class="chip ${(!all&&g.includes(x.id))?"on":""}" onclick="toggleGroup('${x.id}')" title="${x.src}">${x.emoji} ${x.name} (${n})${x.pl?`<span class="chip-pl">${x.pl}</span>`:""}</button>`; }).join("");
   const words=selectedWords(); const known=words.filter(w=>store.known[w.d]).length;
-  $("v-count").textContent = `Wybrane: ${words.length} słówek · znam ${known} (${words.length?Math.round(known/words.length*100):0}%)`;
+  const onlyMeine = words.length && words.every(w=>w.g==="meine");
+  $("v-count").textContent = `Wybrane: ${words.length} słówek · znam ${known} (${words.length?Math.round(known/words.length*100):0}%)` + (onlyMeine ? " · quiz: oba kierunki i luki w zdaniach" : "");
   $("v-bar").style.width = (words.length?known/words.length*100:0)+"%";
   $("word-list").innerHTML = words.map(w=>`<div><span>${store.known[w.d]?'<span class="k">✓</span> ':''}<b>${esc(w.d)}</b> <span class="small">${esc(w.pl)}</span></span><span>${esc(w.p)}</span></div>`).join("");
 }
@@ -997,12 +1073,24 @@ function drawCard(){
 }
 function flipCard(){ if(deck.length) $("flashcard").classList.toggle("flipped"); }
 function flashMove(d){ if(!deck.length) return; fi=(fi+d+deck.length)%deck.length; drawCard(); }
-function markCard(k){
-  if(!deck.length) return; const w=deck[fi];
-  if(k) store.known[w.d]=true; else delete store.known[w.d];
+function markCard(known){
+  if(!deck.length) return;
+  const w=deck[fi];
+  if(known){
+    store.known[w.d]=true;
+    saveStore();
+    deck.splice(fi,1);
+    if(fi>=deck.length) fi=0;
+    drawCard();
+    return;
+  }
+  delete store.known[w.d];
   saveStore();
-  if($("only-unknown").checked && k){ deck.splice(fi,1); if(fi>=deck.length) fi=0; drawCard(); }
-  else flashMove(1);
+  const [card]=deck.splice(fi,1);
+  const later=Math.min(3, deck.length);
+  deck.splice(Math.min(deck.length, fi+later), 0, card);
+  if(fi>=deck.length) fi=0;
+  drawCard();
 }
 // Quiz słówek
 function mentionTok(s, tok){
@@ -1030,9 +1118,35 @@ function extraVocabGloss(text, lex){
   }
   return bits.join("; ");
 }
+function meineMc(w, mode){
+  const pool = VOCAB.filter(x=>x.g==="meine");
+  const key = mode==="de" ? "p" : "d";
+  const opts=[w[key]];
+  for(const o of shuffle(pool)){
+    if(opts.length>=4) break;
+    if(o!==w && !opts.includes(o[key])) opts.push(o[key]);
+  }
+  return { t:"mc", label: mode==="de"?"🇩🇪 → 🇵🇱 Co to znaczy?":"🇵🇱 → 🇩🇪 Jak to powiedzieć po niemiecku?",
+    q: mode==="de" ? w.d : w.p,
+    hint: mode==="de" ? "Wybierz polskie tłumaczenie." : "Wybierz niemieckie słowo.",
+    o: opts, a: w[key], pl: w.xp, lex: w.lex, why: w.why, e: REF };
+}
+function buildMeineQuiz(){
+  const words = VOCAB.filter(w=>w.g==="meine");
+  const qs=[];
+  for(const w of words){ qs.push(meineMc(w,"de")); qs.push(meineMc(w,"pl")); }
+  for(const g of MEINE_GAPS){
+    qs.push({ t:"mc", label:"Uzupełnij zdanie", q:g.q, hint:"Wybierz słowo z grupy Moje słówka.", o:g.o.slice(), a:g.a, pl:g.pl, lex:g.lex, why:g.why, e:REF });
+  }
+  return qs;
+}
 function startVocabQuiz(mode){
   current=null;
   const words=selectedWords();
+  if(words.length && words.every(w=>w.g==="meine")){
+    startGame({id:"vq_meine", title:"Moje słówka", questions:buildMeineQuiz(), vocabMode:"meine"});
+    return;
+  }
   const pool = words.length>=4 ? words : VOCAB;
   const picked = shuffle(pool).slice(0, Math.min(15,pool.length));
   const qs = picked.map(w=>{
@@ -1044,13 +1158,14 @@ function startVocabQuiz(mode){
     const forms = w.pl && w.pl[0]!=="(" ? " ("+w.pl+")" : "";
     const baseLex = w.d+forms+" = "+w.p;
     const extra = extraVocabGloss((w.x||"")+" "+w.d, baseLex);
+    const mine = w.g==="meine" && w.lex && w.why;
     return { t:"mc", label: mode==="de"?"🇩🇪 → 🇵🇱 Co to znaczy?":"🇵🇱 → 🇩🇪 Jak to powiedzieć po niemiecku?",
       q: mode==="de" ? w.d : w.p, hint: mode==="de" ? (w.pl&&w.pl[0]!=="("?w.pl:"") || "Wybierz polskie tłumaczenie." : "Wybierz niemieckie słowo (z rodzajnikiem).",
       o: opts, a: w[key],
-      pl: w.xp ? w.p+". Przykład: "+w.xp : w.p,
-      lex: extra ? baseLex+"; "+extra : baseLex,
-      why: w.n || "Słówko z Lektion 4.",
-      e: `${w.d}${forms} = ${w.p}. ${w.n} Przykład: ${w.x} (${w.xp})` };
+      pl: mine ? w.xp : (w.xp ? w.p+". Przykład: "+w.xp : w.p),
+      lex: mine ? w.lex : (extra ? baseLex+"; "+extra : baseLex),
+      why: mine ? w.why : (w.n || "Słówko z Lektion 4."),
+      e: mine ? REF : `${w.d}${forms} = ${w.p}. ${w.n} Przykład: ${w.x} (${w.xp})` };
   });
   startGame({id:"vq_"+mode, title: mode==="de"?"🇩🇪 → 🇵🇱 Quiz słówek":"🇵🇱 → 🇩🇪 Quiz słówek", questions:qs, vocabMode:mode});
 }
