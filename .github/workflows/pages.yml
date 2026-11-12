@@ -3,47 +3,98 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Check lesson data
+        run: node scripts/check-explanations.mjs
+      - name: Engine smoke test
+        run: |
+          if ! command -v google-chrome-stable >/dev/null 2>&1 && ! command -v google-chrome >/dev/null 2>&1; then
+            npx playwright install --with-deps chromium
+          fi
+          node scripts/smoke-lesson.mjs
+
   deploy:
+    needs: check
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Confirm static 3D app is included
+      - name: Assemble site
         run: |
-          test -f 3d/index.html
-          test -f 3d/style.css
-          test -f 3d/js/three.module.js
-          test -f 3d/js/app.js
-          test -f 3d/js/core.js
-          test -f 3d/js/OrbitControls.js
-          test -f 3d/js/RoundedBoxGeometry.js
-          test -f 3d/js/rooms/restaurant.js
-          test -f 3d/js/rooms/office.js
-          test -f 3d/thumbs/restaurant.jpg
-          test -f 3d/thumbs/office.jpg
+          mkdir -p _site
+          # Copy the site only. tar is used so the job does not depend on rsync.
+          tar \
+            --exclude='./.git' \
+            --exclude='./.github' \
+            --exclude='./scripts' \
+            --exclude='./node_modules' \
+            --exclude='./_site' \
+            --exclude='./package.json' \
+            --exclude='./package-lock.json' \
+            --exclude='./README.md' \
+            --exclude='./.gitignore' \
+            -cf - . | tar -C _site -xf -
+          test -f _site/index.html
+          test -f _site/.nojekyll
+          test -f _site/shared/engine.js
+          test -f _site/shared/lesson.css
+          test -f _site/lektion4/index.html
+          test -f _site/lektion4/data.json
+          test -f _site/lektion5/index.html
+          test -f _site/lektion5/data.json
+          test -f _site/3d/index.html
+          test -f _site/3d/style.css
+          test -f _site/3d/js/three.module.js
+          test -f _site/3d/js/app.js
+          test -f _site/3d/js/core.js
+          test -f _site/3d/js/OrbitControls.js
+          test -f _site/3d/js/RoundedBoxGeometry.js
+          test -f _site/3d/js/rooms/restaurant.js
+          test -f _site/3d/js/rooms/office.js
+          test -f _site/3d/thumbs/restaurant.jpg
+          test -f _site/3d/thumbs/office.jpg
+          test ! -e _site/scripts
+          test ! -e _site/package.json
+          test ! -e _site/package-lock.json
+          test ! -e _site/.github
+          test ! -e _site/node_modules
+          test ! -e _site/README.md
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # The site is the repository itself. 3d/ is a finished static app
-          # (local Three.js, no bundler) and is uploaded unchanged.
-          path: '.'
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
