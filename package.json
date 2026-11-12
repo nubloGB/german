@@ -1,0 +1,13 @@
+{
+  "name": "german-lessons",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-explanations.mjs",
+    "smoke": "node scripts/smoke-lesson.mjs",
+    "test": "node scripts/check-explanations.mjs && node scripts/smoke-lesson.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0"
+  }
+}
