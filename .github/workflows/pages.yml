@@ -25,9 +25,24 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Confirm static 3D app is included
+        run: |
+          test -f 3d/index.html
+          test -f 3d/style.css
+          test -f 3d/js/three.module.js
+          test -f 3d/js/app.js
+          test -f 3d/js/core.js
+          test -f 3d/js/OrbitControls.js
+          test -f 3d/js/RoundedBoxGeometry.js
+          test -f 3d/js/rooms/restaurant.js
+          test -f 3d/js/rooms/office.js
+          test -f 3d/thumbs/restaurant.jpg
+          test -f 3d/thumbs/office.jpg
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # The site is the repository itself. 3d/ is a finished static app
+          # (local Three.js, no bundler) and is uploaded unchanged.
           path: '.'
       - name: Deploy to GitHub Pages
         id: deployment

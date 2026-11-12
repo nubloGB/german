@@ -8,6 +8,7 @@ Strona do nauki niemieckiego na podstawie podręcznika **Schritte Plus Neu B1.1*
 
 - [Lektion 4 – Sprachen](https://nublogb.github.io/german/lektion4/) — quiz i fiszki słownictwa
 - [Lektion 5 – Eine Arbeit finden](https://nublogb.github.io/german/lektion5/) — quiz i fiszki słownictwa (szukanie pracy)
+- [3D Escape Rooms](https://nublogb.github.io/german/3d/) — Kapitel 4 Restaurant · Kapitel 5 Büro
 
 ## Jak dodać kolejną lekcję
 
